@@ -1,0 +1,197 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html itemscope itemtype="http://schema.org/Organization" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html itemscope itemtype="http://schema.org/Organization" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html itemscope itemtype="http://schema.org/Organization" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html itemscope itemtype="http://schema.org/Organization" class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>Omninox - AP Exams Never Felt Easier</title>
+    <meta itemprop="name" content="Omninox - Simplified Online AP Practice">
+    <meta itemprop="description" content="An invitation link to join a community of AP students and teachers practicing for AP exams together.">
+    <meta itemprop="image" content="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/Logo.png">
+    <meta name="description" content="AP&reg; Practice exams for classes like APUSH, Statistics, and more! Request an Invitation.">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+      <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+      <link rel="stylesheet" href="bower_components/isteven-angular-multiselect/isteven-multi-select.css" />
+      <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+      <link rel="stylesheet" href="bower_components/ui-select/dist/select.css" />
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <link rel="stylesheet" href="app/app.css">
+      <!-- injector:css -->
+      <!-- endinjector -->
+    <!-- endbuild -->
+  </head>
+
+  <body class="body" ng-app="fsaApp" ontouchstart="" onmouseover="">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div ng-view=""></div>
+    <div ng-controller='LivechatCtrl' ng-include='"components/livechat/livechat.html"'></div>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-41214663-2');
+      ga('send', 'pageview');
+    </script>
+    <!-- Braintree + other custom integrations -->
+    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- End custom integratinos -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-route/angular-route.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="bower_components/lodash/lodash.js"></script>
+      <script src="bower_components/angular-socket-io/socket.js"></script>
+      <script src="bower_components/angular-touch/angular-touch.js"></script>
+      <script src="bower_components/angular-ui-select/dist/select.js"></script>
+      <script src="bower_components/momentjs/moment.js"></script>
+      <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+      <script src="bower_components/angular-timer/dist/angular-timer.js"></script>
+      <script src="bower_components/angular-smoothscroll/dist/scripts/bb15da28.scripts.js"></script>
+      <script src="bower_components/spin.js/spin.js"></script>
+      <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+      <script src="bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
+      <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+      <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+      <script src="bower_components/ui-select/dist/select.js"></script>
+      <script src="bower_components/ng-ckeditor/ng-ckeditor.js"></script>
+      <!-- endbower -->
+      <script src="socket.io-client/socket.io.js"></script>
+    <!-- endbuild -->
+    <script src="assets/javascript/ckeditor/ckeditor.js"></script>
+
+        <!-- build:js({.tmp,client}) app/app.js -->
+        <script src="app/app.js"></script>
+          <!-- injector:js -->
+          <script src="app/about/about.controller.js"></script>
+          <script src="app/about/about.js"></script>
+          <script src="app/account/account.js"></script>
+          <script src="app/account/account/account.controller.js"></script>
+          <script src="app/account/exam/exam.controller.js"></script>
+          <script src="app/account/forgot/forgot.controller.js"></script>
+          <script src="app/account/login/login.controller.js"></script>
+          <script src="app/account/reset/reset.controller.js"></script>
+          <script src="app/account/settings/settings.controller.js"></script>
+          <script src="app/account/signup/beta/beta.controller.js"></script>
+          <script src="app/account/signup/beta/beta.js"></script>
+          <script src="app/account/signup/signup.controller.js"></script>
+          <script src="app/admin/admin.controller.js"></script>
+          <script src="app/admin/admin.js"></script>
+          <script src="app/admin/components/accountTracker/accountTracker.controller.js"></script>
+          <script src="app/admin/components/betaKey/addBetaKey.controller.js"></script>
+          <script src="app/admin/components/betaKey/betaKeyManagement.controller.js"></script>
+          <script src="app/admin/components/blockuser/blockuser.controller.js"></script>
+          <script src="app/admin/components/chatarchive/chatarchive.controller.js"></script>
+          <script src="app/admin/components/chatroom/chatroom.controller.js"></script>
+          <script src="app/admin/components/couponManagement/addCoupon.controller.js"></script>
+          <script src="app/admin/components/couponManagement/couponManagement.controller.js"></script>
+          <script src="app/admin/components/exams/examManagement.controller.js"></script>
+          <script src="app/admin/components/notificationToggle/notificationToggle.controller.js"></script>
+          <script src="app/admin/components/questions/questionManagement.controller.js"></script>
+          <script src="app/admin/components/subjectsTaught/subjectsTaught.controller.js"></script>
+          <script src="app/admin/components/survey/addSurvey.controller.js"></script>
+          <script src="app/admin/components/survey/surveyManagement.controller.js"></script>
+          <script src="app/admin/components/user/userManagement.controller.js"></script>
+          <script src="app/admin/examEdit/examEdit.controller.js"></script>
+          <script src="app/admin/examEdit/examEdit.js"></script>
+          <script src="app/blog/blog.js"></script>
+          <script src="app/contact/contact.controller.js"></script>
+          <script src="app/contact/contact.js"></script>
+          <script src="app/exam/exam.controller.js"></script>
+          <script src="app/main/main.controller.js"></script>
+          <script src="app/main/main.js"></script>
+          <script src="app/pricing/pricing.controller.js"></script>
+          <script src="app/pricing/pricing.js"></script>
+          <script src="app/privacy/privacy.controller.js"></script>
+          <script src="app/privacy/privacy.js"></script>
+          <script src="app/resources/resources.controller.js"></script>
+          <script src="app/resources/resources.js"></script>
+          <script src="app/resources/subjects/APPhys/APPhys.controller.js"></script>
+          <script src="app/resources/subjects/APPhys/equations.controller.js"></script>
+          <script src="app/student/classroom/assignment/assignment.controller.js"></script>
+          <script src="app/student/classroom/classroom.controller.js"></script>
+          <script src="app/student/classroom/peerGradeModal.controller.js"></script>
+          <script src="app/student/practice/practice.controller.js"></script>
+          <script src="app/student/student.controller.js"></script>
+          <script src="app/student/student.js"></script>
+          <script src="app/teacher/addAssignmentModal.controller.js"></script>
+          <script src="app/teacher/addClassModal.controller.js"></script>
+          <script src="app/teacher/administerAssignmentModal.controller.js"></script>
+          <script src="app/teacher/assignment/assignment.controller.js"></script>
+          <script src="app/teacher/classroom/assignModal.controller.js"></script>
+          <script src="app/teacher/classroom/classroom.controller.js"></script>
+          <script src="app/teacher/deleteModal.controller.js"></script>
+          <script src="app/teacher/gradebook/gradebook.controller.js"></script>
+          <script src="app/teacher/sample/sampleAssignment.controller.js"></script>
+          <script src="app/teacher/teacher.controller.js"></script>
+          <script src="app/teacher/teacher.js"></script>
+          <script src="app/terms/terms.controller.js"></script>
+          <script src="app/terms/terms.js"></script>
+          <script src="components/academicRoleModal/academicRoleModal.controller.js"></script>
+          <script src="components/accountPage/admin/account.controller.js"></script>
+          <script src="components/accountPage/endUser/account.controller.js"></script>
+          <script src="components/addChatRoom/addChatRoom.controller.js"></script>
+          <script src="components/addUser/addUser.controller.js"></script>
+          <script src="components/alerts/you_are_not_logged_in.controller.js"></script>
+          <script src="components/assignmentFilingCabinet/assignmentFilingCabinet.service.js"></script>
+          <script src="components/auth/auth.service.js"></script>
+          <script src="components/auth/user.service.js"></script>
+          <script src="components/autoFillFix/autoFillFix.directive.js"></script>
+          <script src="components/ccform/ccform.controller.js"></script>
+          <script src="components/chat/chat.controller.js"></script>
+          <script src="components/chat/chat.filter.js"></script>
+          <script src="components/classroomHelper/classroomHelper.service.js"></script>
+          <script src="components/confirmModal/confirmModal.controller.js"></script>
+          <script src="components/examPage/examPage.controller.js"></script>
+          <script src="components/footer/footer.directive.js"></script>
+          <script src="components/leaderboard/leaderboard.controller.js"></script>
+          <script src="components/livechat/livechat.controller.js"></script>
+          <script src="components/mathjaxBind/mathjaxBind.directive.js"></script>
+          <script src="components/modal/modal.service.js"></script>
+          <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+          <script src="components/navbar/navbar.controller.js"></script>
+          <script src="components/omniEditor/omniEditor.directive.js"></script>
+          <script src="components/omniLink/omniLink.directive.js"></script>
+          <script src="components/omniTap/omniTap.directive.js"></script>
+          <script src="components/omnicordion/omnicordion.directive.js"></script>
+          <script src="components/persist/persist.service.js"></script>
+          <script src="components/scrollTopOn/scrollTopOn.directive.js"></script>
+          <script src="components/scrollable/scrollable.directive.js"></script>
+          <script src="components/signupModal/signupModal.controller.js"></script>
+          <script src="components/socket/socket.service.js"></script>
+          <script src="components/studentsProgress/studentsProgress.directive.js"></script>
+          <script src="components/subjectNames/subjectNames.service.js"></script>
+          <script src="components/surveyModal/surveyModal.controller.js"></script>
+          <script src="components/surveyModal/surveyModal.js"></script>
+          <!-- endinjector -->
+        <!-- endbuild -->
+</body>
+</html>

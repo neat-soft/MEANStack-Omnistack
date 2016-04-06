@@ -1,0 +1,102 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  h1.avenir-db.text-center: u Pay Once for Five Exams
+  h3.avenir-db.text-center How we compare to the competition
+  .table-responsive
+    table.table.table-condensed.table-bordered
+      tr
+        th.h4.avenir-db.text-center Feature
+        th.h4.avenir-db.text-center Omninox
+        th.h4.avenir-db.text-center Competition<sup>*</sup>
+      tr
+        td.avenir-light # of Practice Exams
+        td.avenir-light.success 5 multiple choice
+        td.avenir-light.success 2 full length
+      tr
+        td.avenir-light Instant Feedback
+        td.avenir-light.success Yes
+        td.avenir-light No
+      tr
+        td.avenir-light Detailed Explanations
+        td.avenir-light.success Yes
+        td.avenir-light.success Yes
+      tr
+        td.avenir-light Review Book
+        td.avenir-light Yes (separate, iPad Only)
+        td.avenir-light.success Yes (included)
+      tr
+        td.avenir-light Research-backed learning
+        td.avenir-light.success Yes ¯
+        td.avenir-light No
+      tr
+        td.avenir-light Access on all devices
+        td.avenir-light.success Yes
+        td.avenir-light No
+      tr
+        td.avenir-light Customer Support
+        td.avenir-light.success Yes
+        td.avenir-light No
+      tr
+        td.avenir-light Price per subject
+        td.avenir-light.success $12
+        td.avenir-light $14-$20
+      tr
+        td.avenir-light <strong>A supportive community</strong>
+        td.avenir-light.success Yes
+        td.avenir-light No
+
+  p <sup>*</sup> Kaplan, Princeton Review, and Barron's AP Test Prep guides
+  p ¯ <a href='http://www.sciencemag.org/content/319/5865/966.abstract'> Science Magazine, 2008 </a>
+  h1.avenir-db.text-center: u More Benefits
+  p.lead.avenir-light.benefits.text-center No recurring subscription
+  p.lead.avenir-light.benefits.text-center 3 day refund if you are unsatisfied
+  p.lead.avenir-light.benefits.text-center <a href='/contact'>Contact us</a> for class sets or school/district orders
+  p.lead.text-center.avenir-db Go on. Pick your subjects by pressing the buttons below!
+
+  //- subject list
+  .row
+    div.col-xs-12.col-sm-6.col-lg-3(ng-repeat='subject in subjects')
+      button.lead.avenir-db.subject-label.btn.col-xs-offset-1(class='{{subject.currentClass}}', omni-tap='select(subject)') {{subject.subjectName}}
+
+  //- coupon code
+  .row.avenir-light(style='margin:20px 0 20px 0; text-align-center;width:100%')
+    .col-sm-2.col-md-3.col-lg-4
+    .col-xs-8.col-sm-6.col-md-4.col-lg-3
+      input.omni-input.form-control#coupon-input(placeholder="Enter Coupon code", type='text', name='couponCode', ng-model='couponCode')
+    .col-xs-4.col-sm-2.col-md-2.col-lg-1
+      button.btn.btn-danger(omni-tap='submitCouponCode()') Redeem
+    .col-sm-2.col-md-3.col-lg-4
+  .row
+    .col-xs-12.coupon-message.avenir-light
+      | {{couponMessage}}
+
+  //- checkout / paypal / redeem buttons
+  .h3.avenir-light.text-center
+    | <strong>Total</strong>:
+    span(ng-show='discountPercent > 0',style='text-decoration: line-through; color: red') ${{totalWithoutDiscount}}
+    | &nbsp;${{total}} for a full year of access
+    span(ng-show='discountPercent > 0',style='color: red')  (-{{discountPercent}}%)
+  .row.animated.fadeInUp(ng-show='numPicked == numFreePicked && numFreePicked > 0')
+    .col-sm-3.col-lg-4
+    .col-sm-6.col-lg-4
+      button.btn.btn-danger.center.full-width.redeem-button(omni-tap='redeemFree()', ng-disabled='freeBtnDisabled'): h3.avenir-db Redeem Free Subject
+      span(us-spinner, spinner-key="spinner-free", spinner-start-active="false")
+    .col-sm-3.col-lg-4
+  .row.animated.fadeInUp(ng-show='total>0')
+    .col-lg-1
+    .col-sm-5.col-lg-4
+      button.btn.btn-danger.center.full-width(omni-tap='showCCForm()', ng-disabled="paypalProcessing"): h3.avenir-db Checkout<sup>*</sup>
+        img.cart(src='https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/icon_shopping-cart.svg', onerror='this.src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/icon_shopping-cart.png";this.onerror=null;')
+    .col-sm-2.col-lg-2
+    .col-sm-5.col-lg-4
+      br.visible-xs
+      p.avenir-db.lead.text-center Or checkout with
+      span(us-spinner, spinner-key="spinner-paypal", spinner-start-active="false")
+      #paypal-btn
+    .col-lg-1
+    br
+    .row
+      .col-sm-12.avenir-light
+        br
+        p.text-center <sup>*</sup> We use industry standard encryption to protect our visitors, so you can rest assured that your sensitive information is safe.
+footer.footer(ng-include='"components/footer/footer.html"')

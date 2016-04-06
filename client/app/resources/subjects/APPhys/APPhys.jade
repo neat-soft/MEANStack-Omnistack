@@ -1,0 +1,27 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container-fluid.paper-background.no-margin(ng-controller="ResourcesAPPhysCtrl")
+  .row
+    .col-sm-3
+    .col-sm-6.text-center.avenir-md
+      h2 AP Physics 1 Resources
+    .col-sm-3
+  .row
+    .col-sm-4
+    .col-sm-2
+      img.img-responsive(src="assets/images/APPhysEquations.svg" alt="AP Physics 1 Formula Sheet")
+    .col-sm-3.avenir-light.padded
+      .row
+        .col-sm-12
+          h4
+            | AP Physics 1 Formula Sheet
+      .row
+        .col-sm-12
+          p
+            | Don't know which Kinematic equation to use? Torque equation? Vectors? Let our formula chart help you make the right choice.
+      .row
+        .col-sm-12
+          a(omni-link="resources/APPhys/equations")
+            | View the formula sheet
+    .col-sm-3  
+footer.footer(ng-include='"components/footer/footer.html"')

@@ -1,0 +1,14 @@
+.wrapper-div(ng-hide='exists')
+  h2.text-center.avenir-db You are not logged in
+  hr
+  h4.text-center.avenir-light Please sign in using Facebook or Google
+  button Sign in with Facebook
+  button Sign in with Google
+  h4.text-center.avenir-light Or we can automatically create your account and email you the password
+  button.btn-lg.btn.btn-danger(omni-tap='createCustomerAccount()') Continue and create my account
+.wrapper-div(ng-show='exists')
+  h2.text-center.avenir-db This email already exists
+  hr
+  h4.text-center.avenir-light Please Login
+  form
+    //- login form goes here with forgot password option

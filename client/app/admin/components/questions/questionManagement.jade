@@ -1,0 +1,92 @@
+.row
+  .col-sm-12
+    h2
+      | Questions
+.row
+  .col-sm-12
+    ul.list-group(ng-controller='QuestionManageCtrl')
+      li.list-group-item
+        .row
+          .col-sm-4
+            input(ng-model='questionSearch' placeholder='Search' ng-change='updateFilteredQuestions()')
+            |  in
+            select(ng-model='questionSearchType' ng-options='opt.value as opt.name for opt in questionSearchTypes')
+          .col-sm-4
+            | Subject: 
+            select(ng-model='questionSubject', ng-options='subject.dbName as subject.fullName for subject in subjectOptions', ng-change='updateFilteredQuestions()')
+          .col-sm-2
+            | Tags:
+            select(ng-model="questionTagRestriction", ng-options='restriction.val as restriction.name for restriction in questionTagRestrictions', ng-change='updateFilteredQuestions()')
+          .col-sm-1
+            span.glyphicon.glyphicon-refresh(omni-tap='updateFilteredQuestions()')
+          .col-sm-1.pages
+            span.prevPage(omni-tap='questionPage(-1)')
+              | &lt; 
+            span
+              | {{questionCurrentPage}}/{{questionMaxPage}}
+            span.nextPage(omni-tap='questionPage(1)')
+              |  &gt;
+            
+
+      li.list-group-item(ng-repeat='question in filteredQuestions | startAt:((questionCurrentPage-1)*questionLim) | limitTo: questionLim')
+        .row
+          .col-sm-2
+            | Question {{$index + 1}}  [{{question.subject}}]
+          .col-sm-8
+          .col-sm-1.text-center(ng-show='!question.editing')
+            button.btn.btn-primary(omni-tap='question.editing=true')
+              | Edit
+          .col-sm-1.text-center(ng-show='question.editing')
+            button.btn.btn-warning(omni-tap='saveQuestion(question, $index)')
+              | Save
+          .col-sm-1.text-center 
+            button.btn.btn-warning(disabled='disabled')
+              span.glyphicon.glyphicon-trash
+            //
+              button.btn.btn-warning(omni-tap='delQuestion(question, $index)')
+                span.glyphicon.glyphicon-trash
+        .row
+          .col-sm-12
+            hr
+        .row
+          .col-sm-2.text-right
+            | Tags: 
+          .col-sm-10
+            span.btn.btn-primary(ng-repeat="tag in question.tags track by $index")
+              | {{tag}} 
+              span.glyphicon.glyphicon-trash(omni-tap="delTag(question, $index)", ng-if="question.editing")
+            span(ng-if="question.editing")
+              form(ng-submit="addTag(question)")
+                input(type='text', ng-model="question.newTag", name='newTag', placeholder='Add a tag.', typeahead="tag for tag in tags | filter:$viewValue | limitTo:5")
+                input(type="submit" id="submit" value="Submit", ng-hide='true')
+        .row
+          .col-sm-12
+            hr
+        .row
+          .col-sm-6
+            p(mathjax-bind='question.body' ng-show='!question.editing')
+            textarea(ng-model='question.body', ng-show='question.editing', rows='8', cols='75')
+          .col-sm-6
+            p(mathjax-bind='question.explanation.body' ng-show='!question.editing')
+            textarea(ng-model='question.explanation.body', ng-show='question.editing', rows='8', cols='75')
+        .row(ng-repeat='answer in question.choices')
+          .col-sm-9
+            p(mathjax-bind='answer.body', ng-show='!question.editing')
+            input(type='text', ng-model='answer.body', ng-show='question.editing')
+          .col-sm-3
+            span(ng-show='!question.editing')
+              | {{answer.correct}}
+            span(ng-show='question.editing', ng-init='answer.tempCorrect = ((answer.correct) ? "true" : "false")')
+              label.radio-inline
+                input(type='radio', ng-model='answer.tempCorrect', value='true')
+                | Correct
+              label.radio-inline
+                input(type='radio', ng-model='answer.tempCorrect', value='false')
+                | Incorrect
+      //
+        TODO Implement question creation
+        li.list-group-item
+          | Add Question&nbsp;
+          span
+            a(omni-tap='addQuestionModal()')
+              span.glyphicon.glyphicon-plus.pull-left

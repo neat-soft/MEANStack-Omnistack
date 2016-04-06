@@ -1,0 +1,41 @@
+.container-fluid.avenir-db
+  .row
+    .col-sm-12
+      h1
+        | Add a new assignment
+  .row
+    form.col-sm-12.form(ng-model="newAssignment", ng-submit="addAssignment(newAssignment)", autocomplete='off')
+      .form-group.row
+        .col-sm-4
+          label(for="assignmentName") Assignment Name
+        .col-sm-8
+          input.form-control#assignmentName(ng-model="newAssignment.name", type="text", placeholder="Assignment name", ng-required="true", maxlength="30")
+      .form-group.row
+        .col-sm-4
+          label(for="assignmentSubject") Subject
+        .col-sm-8
+          ui-select(ng-model='newAssignment.subject', theme='bootstrap', style='min-width:100%', ng-change='updateTags(newAssignment.subject)')
+            ui-select-match(placeholder='Enter subject') {{$select.selected.fullName}}
+            ui-select-choices(repeat='subject in subjects | filter:$select.search.fullName')
+              div(ng-bind-html='subject.fullName | highlight: $select.search.fullName')
+      .form-group.row
+        .col-sm-4
+          label(for="assignmentTopic") Main Topic
+        //.col-sm-8
+        //  input.form-control#assignmentTopic(ng-model="newAssignment.topic", uib-typeahead="topic for topic in topics | filter:$viewValue | limitTo:8")
+        .col-sm-8
+          ui-select(ng-model='newAssignment.topic', theme='bootstrap', style='min-width:100%')
+            ui-select-match(placeholder='Enter main topic') {{$select.selected}}
+            ui-select-choices(repeat='topic in topics | filter:$select.search | limitTo:8')
+              div(ng-bind-html='topic | highlight: $select.search')
+
+      .form-group.row
+        .col-sm-4
+          label(for="assignmentNumberQuestions") Number of Questions
+        .col-sm-8
+          input.form-control#assignmentNumberQuestions(type="number", ng-model="newAssignment.questionNumber", ng-required="true")
+
+      .row.text-center
+        .col-sm-12
+          button.btn.btn-primary(type='submit')
+            | Create Assignment

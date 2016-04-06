@@ -1,0 +1,20 @@
+div(ng-controller='CommunityLeadersCtrl')
+  span(us-spinner, spinner-key="spinner-1", spinner-start-active="true")
+  table.table.table-no-border.avenir-light#leaderboard
+    tr.grey
+      th(colspan=2).header Top Community Leaders
+    tr(ng-repeat='leader in communityLeaders|limitTo:5')
+      td(style="width:50%", ng-show="communityLeaders[$index] != null")
+        span.rank {{communityLeaders[$index].index}}.&nbsp;
+        span.name {{communityLeaders[$index].name}}&nbsp;
+        span.num-users ({{communityLeaders[$index].referral.usersReferredCount}} users)
+      td(style="width:50%", ng-show="communityLeaders[$index+5] != null")
+        span.rank {{communityLeaders[$index+5].index}}.&nbsp;
+        span.name {{communityLeaders[$index+5].name}}&nbsp;
+        span.num-users ({{communityLeaders[$index+5].referral.usersReferredCount}} users)
+    tr.my-rank.grey
+      td.small-caps.small-text My Ranking
+      td(ng-show="getCurrentUser().referral.usersReferredCount != null")
+        span.rank {{myrank}}.&nbsp;
+        span.name {{ getCurrentUser().name }}&nbsp;
+        span.num-users ({{ getCurrentUser().referral.usersReferredCount }} users)

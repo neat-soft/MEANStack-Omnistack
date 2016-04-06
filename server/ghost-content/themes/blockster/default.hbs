@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="{{meta_description}}">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{meta_title}}</title>
+
+  <link rel="shortcut icon" href="{{asset "/favicon.ico"}}">
+  <link rel="prefetch stylesheet" href="//brick.a.ssl.fastly.net/Raleway:300,400,500,600,700,300i,400i,500i,600i,700i">
+
+  <link rel="stylesheet" type="text/css" href="{{asset "css/global-style_light--blue.min.css"}}" id="defaultStyle">
+
+
+  {{> headJs}}
+
+
+  {{#is "home"}}
+    <script>
+      function initialScroll() {
+        setTimeout(function() {
+          window.scrollTo(0, 1)
+        }, 20)
+      }
+      window.onload = initialScroll
+    </script>
+  {{/is}}
+
+  {{ghost_head}}
+</head>
+
+
+<body class="{{body_class}}">
+
+  <div id="top"></div>
+  <div id="iconPath" class="hidden">{{asset "iconsSvg.svg"}}</div>
+
+    {{> nav}}
+    {{> navLeft-slideout}}
+
+      {{!-- Template Content Here --}}
+      {{{body}}}
+
+
+    {{ghost_foot}}
+
+    {{!-- Scripts --}}
+
+    <script type="text/javascript" src="{{asset "js/vendor.js"}}"></script>
+
+
+    {{#is "home"}}
+    <script type="text/javascript" src="{{asset "js/vendorHome.js"}}"></script>
+    {{/is}}
+
+    <script type="text/javascript" src="{{asset "js/main.js"}}"></script>
+
+
+
+  </body>
+</html>

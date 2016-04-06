@@ -1,0 +1,20 @@
+.container.text-center
+  .row
+    .col-sm-12
+      h2.avenir-db
+        | You don't have an academic role yet!
+  .row
+    .col-sm-12
+      p.avenir-light
+        | Please set one now.
+  .row
+    .col-sm-12
+      p.avenir-light
+        | I am a:
+  .row
+    .col-sm-6
+      button.btn.btn-lg.btn-primary(ng-click='submitChoice("Student")')
+        | Student
+    .col-sm-6
+      button.btn.btn-lg.btn-warning(ng-click='submitChoice("Teacher")')
+        | Teacher

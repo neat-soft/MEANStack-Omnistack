@@ -1,0 +1,23 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container-fluid.paper-background.no-margin(ng-controller="ResourcesAPPhysEquationsCtrl")
+  .row
+    .col-sm-12.text-center
+      h1
+        | AP Physics 1 Formula Sheet
+  .row
+    .col-sm-5
+    .col-sm-2
+      img.img-responsive(src="assets/images/APPhysEquations.svg" alt="AP Physics 1 Formula Sheet")
+    .col-sm-5
+  .row
+    .col-sm-3
+    .col-sm-6
+      accordion.equationList
+        accordion-group(ng-repeat="item in equationList", heading="{{item.subtopic}}")
+          .row.equationRow(ng-repeat="equation in item.equations")
+            .col-sm-4
+              p(mathjax-bind="equation.eq")
+            .col-sm-8
+              p(mathjax-bind="equation.desc")
+    .col-sm-3
+footer.footer(ng-include='"components/footer/footer.html"')

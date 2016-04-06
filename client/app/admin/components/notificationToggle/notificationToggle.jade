@@ -1,0 +1,12 @@
+h3
+  | Chat Notifications Control Panel
+.well
+  .row(ng-controller="NotificationToggleCtrl")
+    .col-sm-12
+      button.text-center.btn.btn-success(type='button', omni-tap='toggleStatus(true)', ng-if="show && !settings[0].info.active", ng-disabled="isDisabled")
+        | Turn On
+      button.text-center.btn.btn-danger(type='button', omni-tap='toggleStatus(false)', ng-if="show && settings[0].info.active", ng-disabled="isDisabled")
+        | Turn Off
+    .col-sm-12
+      h4
+      | Active : {{settings[0].info.active}}

@@ -1,0 +1,15 @@
+.container-fluid(ng-controller="ConfirmModalComponentCtrl")
+  .row
+    .col-sm-12
+      h1
+        | Are you sure?
+  .row(ng-if="message")
+    .col-sm-12
+      | {{confirmBody}}
+  .row.text-center
+    .col-sm-6.button-wrapper-delete
+      button.btn.btn-primary(omni-tap="confirm()")
+        | Of course!
+    .col-sm-6.button-wrapper-delete
+      button.btn.btn-danger(omni-tap="refute()")
+        | No way!

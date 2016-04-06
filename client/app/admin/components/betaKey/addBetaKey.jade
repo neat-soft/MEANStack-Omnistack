@@ -1,0 +1,50 @@
+.container-fluid
+  .row
+    .col-sm-12
+      h1
+        | Add a Beta Key
+  form.form(name='betaKey', ng-model='key', no-validate='')
+    .row
+      .col-sm-12
+        .row
+          .col-sm-12
+            .well
+              .form-group
+                .toggle-btn-grp.joint-toggle(ng-init='key.massKey=false')
+                  label.toggle-btn(ng-class='!key.massKey ? "toggled" : ""')
+                    input(name='massKey', type='radio', ng-model='key.massKey', ng-value='false' ng-required='true')
+                    | Single Key
+                  label.toggle-btn(ng-class='key.massKey ? "toggled" : ""')
+                    input(name='massKey', type='radio', ng-model='key.massKey', ng-value='true' ng-required='true')
+                    | Mass Key
+              .form-group
+                label(for='name')
+                  | Key Name
+                input.omni-input.form-control(name='name', ng-model='key.name', ng-required='true' type='text', placeholder='Name the beta key')
+                p.help-block(ng-show='betaKey.name.$error.pattern')
+                  | Please don't include the @ symbol in the name.
+              .form-group(ng-show='!key.massKey')
+                label(for='email')
+                  | E-mail of key recipient
+                input.form-control.omni-input(name='email', type='email', ng-model='key.email', ng-pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/", ng-required='!key.massKey', placeholder='beta@tester.com')
+                p.help-block(ng-show='betaKey.email.$error.pattern')
+                  | Doesn't look like a valid email. (Did you include the @ and the .whatever?)  
+              .form-group
+                label(for='academicRole')
+                  | Academic Role
+                .input-group
+                  select.form-control(name='adacemicRole' ng-model='key.academicRole' ng-options='opt.value as opt.name for opt in academicRoles' ng-required='true')
+              .form-group
+                label(for='expires')
+                  | Expiration Date
+                .input-group
+                  input.omni-input.form-control(name='expires' type="text" ng-model="key.expires" show-button-bar="false" is-open="opened" datepicker-popup="{{format}}" ng-required='true' datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close")
+                  span.input-group-btn
+                    button.btn.btn-default(type="button" ng-click="open($event)")
+                      i.glyphicon.glyphicon-calendar
+        .row
+          .col-sm-4
+          .col-sm-4(style='text-align:center')
+            button.btn.btn-primary(type='button', ng-click='addNewBetaKey(betaKey)')
+              | Submit
+          .col-sm-4

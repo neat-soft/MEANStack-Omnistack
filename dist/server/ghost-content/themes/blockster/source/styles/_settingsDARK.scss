@@ -1,0 +1,209 @@
+// --------------------------------------------------------- 
+// -----------      PIXEL & KRAFT (dot) COM      -----------
+// ---------------------------------------------------------
+// DARK color-scheme settings
+// ---------------------------------------------------------
+// 
+
+// --------------------
+// 1. Stylesheet Compiles
+// --- control which styles are compiled or not, 
+// if sass is watching the entire source folder.
+// Options:
+// true  = compile
+// false = do not compile
+
+$global-style_dark--blue:      true;
+$global-style_dark--blue2:     true;
+$global-style_dark--green:     true;
+$global-style_dark--green2:    true;
+$global-style_dark--orange:    true;
+$global-style_dark--red:       true;
+$global-style_dark--purple:    true;
+$global-style_dark--brown:     true;
+
+$syntax-highlighiting-style:   dark; // OPTIONS: light or dark, NO quotations
+
+
+// --------------------
+// 3. Background Noise (NOT YET WORKING... UPCOMING FEATURE)
+$body-bg-noise:     false !default;
+$top-nav-noise:     false !default;
+$top-header-noise:  false !default; // PAGE TITLE
+$full-span-noise:   false !default;
+$footer-bg-noise:   false !default;
+$icon-bg-noise:     false !default;
+$icon-burned-noise: false !default; // icons ingrained into bg
+
+
+// ---------------------------------------------------------
+// 2. COLORS
+// ---------------------------------------------------------
+// general
+// --------------------
+// legend:
+// 1. white/black
+// 2. grays
+// 3. primary
+// 4. secondary
+// ---------------------------------------------------------
+
+
+// --------------------
+// 1. White/Black
+$black-pure: black !default;
+$white-pure: white !default;
+$black: #313330 !default;
+$white: #FAFAF6 !default;
+$black-bg: #2D2D2D !default;
+
+// light theme, contrast = dark
+$contrast-from-core: $white !default;
+$same-as-core: $black !default;
+
+// --------------------
+// 2. Grays
+$gray-darker:   lighten(#373534, 3) !default;
+$gray-dark:     lighten(#373534, 13) !default;
+$gray:          lighten(#373534, 22) !default;
+$gray-light:    lighten(#373534, 38) !default;
+$gray-lighter:  lighten(#373534, 50) !default;
+
+$gray-light-custom: #B3B3B3;
+
+// --------------------
+// 3. Primary
+$yellow: #FFF388 !default;
+$red: #E05F52 !default;
+$blue: #2e4d5f !default;
+
+// --------------------
+// 4. Secondary
+$green: #4F973F !default;
+$purple: purple !default;
+$orange: #DD8C44 !default;
+
+
+
+
+// ---------------------------------------------------------
+// 3. COLORS & BGs
+// ---------------------------------------------------------
+// global
+// --------------------
+// legend:
+// 1. global generals
+//    .1 - body background
+//    .2 - disabled input & button background, input addon background, nav & tabs & pagination link hover background, jumbotron background
+//    .3 - disabled link color, input placeholder color, dropdown header color, navbar inverse & link color
+//    .4 - nav tab link hover color
+//    .5 - link color, primary button background, pagination active background, progress bar background, label background, panel heading color
+//    .6 - text color, legend color, dropdown link color, panel text color, code color
+//    .7 - navbar inverse background
+// ---
+// 2. brand
+// 3. alerts and form states
+// --- 
+// 4. backgrounds
+// 5. typography
+//     - links
+//     - headings
+//     - active items (navs/dropdowns)
+// 6. social
+// 7. images
+// ---------------------------------------------------------
+
+
+// --------------------
+// 1. Global Generals
+$color1: $black-bg !default; // .1
+$color2: lighten($black-bg, 8) !default; // .2
+$color3: $gray-darker !default; // .3
+$color4: $black !default; // .4
+$color5: #878179 !default; // .5
+$color6: #5c595a !default; // .6
+$color7: #2e2e32 !default; // .7
+
+
+// --------------------
+// 4. Backgrounds
+$bg-white:    $white-pure !default;
+$bg-blue:     #3D697E !default;
+$bg-green:    lighten(#32492e, 7) !default;
+$bg-yellow:   #F3EB64 !default;
+$bg-red:      #FF1000 !default;
+$bg-purple:   #5D3062 !default;
+$bg-brown:    #A09284 !default;
+$bg-tan:      tan !default;
+$bg-black:    black !default;
+// ---
+$post-excerpt-body-bg: hsla(224, 0%, 93%, 1) !default; // INDEX CONTAINER BG
+$body-bg:            #4B4B4B !default; // DEFAULT CONTAINER BG
+$bg-highlight:       lighten($body-bg, 14) !default;
+$bar-left-bg:        $black !default; // nav bars, left and top
+//$slideout-bg:        #42413F !default;
+$slideout-bg:        lighten($bar-left-bg, 7) !default;
+// ---
+$excerpt-header-bg:     rgba($black, .87) !default;
+$excerpt-header-txt:    $white !default;
+$excerpt-hover-bg:      rgba($excerpt-header-bg, .93) !default;
+$excerpt-readmore-bg:   $white !default;
+//$excerpt-default-layout-hover-bg: darken($excerpt-hover-bg, 17) !default;
+$excerpt-default-layout-hover-bg: hsla(0, 0%, 15%, 1) !default;
+// ---
+$general-element-bg: lighten(#373534, 13) !default;
+
+$excerpt-titles-toggled-overlay-bg-color: $black;
+
+//--------------------
+// 5. Typography
+$text-color:                #dadada !default;  // GLOBAL BODY TEXT
+$text-color-light:          $white !default;
+$post-excerpt-text-color:   $white !default;
+$post-meta-color:           #818080;
+
+
+// ---------------------------------------------------------
+// 4. COMPONENTS
+// ---------------------------------------------------------
+
+
+// --------------------
+// Global Generals
+$border-radius-base:            4px !default;
+
+// --------------------
+// Lines
+$default-hr-color:              $white !default;
+$body_divider--bar-BG:          $text-color;
+$sb_divider--color:             #d2d2d2;
+$divider-default-height:        2px;
+$body_divider--height:          1px;
+$link--underline-on-hover:      $gray;
+// ---
+$blockquote-border-color:           $gray-lighter !default; 
+
+// --------------------
+// Forms
+$input-bg:                       lighten(#373534, 3) !default;
+$input-border:                   $input-bg !default;
+// focus
+$input-focus-text-color:         $black-pure !default;
+
+// --------------------
+// 27. Code
+$code-color:                  $text-color !default;
+$code-bg:                     darken($body-bg, 7) !default;
+// $kbd-color:                   #fff !default;
+// $kbd-bg:                      $input-bg !default;
+// $pre-bg:                      $input-bg !default;
+// $pre-color:                   $input-focus-text-color !default;
+// $pre-border-color:            $pre-bg !default;
+// $pre-scrollable-max-height:   340px !default;
+
+@import "theme-core/vendor/syntax-skin-import-DARK";
+
+// ---------------------
+// TOC 
+
+$toc-bg: $input-bg;

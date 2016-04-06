@@ -1,0 +1,20 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container.avenir-db
+  .row
+    .col-sm-12
+      p
+        | Congratulations, you just made your first assignment!
+      p
+        | You can have your students take the assignment by giving them the following link:
+        a(ng-href='{{assignment.URL}}')
+          | {{assignment.URL}}
+  .row
+    .col-sm-12
+      p
+        | Enter your email below to get updates on who has been taking this assignment:
+      form(ng-model='user')
+        input(ng-model='user.email', placeholder='MyName@MySchool.edu')
+        button.btn.btn-primary(type='submit', ng-click='saveUserEmail(user)')
+          | Send me updates!
+      
+footer(ng-include='"components/footer/footer.html"')

@@ -1,0 +1,26 @@
+.post-excerpts--classic1,
+.post-excerpts--classic2,
+.post-excerpts--textOnly {
+   .banner--home_top .bannerTop, .banner--home_bottom .bannerBottom {
+    margin-right: $grid--excerpt-default;
+    margin-bottom: $grid--excerpt-default;
+    padding: $grid--excerpt-default/2 $grid--excerpt-default;
+  }
+}
+.post-excerpts--gallery1,
+.post-excerpts--gallery2,
+.post-excerpts--gallery3,
+.post-excerpts--gallery4,
+.post-excerpts--galleryi {
+   .banner--home_top .bannerTop, .banner--home_bottom .bannerBottom {
+    margin-right: $grid--excerpt-gallery;
+    margin-bottom: $grid--excerpt-gallery;
+    padding: $grid--excerpt-gallery/2 $grid--excerpt-gallery;
+  }
+}
+
+.bannerTop.raw, 
+.bannerBottom.raw {
+  margin: 0 !important;
+  padding: 0 !important;
+}

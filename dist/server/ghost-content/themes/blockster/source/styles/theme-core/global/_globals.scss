@@ -1,0 +1,98 @@
+// ----------------------------------
+// GLOBALS --------------------------
+
+$element-bottom-margin: 1.5rem;
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+figure {
+  margin: 0;
+  margin-bottom: $element-bottom-margin;
+}
+.post-wrap--boxed figure {
+  margin-bottom: 0;
+}
+
+h1, h2, h3,
+h4, h5, h6 { font-weight: 500; }
+h2, h3, h4, h5, h6 { 
+  margin-top: 2rem;
+}
+h1 {font-size: 42px;}
+h2 {font-size: 36px;}
+h3 {font-size: 32px;}
+h4 {font-size: 28px;}
+h5 {font-size: 24px;}
+h6 {font-size: 20px;}
+
+p, ul, ol, li, blockquote {
+  font-size: 16px;
+}
+
+img { width: 100%; }
+
+
+button { border: none; }
+
+a[href], 
+input[type='submit'], 
+input[type='image'], 
+label[for], 
+select, 
+button, 
+.pointer { cursor: pointer; }
+
+::selection {
+  background: $selected-text-bg;
+  color: $selected-text-color;
+}
+
+html {
+  overflow-y: scroll;
+  body {
+    cursor: default;
+    @if $body-bg-noise == true {
+     background: url(../img/bg/noise.png) repeat fixed;
+    }
+    background-color: $body-bg;
+  }
+}
+
+body.index .container-wrap {
+  padding-top: $grid-block-spacing;
+}
+
+// Wrapper for all core page content
+.container-wrap {
+  width: 100%;
+  height: 100%;
+  padding-left: $bar-left-width + $grid-block-spacing;
+  padding-top: $block-spacing;
+  padding-bottom: 55px;
+  padding-right: $grid-block-spacing;
+  transition: left 0.15s ease-in-out;
+  position: absolute;
+  left: 0;
+  &.closed {
+    //left: -#{$bar-left-width};
+    padding-left: $grid-block-spacing;
+  }
+  @include bp(baby) {
+    // padding: 5px;
+    padding: 15px;
+  }
+}
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+}

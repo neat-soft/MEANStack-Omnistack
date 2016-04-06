@@ -1,0 +1,85 @@
+div(ng-include='"components/navbar/navbar.html"')
+.row
+  .col-xs-7
+  .col-xs-5
+    #score(ng-if="examSubmit && percentages")
+      | ({{numCorrect}}/{{numGraded}}) {{percentages | number: 1}}%
+.container#exam-container(ng-hide='examSubmit')
+  .row.padding-bottom
+    .col-sm-12
+      .row
+        .col-lg-2.col-md-1(ng-if="!examSubmit")
+        div(ng-class="examSubmit?'col-md-8 border-right':'col-lg-8 col-md-10'")
+          .form-group.row
+            .col-xs-1
+              h4 {{activeQuestion+1}}/{{questions.length}}
+            .col-xs-11
+              div.question-body(mathjax-bind="questions[activeQuestion].body")
+          .form-group.row(ng-if='questions[activeQuestion].type!=="mult"')
+            .col-xs-1
+            .col-xs-10
+              textarea(ng-if='questions[activeQuestion].type=="long"', rows='5', style='width:100%;', ng-model='questions[activeQuestion].response', placeholder='Your response here.', ng-disabled='examSubmit')
+              input(type='text', ng-if='questions[activeQuestion].type=="short"', style='width:100%;', ng-model='questions[activeQuestion].response', placeholder='Your response here.', ng-disabled='examSubmit')
+          .form-group.row(ng-if='questions[activeQuestion].type=="mult"')
+            .col-xs-1
+            ul.col-xs-11.choices-container
+              li.row(ng-repeat="choice in questions[activeQuestion].choices", ng-class='{green: (choice.correct && examSubmit)}')
+                .col-xs-1
+                  input(type="radio", ng-disabled='examSubmit', ng-value="choice", ng-model="questions[activeQuestion].response", id="{{questions[activeQuestion]._id}}{{$index}}", name="{{questions[activeQuestion]._id}}", ng-if="hasOneCorrect(questions[activeQuestion].choices)", ng-change="storeQuestionContext(questions[activeQuestion],this)")
+                  input(type="checkbox", ng-disabled='examSubmit', ng-true-value="{{choice}}", ng-model="questions[activeQuestion].response[$index]", id="{{questions[activeQuestion]._id}}{{$index}}", name="{{questions[activeQuestion]._id}}[]", ng-if="!hasOneCorrect(questions[activeQuestion].choices)", ng-change="storeQuestionContext(questions[activeQuestion],this)")
+                .col-xs-11
+                  label.col-xs-11(mathjax-bind="choice.body", for="{{questions[activeQuestion]._id}}{{$index}}")
+        .col-lg-2.col-md-1(ng-if="!examSubmit")
+  .row.button-container(ng-hide='examSubmit')
+    .col-sm-6.text-center
+      button.btn.btn-sm(ng-hide='activeQuestion==0', ng-click='prev()')
+        span.glyphicon.chevron-left
+        | Previous question
+    .col-sm-6.text-center
+      button.btn.btn-sm(ng-hide='activeQuestion==(questions.length-1)', ng-click='next()')
+        span.glyphicon.chevron-right
+        | Next question
+      button.btn.btn-sm(ng-show='activeQuestion==(questions.length-1)', ng-click='submitExam()')
+        span.glyphicon.chevron-right
+        | Submit!
+      
+    
+.container#exam-container.border-right.border-left(ng-if="examSubmit")
+  .row.padding-bottom(ng-repeat="question in questions")
+    .col-sm-12
+    .row
+      .col-lg-2.col-md-1(ng-if="!examSubmit")
+      div.col-md-8.border-right
+        .form-group.row
+          .col-xs-1
+            h4 Q{{$index+1}}&nbsp;
+          .col-xs-11
+            div.question-body(mathjax-bind="question.body")
+        .form-group.row(ng-if='question.type!=="mult"')
+          .col-xs-1
+          .col-xs-10
+            textarea(ng-if='question.type=="long"', rows='5', style='width:100%;', ng-model='question.response', placeholder='Your response here.', ng-disabled='examSubmit')
+            input(type='text', ng-if='question.type=="short"', style='width:100%;', ng-model='question.response', placeholder='Your response here.', ng-disabled='examSubmit')
+        .form-group.row(ng-if='question.type=="mult"')
+          .col-xs-1
+          ul.col-xs-11.choices-container
+            li.row(ng-repeat="choice in question.choices", ng-class='{green: (choice.correct && examSubmit)}')
+              .col-xs-1
+                input(type="radio", ng-disabled='examSubmit', ng-value="choice", ng-model="question.response", id="{{question._id}}{{$index}}", name="{{question._id}}", ng-if="hasOneCorrect(question.choices)", ng-change="storeQuestionContext(question,this)")
+                input(type="checkbox", ng-disabled='examSubmit', ng-true-value="{{choice}}", ng-model="question.response[$index]", id="{{question._id}}{{$index}}", name="{{question._id}}[]", ng-if="!hasOneCorrect(question.choices)", ng-change="storeQuestionContext(question,this)")
+              .col-xs-11
+                label.col-xs-11(mathjax-bind="choice.body", for="{{question._id}}{{$index}}")
+      .col-md-4.border-left
+        .row.explanation-container
+          .col-xs-1.visible-xs.visible-sm
+          .col-xs-11.col-md-12
+            p.text-bold(ng-if='question.type=="mult"', ng-class="{'text-success':question.correct, 'text-danger':!question.correct}") {{question.correct? 'Correct': (question.correct===false ? 'Incorrect':'Not Answered')}}
+            p.text-bold.text-warning(ng-if='question.type!=="mult"') Not graded
+            p(ng-if='currentUser._id', mathjax-bind="question.explanation.body")
+            p(ng-hide='currentUser._id')
+              a(ng-click='triggerSignup()')
+                | Sign up
+              |  to view explanations!
+    hr(ng-if="examSubmit")
+
+footer.footer(ng-include='"components/footer/footer.html"')

@@ -1,0 +1,95 @@
+{{!< default}}
+
+{{! The main content area on the homepage }}
+<div class="container-wrap index">
+  <div class="container">
+    <div class="blog-header">
+        <a id="logoLink" href="{{@blog.url}}">
+          <img src="assets/images/blog-header.svg" alt="Blog Header" style="width: 100px">
+        </a>
+    </div>
+    <div id="bannerTop" class="banner--home_top banner--home"></div>
+    <main class="content post-excerpts grid" role="main" id="post-excerpts--classic1" data-target="post-excerpt-style-toggle">
+
+      {{#foreach posts}}
+
+        {{! Post Excerpt BOX }}
+        <div class="post-excerpt-box--wrap {{post_class}}" data-title="{{title}}" data-publishedDate="{{date published_at format="YYYY-MM-DD"}}" data-author="{{author.name}}" data-excerpt="excerpt-wrap">
+
+          <article class="post post-excerpt-box">
+            {{! Featured Img }}
+            <a href="{{url}}">
+              <div class="post-excerpt--featured-img {{#if image}}lazy{{/if}}"
+              {{#if image}}
+              style="background: url({{asset "images/transparent.gif"}}) no-repeat 50%; -webkit-background-size: cover; -moz-background-size: cover; background-size: cover;"
+              data-original="{{image}}"
+              {{/if}}
+              >
+                {{#if image}}
+                  <img data-original="{{image}}" src="{{asset "images/transparent.gif"}}" class="image-as-element lazy">
+                {{/if}}
+              </div>
+            </a>
+
+            <div class="post-excerpt-box--inner">
+
+              {{! Post Excerpt }}
+              <div class="post-excerpt--wrap">
+                <section class="post-excerpt">
+                  <div class="post-excerpt--content-wrap">
+                    <header class="post-excerpt--header">
+                      <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+                    </header>
+                    <div class="post-excerpt--content">
+
+                      <div class="vert-center-inner-wrap">
+                         <div class="post-excerpt--content-inner">
+                           <span class="excerpt-line excerpt-line--top"></span>
+                           <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+                           <div class="non-title-excerpt-content-wrap">
+                             <span class="post-meta post-excerpt--meta">
+                               <time datetime="{{date format='YYYY-MM-DD'}}">
+                                 {{date format="DD MMM YYYY"}} /
+                               </time>
+                               {{author.name}} <span class='disqus-comment-wrap'>/
+                                <a class="commentCount" href="{{url}}#disqus_thread">Comments</a></span>
+                             </span>
+
+                             {{! excerpt text dynamically inserted }}
+                             <div class="excerpt-div">
+
+                                 <span class="excerpt-default">{{excerpt words="30"}}</span> <a href="{{url}}" class="readMoreLink readMoreLink--inline"></a>
+
+                             </div>
+
+                             {{! read more text dynamically inserted via -> config -> jquery }}
+                             <a href="{{url}}" class="button readMoreLink readMoreLink--btn"></a>
+                           </div> {{! END .non-title-excerpt-content-wrap }}
+                           <span class="excerpt-line excerpt-line--bottom"></span>
+                         </div>
+                       </div> {{! END post-excerpt--content-inner }}
+
+                    </div>
+                  </div>
+                </section>
+              </div> {{! END post-excerpt }}
+            </div> {{! END post-excerpt-box--inner}}
+
+            {{!-- a hidden block to bring in featured images --}}
+            <div class="hidden hidden-post-excerpt--featured-img">
+              {{content}}
+            </div>
+
+          </article>
+        </div>
+
+      {{/foreach}}
+
+      {{!-- Hidden list of all tags to use for creating category list --}}
+      <div class="hidden" id="raw-tag-list">{{#foreach posts}}{{#foreach tags}}{{name}},{{/foreach}}{{/foreach}}</div>
+
+    </main>
+    <div id="bannerBottom" class="banner--home_bottom banner--home"></div>
+
+  </div> {{! END CONTAINER}}
+</div> {{! END CONTAINER WRAP}}

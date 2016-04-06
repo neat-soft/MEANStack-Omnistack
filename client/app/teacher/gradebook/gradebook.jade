@@ -1,0 +1,42 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container(ng-hide="selectedStudent")
+  //- Alert user to error if one occurs.
+  .row(ng-if='serverError')
+    h1
+      | Error: {{serverError}}
+  .row.avenir-db(ng-if='!serverError')
+    .row
+      //- Gradebook information (assignment name)
+      .col-sm-12
+        h1
+          span Gradebook
+          span(ng-show='currentAssignment') &nbsp;-&nbsp;
+          span(ng-show='currentAssignment') {{currentAssignment.name}}
+    .row
+      //- Classroom information
+      .col-sm-12
+        h2
+          span(ng-if="classroom") {{classroom.name}}
+    .row
+      .col-sm-12
+        table.table.table-hover
+          thead
+            tr
+              th Student
+              th Assignment Grade
+              th Course Average
+          tbody
+            //- Overall class information
+            tr.class-row
+              td Class Average
+              td {{currentAssignment.classAverage}}%
+              td N/A
+            //- Repeat over all students and display their information
+            tr.student-row(ng-repeat='student in students' ng-class="{'student-row-ungraded': !student.submissionFullyGraded}" omni-tap="setSelectedStudent(student)")
+              td {{student.name}}
+              td {{student.score}}
+              td {{student.average}}
+.container(ng-show="selectedStudent")
+  h1 ;lasjf;laksjfd;lkajf
+
+footer.footer(ng-include='"components/footer/footer.html"')

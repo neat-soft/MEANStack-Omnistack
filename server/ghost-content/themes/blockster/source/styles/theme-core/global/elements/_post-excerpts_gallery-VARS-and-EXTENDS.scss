@@ -1,0 +1,176 @@
+// --------------------------------------------
+// Gallery specific placeholders --------------
+%gallery-overlay-bg {
+  background-color: rgba($excerpt-titles-toggled-overlay-bg-color, .6);
+}
+
+%readMoreLink--btn-ALL {
+  padding: 2px 6px;
+  transition: all 0.25s ease;
+  @extend %uppercase;
+  font-weight: 800;
+
+}
+
+
+
+
+// --------------------------------------------
+// TEXT ONLY SPECIFICS ------------------------
+  %link-title_disabled {
+    // cursor: auto !important;
+    // pointer-events: none;
+    color: $contrast-from-core;
+    &:hover {
+      color: $link-hover-color;
+      // border: none;
+      // cursor: auto !important;
+    }
+  }
+
+  // READ MORE link (for with-featured: non-overriden styles are inherited from here)
+  %readMoreLink--btn {
+    color: $contrast-from-core;
+    border: solid 3px $contrast-from-core;
+    &:hover {
+      background-color: $link-color;
+      color: $white;
+      border-color: $link-color;
+    }
+  }
+  %readMoreLink--inline { display: none; }
+  %post-excerpt--content-wrap { padding: 5%; }
+  %post-excerpt-box--inner {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    display: block;
+    background-color: $excerpt-hover-bg;
+  }
+  %post-excerpt--meta {
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+  %post-excerpt--wrap {
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: $post-excerpt-text-color;
+  }
+  %post-excerpt { 
+    height: 100%; 
+    @extend %vert-center-inner-wrap;
+    // &:before {
+    //   content: '';
+    //   display: inline-block;
+    //   height: 100%;
+    //   vertical-align: middle;
+    //   margin-right: -0.25em; /* Adjusts for spacing */
+    // }
+  }
+
+  %vert-center-inner-wrap {
+    display: table;
+    width: 101%;
+    height: 101%;
+    //margin-right: -0.25em; /* Adjusts for spacing */
+  }
+
+// --------------------------------------------
+// EXCERPT w/ FEATURED ------------------------ 
+
+  %FEAT-link-title_disabled {
+    //cursor: auto;
+    border: none;
+    color: $white;
+  }
+  %FEAT-post-excerpt--content {
+    //position: absolute;  // change to absolute for no overflow
+    width: 100%;
+    z-index: 40;
+    height: 100%;
+    display: block;
+    padding: 2% 7%;
+    color: $white;
+    opacity: 0;
+  }
+  %FEAT-post-excerpt--header { display: none !important; }  // style changed by script, override for this layout
+  %FEAT-post-excerpt--wrap { 
+    position: absolute; 
+  }
+  %FEAT-post-excerpt--content-wrap {
+    position: absolute;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  %FEAT-post-title {
+    z-index: 50;
+    padding: 0 10px;
+    margin: 0 auto;
+    margin-bottom: 0px !important;
+    //font-size: 1.1rem !important;
+    font-size: 0.97rem;
+    font-weight: 800;
+  }
+  %FEAT-post-excerpt--content-inner {
+    position: relative;
+    left: 0;
+    right: 0;
+
+    // for vertical centering (parent must contain 'ghost' pseudo :before element)
+    // display: inline-block;
+    // vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  %FEAT-excerpt-line {
+    width: 11%;
+    height: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: $white;
+  }
+  %FEAT-excerpt-line--top {
+    margin-bottom: 10px;
+  }
+  %FEAT-excerpt-line--bottom {
+    margin-top: 15px;
+  }
+  %FEAT-readMoreLink--btn {
+    color: $white;
+    border-color: $white;
+    &:hover {
+      background-color: $link-color;
+      color: $white;
+      border-color: $link-color;
+    }
+  }
+  %FEAT-post-excerpt--meta { color: $white; } 
+  %FEAT-commentCount {
+    color: $white;
+    font-weight: 600;
+    border: none;
+    white-space: nowrap;
+    &:hover { 
+      color: $white; 
+    }
+  }
+
+
+  // -----------------------------------------------
+  // Background Image Galleries ONLY 
+
+  %BG-EXCERPT-post-excerpt--content-wrap {
+    padding: 5%;
+    position: relative;
+    // for vertical centering (parent must contain 'ghost' pseudo :before element)
+    // display: inline-block;
+    // vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
+  }

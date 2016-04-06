@@ -1,0 +1,21 @@
+strong Blocked Users
+div.panel(ng-controller='BlockuserCtrl')
+  div.panel-body
+    .messages.bg-gray
+      article.top-margin.bottom-margin.col-lg-12.col-sm-12.col-xs-12
+        section.panel(ng-repeat="user in blockedUsers")
+          .panel-body
+            .col-lg-6
+              h4 {{user.name}}
+              h5.text-muted {{user.email}}
+            .col-lg-6.text-right
+              .btn-group
+                button.btn.bg-success(type="button", omni-tap="activate(user)", ng-disabled='user.type!=1 && user.type!=2') Lift Block
+                button.btn.bg-warning(type="button", omni-tap="temporary(user)", ng-disabled='user.type==1') Temporary
+                button.btn.bg-danger(type="button", omni-tap="permanent(user)", ng-disabled='user.type==2') Permanent
+
+      article.top-margin.bottom-margin.col-lg-12.col-sm-12.col-xs-12(ng-if="blockedUsers.length<=0")
+        section.panel
+          .panel-body
+            .col-lg-6
+              h4 No user is currently blocked

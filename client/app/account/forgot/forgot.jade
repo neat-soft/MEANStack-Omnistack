@@ -1,0 +1,25 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row.avenir-db
+    .col-sm-2
+    .col-sm-8
+      h1 Forgot Password
+    .col-sm-2
+  .row.avenir-light
+    .col-sm-2
+    .col-sm-8
+      form.form(name='form', ng-submit='forgot(form)', novalidate='')
+        .form-group
+          label Email
+          input.omni-input.form-control(type='text', name='email', ng-model='user.email', placeholder='me@example.com')
+        .form-group.has-error
+          p.help-block(ng-show='form.email.$error.required && submitted')
+            | Please enter your email.
+          p.help-block {{ errors.other }}
+        div
+          button.btn.btn-danger.btn-lg(type='submit')
+            | Reset
+      br
+      alert(type="{{alertType}}", ng-show='alertMsg.length > 0') {{alertMsg}}
+    .col-sm-2
+footer.footer(ng-include='"components/footer/footer.html"')

@@ -1,0 +1,120 @@
+$duration: 1s;
+$delay: .2s;
+$function: ease;
+$fill: both;
+$visibility: hidden;
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+}
+
+
+
+@import "properties";
+
+// ------------------------------------- 
+// ATTENTION SEEKERS
+//@import "attention_seekers/bounce";
+//@import "attention_seekers/flash";
+//@import "attention_seekers/pulse";
+//@import "attention_seekers/rubberBand";
+//@import "attention_seekers/shake";
+//@import "attention_seekers/swing";
+//@import "attention_seekers/tada";
+//@import "attention_seekers/wobble";
+
+// ------------------------------------- 
+// BOUNCE
+// -
+//@import "bouncing_entrances/bounceIn";
+// @import "bouncing_entrances/bounceInDown";
+// @import "bouncing_entrances/bounceInLeft";
+// @import "bouncing_entrances/bounceInRight";
+//@import "bouncing_entrances/bounceInUp";
+// -
+//@import "bouncing_exits/bounceOut";
+//@import "bouncing_exits/bounceOutDown";
+//@import "bouncing_exits/bounceOutLeft";
+//@import "bouncing_exits/bounceOutRight";
+//@import "bouncing_exits/bounceOutUp";
+
+// ------------------------------------- 
+// FADE
+// -
+@import "fading_entrances/fadeIn";
+// @import "fading_entrances/fadeInDown";
+// @import "fading_entrances/fadeInDownBig";
+// @import "fading_entrances/fadeInLeft";
+// @import "fading_entrances/fadeInLeftBig";
+// @import "fading_entrances/fadeInRight";
+// @import "fading_entrances/fadeInRightBig";
+// @import "fading_entrances/fadeInUp";
+// @import "fading_entrances/fadeInUpBig";
+// -
+//@import "fading_exits/fadeOut";
+//@import "fading_exits/fadeOutDown";
+//@import "fading_exits/fadeOutDownBig";
+//@import "fading_exits/fadeOutLeft";
+//@import "fading_exits/fadeOutLeftBig";
+//@import "fading_exits/fadeOutRight";
+//@import "fading_exits/fadeOutRightBig";
+//@import "fading_exits/fadeOutUp";
+//@import "fading_exits/fadeOutUpBig";
+
+// ------------------------------------- 
+// ROTATE
+// - 
+//@import "rotating_entrances/rotateIn";
+//@import "rotating_entrances/rotateInDownLeft";
+//@import "rotating_entrances/rotateInDownRight";
+//@import "rotating_entrances/rotateInUpLeft";
+//@import "rotating_entrances/rotateInUpRight";
+// - 
+//@import "rotating_exits/rotateOut";
+//@import "rotating_exits/rotateOutDownLeft";
+//@import "rotating_exits/rotateOutDownRight";
+//@import "rotating_exits/rotateOutUpLeft";
+//@import "rotating_exits/rotateOutUpRight";
+
+// ------------------------------------- 
+// SPECIALS
+//@import "specials/hinge";
+//@import "specials/rollIn";
+//@import "specials/rollOut";
+
+// ------------------------------------- 
+// FLIPPERS
+//@import "flippers/flip";
+//@import "flippers/flipInX";
+//@import "flippers/flipInY";
+//@import "flippers/flipOutX";
+//@import "flippers/flipOutY";
+
+// ------------------------------------- 
+// LIGHTSPEED
+//@import "lightspeed/lightSpeedIn";
+//@import "lightspeed/lightSpeedOut";
+
+// ------------------------------------- 
+// SLIDERS
+//@import "sliders/slideInDown";
+//@import "sliders/slideInLeft";
+//@import "sliders/slideInRight";
+//@import "sliders/slideInUp";
+//@import "sliders/slideOutDown";
+//@import "sliders/slideOutLeft";
+//@import "sliders/slideOutRight";
+//@import "sliders/slideOutUp";

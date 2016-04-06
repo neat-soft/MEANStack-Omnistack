@@ -1,0 +1,13 @@
+.icon {
+  width: 35px;
+  height: 35px;
+  fill: white;
+  stroke: white;
+  display: inline-block;
+  transition: all .2s ease-in-out;
+  stroke-width: 0;
+  &:hover {
+    fill: $link-color;
+    stroke: $link-color;
+  }
+}

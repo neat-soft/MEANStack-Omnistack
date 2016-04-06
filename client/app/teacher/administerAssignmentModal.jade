@@ -1,0 +1,24 @@
+.container-fluid.avenir-db
+  .row
+    .col-sm-12
+      h1
+        | Assigning {{administer.assignment.name}}
+  form(ng-model="administer", ng-submit="administerAssignment(administer)")
+    .row
+      .form-group
+        .col-sm-3
+          label(for="classroom") Class?
+        .col-sm-9
+          //- Remember to edit this to include searchable subjects or create new subjects
+          select.form-control#classroom(ng-model="administer.classroom", ng-options="class as class.name for class in classrooms")
+    .form-group.row
+      .col-sm-3
+        label(for="dueDate") Due:
+      .col-sm-7
+        input.form-control#dueDate(style="margin-top: 2px;", type='text', datepicker-popup='dd-MMMM-yyyy', ng-model="administer.dueDate", is-open="opened", datepicker-options="dateOptions", ng-required="true", close-text="Close", ng-focus="open($event)")
+      .col-sm-2
+        button.btn.btn-default(type="button", ng-click="open($event)")
+          i.glyphicon.glyphicon-calendar
+    .form-group.row.text-center
+      button.btn.btn-primary
+        | Assign to Class

@@ -1,0 +1,21 @@
+:not(pre)>code {
+  color: $code-color;
+  background-color: $code-bg;
+  padding: 1px 5px;
+  border-radius: 2px;
+  //font-size: .9rem;
+  // prevent word breaks
+  -ms-word-break: normal !important;
+  word-break: normal !important;
+}
+
+.post-content code { font-size: 14px; }
+.post-content pre>code {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+  font-size: 14px;
+  border-radius: 4px;
+  background: $code-bg;
+  padding: 1rem;
+}

@@ -1,0 +1,224 @@
+// GALLERY wrapper id
+.post-excerpts--gallery3.home-template .container-wrap { 
+  padding-top: $grid--excerpt-gallery;
+  padding-left: $bar-left-width + $grid--excerpt-gallery;
+  &.closed {
+    padding-left: $grid--excerpt-gallery;
+  }
+  @include bp(baby) {
+    padding: $grid--excerpt-gallery;
+    padding-right: 0;
+  }
+}
+
+$h-5: 350px;
+$h-4: 250px;
+$h-3: 250px;
+$h-2: 250px;
+$h-1: 300px;
+  // breakpoint # width
+  $b1h: $h-1;  // small to BIG, b1 = mobile
+  $b2h: $h-4;
+  $b3h: $h-3;
+  $b4h: $h-2;
+  $b5h: $h-1;
+
+$w-6: 16.66%;   
+$w-5: 20%;      
+$w-4: 25%;      
+$w-3: 33.33%;   
+$w-2: 50%;      
+  // breakpoint # width
+  $b1w: $w-2;  // small to BIG, b1 = mobile
+  $b2w: $w-3;
+  $b3w: $w-4;
+  $b4w: $w-5;
+  $b5w: $w-6;
+
+.post-excerpts#post-excerpts--gallery3 {
+
+  .post-excerpt-box--wrap {
+    @include excerpts-square-and-rectangles;
+    float: left;
+    padding-bottom: $grid--excerpt-gallery;
+    padding-right: $grid--excerpt-gallery;
+    p { margin-bottom: 1.233em; }
+  }
+  [data-size="height2x"] {
+    @include excerpts-height-2x;
+  }
+  [data-size="width2x"] {
+    width: $b5w*2;                                      // b5
+    @include bp(1500) { width: $b4w*2; }                // b4
+    @include bp(1350) { width: $b3w*2; }                // b3
+    @include bp(1100) { width: $b2w*2; }                // b2
+    @include bp($grid-to-full-bp) { width: $b1w*2; }    // b1
+  }
+  .post-excerpt-box {
+    position: relative;
+    background-color: $excerpt-hover-bg;
+    text-align: center;
+    overflow: hidden;
+    height: 100%;
+  }
+
+
+  // --------------------------------------
+  // Remove Excerpt Content ---------------
+  .excerpt-div ul,
+  .excerpt-div ol,
+  .excerpt-div { @extend %none; }
+
+
+  // --------------------------------------
+  // TEXT ONLY ----------------------------
+
+  // generals
+  .post-excerpt--wrap { @extend %post-excerpt--wrap; }
+  .post-excerpt { 
+    @extend %post-excerpt; 
+    @extend %vert-center-parent;
+  }
+
+  // read more link (for with-featured: non-overriden styles are inherited from here)
+  .readMoreLink--btn { 
+    @extend %readMoreLink--btn-ALL; 
+    @extend %readMoreLink--btn;
+    font-size: .8rem;
+  }
+  .readMoreLink--inline { @extend %readMoreLink--inline; }
+
+  // content box
+  .post-excerpt--content-wrap { @extend %BG-EXCERPT-post-excerpt--content-wrap }
+  .post-excerpt-box--inner { @extend %post-excerpt-box--inner }
+
+  // meta
+  .post-excerpt--meta { 
+    @extend %post-excerpt--meta;
+    @include bp(1200) { 
+      font-size: 0.65rem; 
+      padding: 0 15px;
+    }
+    @include bp(800) { 
+      font-size: 0.5rem; 
+      padding: 0 25px;
+    }
+  }
+
+  // POST TITLE (for all - featured and non-featured)
+  .post-title { 
+    @extend %link-title_disabled;
+    font-size: 0.95rem;
+    a {
+      @extend %link-title_disabled;
+    }
+    @include bp(800) {
+      font-size: 0.85rem;
+    }
+    @include bp(750) {
+      font-size: 0.82rem;
+    }
+    @include bp(650) {
+      font-size: 0.8rem;
+    }
+  }
+
+  // ---------------------------------------------------
+  // EXCERPT w/ FEATURED IMG/AUD/VID OVERRIDES ---------
+
+  .excerpt-has-featured {
+    .post-title a { @extend %FEAT-link-title_disabled }
+    .vert-center-inner-wrap {@extend %vert-center-inner-wrap; }
+
+    .post-excerpt--header { @extend %FEAT-post-excerpt--header; }  // style changed by script, override for this layout
+    .post-excerpt--wrap { @extend %FEAT-post-excerpt--wrap; }
+    .post-excerpt--content-wrap { 
+      @extend %FEAT-post-excerpt--content-wrap; 
+      transition: background-color 0.25s ease-in-out; // background transition
+    }
+    .non-title-excerpt-content-wrap {
+      //padding-bottom: 8px;
+    }
+    .post-excerpt--content { 
+      @extend %FEAT-post-excerpt--content; 
+      transition: opacity 0.3s ease-in-out; // content opacity transition
+    }
+    .post-excerpt--content-inner { 
+      @extend %FEAT-post-excerpt--content-inner; 
+    }
+
+    // LINES ----------------
+    .excerpt-line { 
+      @extend %FEAT-excerpt-line;
+      transition: width 0.15s ease-in-out;
+    }
+    .excerpt-line--top {
+      @extend %FEAT-excerpt-line--top;
+    }
+    .excerpt-line--bottom {
+      @extend %FEAT-excerpt-line--bottom;
+    }
+
+    // META ----------------
+    .readMoreLink--btn { 
+      @extend %readMoreLink--btn-ALL;
+      @extend %FEAT-readMoreLink--btn; 
+    }
+    .post-excerpt--meta { @extend %FEAT-post-excerpt--meta; } 
+    a.commentCount { @extend %FEAT-commentCount; }
+
+    // HOVER ------------------------------
+    .post-excerpt-box:hover { 
+      .post-excerpt--content {
+      opacity: 1;
+      }
+      .post-excerpt--content-wrap {
+        @extend %gallery-overlay-bg;
+      }
+      .excerpt-line { width: 77%; }
+    }
+
+    // BACKGROUD IMAGE
+    .post-excerpt--featured-img { 
+      height: 100%;
+      margin: 0 auto;
+      z-index: 30;
+    }
+    .featured { display: block; }
+  } // END excerpt w/ featured
+
+
+  // ---------------------------------------------------
+  // EXCERPT HEADERS (toggled OFF) ---------------------
+  .post-excerpt-box .post-excerpt--header {
+    display: none;  // for text only posts... never show header overlay
+  }
+
+  // ---------------------------------------------------
+  // EXCERPT HEADERS (toggled ON) ----------------------
+  .excerpt-has-featured {  // only toggle header on posts with featured (img, vid, aud, etc)
+    .post-excerpt--content-wrap.excerpt-toggled-on { // wrapper for excerpt header overlay
+      @extend %gallery-overlay-bg; // overlay bg
+      .post-excerpt--content { 
+        opacity: 1; 
+      }
+      .non-title-excerpt-content-wrap {
+        opacity: 0;
+        max-height: 0;
+        transition: opacity 0.5s ease, max-height 0.3s ease;
+      }
+      .excerpt-line { 
+        transition: width 0.15s ease-in-out;
+      }
+    }
+    .post-excerpt-box:hover {
+      .non-title-excerpt-content-wrap {
+        opacity: 1;
+        max-height: 125px;
+      }
+    }
+  } // END .excerpt-has-featured
+
+
+
+} // END post-excerpts--gallery wrapper

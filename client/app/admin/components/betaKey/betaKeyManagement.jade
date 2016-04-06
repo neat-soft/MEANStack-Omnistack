@@ -1,0 +1,56 @@
+.row
+  .col-sm-12
+    h2
+      | Invitations
+.row
+  .col-sm-12
+    ul.list-group(ng-controller='BetaKeyCtrl')
+      li.list-group-item
+        .row
+          .col-sm-8
+            input(ng-model='search' placeholder='Search' ng-change='updateFiltered()')
+            |  in
+            select(ng-model='searchType' ng-options='opt.value as opt.name for opt in searchTypes')
+          .col-sm-4.pages
+            span.prevPage(omni-tap='page(-1)')
+              | &lt;
+            span
+              | {{currentPage}}/{{maxPage}}
+            span.nextPage(omni-tap='page(1)')
+              |  &gt;
+      li.list-group-item(ng-if='betaKeys.length > 0')
+        .row
+          .col-sm-3(ng-click='sortFactor = "email"')
+            strong E-mail
+          .col-sm-3(ng-click='sortFactor = "key"')
+            strong Key Name
+          .col-sm-3
+            strong Approved? 
+          .col-sm-3
+            strong Claimed? 
+      li.list-group-item(ng-repeat='betaKey in filtered | startAt:((currentPage-1)*lim) | limitTo: lim')
+        .row.betaKey(ng-class='{expired: parseDate(betaKey.expires)}')
+          .col-sm-3.email
+            | {{betaKey.email || "Mass Key"}} 
+          .col-sm-3.key
+            | {{betaKey.name}}
+          .col-sm-3.approved
+            | {{betaKey.approved}}
+          .col-sm-3.claimed(ng-bind-html='parseClaimed(betaKey)')
+          span.delete(ng-click='removeKey(betaKey._id)')
+            span.glyphicon.glyphicon-trash
+      li.list-group-item
+        .row
+          .col-sm-12
+            | Add Beta Key&nbsp;
+            span
+                a(omni-tap='addBetaKeyModal()')
+                    span.glyphicon.glyphicon-plus.pull-left
+      li.list-group-item
+        .row
+          .col-sm-2
+            | Clean up:
+          .col-sm-4.btn.btn-primary(ng-click='removeClaimed()')
+            | Remove all claimed
+          .col-sm-4.btn.btn-warning(ng-click='removeExpired()')
+            | Remove all expired

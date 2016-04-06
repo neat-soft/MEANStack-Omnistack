@@ -1,0 +1,15 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  alert#alert-container.avenir-light(ng-if='user.numFreeSubjects > 0' type='success', omni-tap='removeMe($event)')
+    a(href='/pricing')
+      p(ng-show='user.numFreeSubjects === 1')
+        | You have <strong>1 free subject</strong> to redeem! Pick your subject now!
+      p(ng-show='user.numFreeSubjects > 1')
+        | You have <strong>{{user.numFreeSubjects}} free subjects</strong> to redeem! Pick them now!
+
+div(ng-if='user.role')
+  div(ng-if='user.role == "admin"')
+    div(ng-include='"components/accountPage/admin/account.html"')
+  div(ng-if='user.role !== "admin"')
+    div(ng-include='"components/accountPage/endUser/account.html"')
+footer.footer(ng-include='"components/footer/footer.html"')

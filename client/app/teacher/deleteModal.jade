@@ -1,0 +1,12 @@
+.container-fluid
+  .row
+    .col-sm-12
+      h3
+        | Are you sure you want to delete this?
+  .row.text-center
+    .col-sm-6
+      button.btn.btn-danger(omni-tap="closeThisDialog(false)")
+        | No!
+    .col-sm-6
+      button.btn.btn-primary(omni-tap="closeThisDialog(true)")
+        | Of course!

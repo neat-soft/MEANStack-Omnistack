@@ -1,0 +1,92 @@
+div(ng-controller="ExamPageCtrl")
+  .container#top
+    .hero-unit.avenir-light.paper-background(ng-if="preExam")
+      h2(ng-if="instructions") Instructions
+      br
+      p#instructions(mathjax-bind="instructions")
+      br
+      button.avenir-light.btn.btn-danger.shadowed.btn-lg(omni-tap="startExam()", smooth-scroll, target="#top", speed="500") Start
+  .row.navbar.navbar-default.navbar-fixed-top#exam-nav(ng-if="!preExam")
+    .col-lg-2.col-md-3.col-sm-4.col-xs-5#return-column
+      a(href="account")
+        span.fa.fa-arrow-left(ng-class="{'text-muted':!preExam && !examSubmit}")
+    .col-lg-8.col-md-6.col-sm-4.col-xs-2
+    .col-lg-2.col-md-3.col-sm-4.col-xs-5#timer-column
+      span(ng-if="!examSubmit")#timer-span
+        timer(id='countdownTimer', autostart = false, countdown="timeInMinutes", max-time-unit="'minute'", interval="1000", finish-callback="timeOver()", language="en") {{mminutes}}:{{sseconds}}
+      #score(ng-if="examSubmit")
+        | ({{attemptedQuestions}}/{{totalQuestions}}) {{percentages}}%
+
+  .container#exam-container(ng-class="examSubmit ? 'border-right border-left' : ''")
+    .row.padding-bottom(ng-repeat="part in examPart.fullQuestions")
+      .col-sm-12
+        .row
+          .col-lg-2.col-md-1(ng-if="!examSubmit")
+          div(ng-if="!preExam", ng-class="examSubmit?'col-md-8 border-right':'col-lg-8 col-md-10'")
+            .form-group.row
+              .col-xs-1
+                h4 Q{{$index+1}}&nbsp;
+              .col-xs-11
+                div.question-body(mathjax-bind="part.body")
+            .form-group.row
+              .col-xs-1
+              ul.col-xs-11.choices-container
+                li.row(ng-repeat="choice in part.choices")
+                  .col-xs-1
+                    input(type="radio", ng-value="choice", ng-model="choices[part._id]", id="{{part._id}}{{$index}}", name="{{part._id}}", ng-if="hasOneCorrect(part.choices)", ng-change="storeQuestionContext(part,this)")
+                    input(type="checkbox", ng-true-value="{{choice}}", ng-model="choices[part._id][$index]", id="{{part._id}}{{$index}}", name="{{part._id}}[]", ng-if="!hasOneCorrect(part.choices)", ng-change="storeQuestionContext(part,this)")
+                  .col-xs-11
+                    label.col-xs-11(mathjax-bind="choice.body", for="{{part._id}}{{$index}}")
+          .col-lg-2.col-md-1(ng-if="!examSubmit")
+          .col-md-4.border-left(ng-if="!preExam && examSubmit")
+            .row.explanation-container
+              .col-xs-1.visible-xs.visible-sm
+              .col-xs-11.col-md-12
+                p.text-bold(ng-class="{'text-success':userChoices[part._id].correct, 'text-danger':!userChoices[part._id].correct}") {{userChoices[part._id].correct? 'Correct': userChoices[part._id].correct==false ? 'Incorrect':'Not Answered'}}
+                p(mathjax-bind="part.explanation.body")
+        hr(ng-if="examSubmit")
+        .row.comments-row(ng-if="examSubmit", ng-init="commentCurrentPage[part._id] = 1")
+          ul.col-sm-12
+            h4 Comments on question {{$index+1}}
+            li.row(ng-if="part.comments.length > commentLim")
+              .col-xs-3(omni-tap="prevPage(part._id)")
+                span.glyphicon.glyphicon-chevron-left
+                | &nbsp;Previous Page
+              .col-xs-6.text-center
+                span
+                  | Page {{commentCurrentPage[part._id]}}/{{getMaxPages(part.comments)}}
+              .col-xs-3.text-right(omni-tap="nextPage(part.comments, part._id)")
+                | Next Page&nbsp;
+                span.glyphicon.glyphicon-chevron-right
+            li.row(ng-repeat="comment in part.comments | orderBy: 'date' | startAt:((commentCurrentPage[part._id]-1)*commentLim) | limitTo: commentLim")
+              .col-xs-2
+                p.text-bold {{ comment.user }}
+                p.grey-text
+                p.grey-text
+                  | {{getDate(comment.date)}}
+                p.grey-text
+                  | {{getTime(comment.date)}}
+              .col-xs-10
+                p.comment-text {{comment.comment}}
+            li.row
+              hr
+              form(name='questionCommentForm{{part._id}}' ng-model='commentForm[part._id]')
+                .col-sm-12
+                  textarea.form-control(ng-model='commentForm[part._id].comment', placeholder="Write your thoughts, {{currentUser.name}} (500 characters max)", maxlength="500")
+                br
+                .row
+                  .col-xs-4.col-md-6.col-lg-8
+                  .col-xs-4.col-md-3.col-lg-2
+                    a(href="", omni-tap='addingComment[part._id] = false; commentForm[part._id] = {}')
+                      | Cancel
+                  .col-xs-4.col-md-3.col-lg-2
+                    button.btn.btn-default(omni-tap='submitComment(commentForm[part._id], part)')
+                      | Submit
+        hr(ng-if="examSubmit")
+            
+    .row.button-container
+      .col-xs-1.col-sm-2.col-md-3.col-lg-4
+      .col-xs-10.col-sm-8.col-md-6.col-lg-4
+        button(smooth-scroll, target="#top", speed="3000", type="button",omni-tap="submitExam()", ng-if="showSubmit()").avenir-light.btn.btn-danger.shadowed.btn-lg Submit Test
+        button(smooth-scroll, target="#top", speed="3000", type="button",omni-tap="nextExam()", ng-if="showContinue()").avenir-light.btn.btn-danger.shadowed.btn-lg Submit and Continue to Part 2
+      .col-xs-1.col-sm-2.col-md-3.col-lg-4

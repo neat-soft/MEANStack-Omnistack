@@ -1,0 +1,134 @@
+// ---------------------------------------------------------
+// PLACEHOLDERS
+
+// -----------
+// DISPLAY
+%block { display: block; }
+%inline-block { display: inline-block; }
+%none { display: none; }
+
+// position
+// ---
+%relative { position: relative; }
+%absolute { position: absolute; }
+%fixed { position: fixed; }
+%top-0 { top: 0; }
+%bottom-0 { bottom: 0; }
+%left-0 { left: 0; }
+%right-0 { right: 0; }
+%float-left { float: left; }
+%float-right { float: right; }
+
+// Vertical Align / Center
+// ---
+%vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+%vert-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+%vert-center-parent {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+// ------------
+// S P A C E
+%width-100 { width: 100%; }
+%width-50 { width: 50%; }
+%height-100 { height: 100%; }
+%height-auto { height: auto; }
+
+// ---------
+// PADDING
+// ---
+%padding-4 { padding: 4px; }
+
+// ---------
+// MARGIN
+// ---
+%margin-0-auto { margin: 0 auto; }
+%margin-0 { margin: 0; }
+%margin-top-0 { margin-top: 0; }
+%margin-bottom-0 { margin-bottom: 0; }
+
+// -----------
+// TYPOGRAPHY
+%text-center { text-align: center; }
+%text-left { text-align: left; }
+%text-right { text-align: right; }
+%uppercase { text-transform: uppercase; }
+
+%pointer { cursor: pointer; }
+
+// -----------
+// BACKGROUNDS
+// %bg-primary {
+//   background-color: $brand-primary;
+// }
+// %background-noise {
+//   background: url(../img/bg/noise.png) repeat;
+// }
+// %bg-input {
+//   background-color: $input-bg;
+// }
+
+// -----------
+// BORDERS
+// %border-left-bar {
+//   border-right: 2px solid $bar-left-border;
+// }
+
+// -----------
+// TRANSITIONS
+%transition-all { @include transition(all, 0.15s, ease); }
+  
+
+// COLOR
+%transition-color { @include transition(color, 0.15s, ease); }
+%transition-color--short { @include transition(color, 0.15s, ease); }
+%transition-color--long { @include transition(color, 0.5s, ease); }
+
+// BG COLOR
+%transition-bg-color { @include transition(background-color, 0.2s, ease); }
+
+// LINES
+%border-none { border: none; }
+%line-transparent-right { 
+  border-right: 2px 
+  solid rgba(0, 0, 0, 0.4); 
+}
+%divider {
+  border: 0;
+  height: 2px;
+  background-color: $text-color;
+}
+
+// -----------
+// MISC
+
+%rounded-4 { border-radius: 4px; }
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%no-select {
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}

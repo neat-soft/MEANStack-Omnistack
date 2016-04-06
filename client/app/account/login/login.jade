@@ -1,0 +1,76 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row
+    .col-md-1.col-lg-2
+    .col-sm-12.col-md-10.col-lg-8
+      h1.avenir-db Login
+      br
+      //p
+      //  | Accounts are reset on server restart from
+      //  code server/config/seed.js
+      //  | .
+      //p
+      //  | Default account is
+      //  code test@test.com
+      //  | /
+      //  code test
+      //p
+      //  | Admin account is
+      //  code admin@admin.com
+      //  | /
+      //  code admin
+      //p
+      //  | Customer (paid user) account is
+      //  code customer@customer.com
+      //  | /
+      //  code customer
+
+      .row
+        .col-sm-4
+          a.btn.btn-facebook(href='', omni-tap='loginOauth("facebook")')
+            i.fa.fa-facebook.pull-left(style='font-size:30px')
+            |  Login with Facebook
+        br.visible-xs
+        .col-sm-4
+          a.btn.btn-google-plus(href='', omni-tap='loginOauth("google")')
+            i.fa.fa-google-plus.pull-left(style='font-size:30px')
+            |  Login with Google+
+        br.visible-xs
+        .col-sm-4
+          button.btn.btn-edmodo.login-edmodo-button(omni-tap='loginOauth("edmodo")')
+            img#edmodo-logo.pull-left(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/41205/edmodo-icon_1.png")
+            p.avenir-light Login with
+              span#edmodo &nbsp;Edmodo
+        br.visible-xs
+      .row
+        .col-sm-12
+          table(style='width:100%')
+            tr
+              td(style='width:47%')
+                hr.hr-login
+              td(style='width:6%;text-align: center')
+                | or
+              td(style='width:47%')
+                hr.hr-login
+
+          form.form(style='width:100%', name='form', ng-submit='login(form)', novalidate='')
+            .form-group
+              input.form-control.omni-input(placeholder="E-mail address", type='text', name='email', ng-model='user.email')
+            .form-group
+              input.form-control.omni-input(placeholder="Password", type='password', name='password', ng-model='user.password')
+
+            .form-group.has-error
+              p.help-block(ng-show='form.email.$error.required && form.password.$error.required && submitted')
+                | Please enter your email and password.
+              p.help-block {{ errors.other }}
+
+            div.avenir-light
+              button.btn.btn-danger.btn-lg.btn-login.shadowed(type='submit')
+                | Sign In
+
+            hr
+            a(href='/forgot').avenir-light Forgot Password?
+            hr
+    .col-md-1.col-lg-2
+footer.footer(ng-include='"components/footer/footer.html"')
+    

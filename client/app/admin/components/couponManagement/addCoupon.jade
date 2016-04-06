@@ -1,0 +1,58 @@
+.container-fluid
+  .row
+    .col-sm-12
+      h1
+        | Add a Coupon
+  form(name='addCoupon', ng-model='coupon')
+    .row
+      .col-sm-12
+        .row
+          .col-sm-12
+            .well
+              .form-group
+                label(for='code')
+                  | Code
+                input.form-control(name='code', type='text', ng-model='coupon.code', placeholder='Coupon Code', ng-required='true')
+              .form-group
+                label(for='subjectName')
+                  | Subject
+                .input-group
+                  select.form-control(name='subjectName' ng-model='coupon.subjectName', ng-required='true')
+                    option(ng-selected='true', value='null', ng-hide='true') Subject
+                    option(value="APCalcAB") AP Calculus AB
+                    option(value="APCalcBC") AP Calculus BC
+                    option(value="APPhysics1") AP Physics 1
+                    option(value="APPhysics2") AP Physics 2
+                    option(value="APStats") AP Statistics
+                    option(value="APCompSci") AP Computer Science
+                    option(value="APEngLanguage") AP English Language
+                    option(value="APEngLiterature") AP English Literature
+                    option(value="APEurHistory") AP European History
+                    option(value="APUSHistory") AP US History
+                    option(value="APWorldHistory") AP World History
+                    option(value="APMicroecon") AP Microeconomics
+                    option(value="APMacroecon") AP Macroeconomics
+                    option(value="APPsych") AP Psychology
+                    option(value="APBio") AP Biology
+                    option(value="APChem") AP Chem
+                    option(value="APEnvSci") AP Envir. Science
+                    option(value="APSpanLanguage") AP Spanish Language
+                    option(value="APUSGovt") AP US Government
+                    option(value="APHumGeo") AP Human Geography
+
+              .form-group
+                label(for='totalNumber')
+                  | Total Number
+                input.form-control(name='totalNumber', type='number', ng-model='coupon.totalNumber', placeholder='Total Number')
+              .form-group
+                label(for='expires')
+                  | Expiration Date
+                span.input-group
+                  input.form-control(type="text" ng-model="coupon.expires" show-button-bar="false" is-open="couponDatePickerOpened" datepicker-popup="dd-MMMM-yyyy" ng-required="false" close-text="Close")
+                  span.input-group-btn
+                    button.btn.btn-default(type="button" ng-click="openCouponDatePicker($event)")
+                      i.glyphicon.glyphicon-calendar
+    .row
+      .col-sm-12
+        button.pull-right.btn.btn-primary(type='button', ng-click='addNewCoupon(addCoupon)')
+          | Submit

@@ -1,0 +1,97 @@
+// --------------------------
+// TOC VARS
+$toc-width: 150px;
+$toc-height: 400px;
+$toc-titleHeight: 35px;
+
+// --------------------------
+// TOC STYLES
+.tocWrap {
+  @extend %no-select;
+  @include bp(959) {
+    display: none;
+  }
+}
+.toc-inner {
+  @extend %fixed;
+  @extend %bottom-0;
+  margin-left: 50%;
+  @include bp(1250){ margin-left: 56%; }
+  @include bp(1050){ margin-left: 55%; }
+}
+#tocTitle {
+  z-index: 999;
+  @extend %relative;
+  @extend %bottom-0;
+  padding: 5px 10px;
+  color: $contrast-from-core;
+  font-weight: 500;
+  width: $toc-width;
+  height: $toc-titleHeight;
+  background-color: $toc-bg;
+  transition: all .15s ease;
+  @extend %uppercase;
+  &.closed { border-radius: $radius-default $radius-default 0 0; }
+  &:hover {
+    color: $link-color;
+    cursor: pointer;
+  }
+  &:hover .icon {
+    stroke: $link-color;
+    fill: $link-color;
+  }
+}
+#tocIconOpen { @extend %none; }
+.toc-icon {
+  right: 10px;
+  top: 7px;
+  @extend %absolute;
+  .icon {
+    width: 20px !important;
+    height: 20px !important;
+    stroke: $contrast-from-core;
+    fill: $contrast-from-core;
+  }
+}
+ul#tocList {
+  @extend %relative;
+  width: $toc-width;
+  background-color: $toc-bg;
+  border-radius: $radius-default $radius-default 0 0;
+  padding: 5px 10px;
+  @extend %bottom-0;
+  transition: all .5s ease;
+  &.closed {
+    bottom: -999px;
+  }
+  li {
+    a {
+      font-size: .7rem;
+      color: $contrast-from-core;
+      display: block;
+      border-bottom: none;
+      margin: 2px 0;
+      transition: all .2s ease;
+    }
+    a:hover, a.active {
+      color: $link-color !important;
+      .icon {
+        opacity: 1;
+        margin-right: 2px;
+      }
+    }
+    .icon {
+      opacity: 0;
+      width: 10px;
+      height: 10px;
+      margin-right: -10px;
+      margin-left: -1px;
+      margin-bottom: -1px;
+      padding-right: 5px;
+      fill: $link-color;
+      transition: all .2s ease;
+    }
+  }
+}
+
+

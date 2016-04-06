@@ -1,0 +1,20 @@
+strong
+  | Chatrooms
+ul.list-group(ng-controller='ChatroomCtrl')
+  li.list-group-item(ng-repeat='room in rooms')
+    strong {{room.name}}
+    span &nbsp;-&nbsp;
+    span.text-muted {{room.createdBy}}
+    a.trash(omni-tap='deleteRoom(room)')
+      span.glyphicon.glyphicon-trash.pull-right
+    br
+    div
+      span Room Type:
+      span.text-muted. &nbsp;{{room.roomType}}
+      span.glyphicon.glyphicon-pencil.edit
+
+  li.list-group-item
+    | Add Room&nbsp;
+    span
+      a(omni-tap='addChatRoomModal()')
+        span.glyphicon.glyphicon-plus.pull-left

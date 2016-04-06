@@ -1,0 +1,16 @@
+// ---------------------------------------------------------
+// Color Scheme - LIGHT
+// ---------------------------------------------------------
+
+// Core Color
+$green-color-1: $color-green;
+
+$green: $green-color-1;
+$brand-primary: $green;
+
+// --------------------
+// Typography
+// ---
+// links  
+$link-color:                $brand-primary;
+$link-hover-color: hsla(98, 26%, 67%, 1);

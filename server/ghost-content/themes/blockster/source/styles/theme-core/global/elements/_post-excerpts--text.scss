@@ -1,0 +1,78 @@
+// DEFAULT wrapper id
+.post-excerpts--text.home-template .container-wrap { 
+  padding-top: $grid--excerpt-default;
+  padding-left: $bar-left-width + $grid--excerpt-default;
+  &.closed {
+    padding-left: $grid--excerpt-default;
+  }
+  @include bp(baby) {
+    padding: $grid--excerpt-default;
+    padding-right: 0;
+  }
+}
+
+.post-excerpts#post-excerpts--text {
+
+    .post-title a {
+      color: $contrast-from-core;
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+    .post-excerpt-box--wrap {
+      width: 25%;
+      float: left;
+      @include bp(1500) {
+        width: 33.33%;
+      }
+      @include bp(1200) {
+        width: 50%;
+      }
+      @include bp($grid-to-full-bp) {
+        width: 100%;
+        display: block;
+      }
+      p {
+        margin-bottom: 1.233em;
+      }
+    }
+  .post-excerpt-box--wrap { padding-right: $grid--excerpt-default; }
+  .post-excerpt-box {
+    padding: 15px;
+    position: relative;
+    margin-bottom: $grid--excerpt-default;
+    background-color: $excerpt-hover-bg;
+    overflow: hidden;
+    height: 100%;
+    display: block;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: $excerpt-default-layout-hover-bg;
+    }
+    .post-excerpt--header {
+       display: none;
+    }
+  }
+
+  font-size: 14px;
+  p, ul, ol, li {font-size: 14px}
+  p.excerpt-div-p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .post-excerpt--featured-img {
+    display: none;
+  }
+  .featured {
+    display: block;
+  }
+  
+  // ------------------------------
+  // READ MORE link
+  .readMoreLink--btn { display: none; }
+  .readMoreLink--inline { 
+    @extend %uppercase;
+    font-weight: 700;
+  }
+
+} // END post-excerpts--default wrapper

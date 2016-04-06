@@ -1,0 +1,29 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row
+    alert.avenir-light(ng-if='signupError' type='danger') {{signupError}}
+  .row
+    .col-sm-12.text-center
+      h1.h1.avenir-mid Sorry, sign-up is by invitation only.
+      h2.h2.avenir-mid Got your invite already?
+      p.avenir-light Enter your invitation code
+      p.avenir-light OR
+      p.avenir-light Enter the email of someone you know has already joined
+      .row
+        .col-md-1
+        .col-sm-12.col-md-10
+          form.form(name='betaSubmit', ng-submit='checkKey()', novalidate='' auto-fill-fix='')
+            .form-group(ng-class='{ "has-success": betaSubmit.betaKey.error = "" && chkSubmitted, "has-error": betaSubmit.betaKey.error  !== "" && chkSubmitted}')
+              input#key-input.text-center.form-control.avenir-light(type='text', name='betaKey', ng-model='betaKey', required='' placeholder='OVR9000 / b@f.ly' ng-change="chkSubmitted = false")
+              p.avenir-light.help-block(ng-show='(errors.betaKey === "invalid" || errors.betaKey === "unapproved") && chkSubmitted')
+                | Sorry, it looks like that key is not valid.
+              p.avenir-light.help-block(ng-show='errors.betaKey === "expired" && chkSubmitted')
+                | Sorry, it looks like that key has expired.
+              p.avenir-light.help-block(ng-show='errors.betaKey === "claimed" && chkSubmitted')
+                | Sorry, it looks like that key has already been redeemed.
+            .form-group
+              button.btn.btn-danger.avenir-light
+                | Continue
+        .col-md-1
+  hr
+footer.footer(ng-include='"components/footer/footer.html"')

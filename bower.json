@@ -1,0 +1,41 @@
+{
+  "name": "fsa",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": ">=1.4.*",
+    "angular-animate": "~1.4.8",
+    "json3": "~3.3.2",
+    "es5-shim": "~4.4.1",
+    "jquery": "~2.2.0",
+    "bootstrap": "~3.3.6",
+    "angular-resource": ">=1.4.*",
+    "angular-cookies": ">=1.4.*",
+    "angular-sanitize": ">=1.4.*",
+    "angular-route": ">=1.4.*",
+    "angular-bootstrap": "~1.0.3",
+    "font-awesome": ">=4.5.0",
+    "lodash": "~4.0.0",
+    "angular-socket-io": "~0.7.0",
+    "angular-touch": ">=1.4.*",
+    "animate.css": "~3.5.1",
+    "angular-ui-select": "*",
+    "angular-timer": "~1.3.3",
+    "angular-smoothscroll": "~1.1.1",
+    "angular-spinner": "~0.8.0",
+    "isteven-angular-multiselect": "~4.0.0",
+    "angular-toastr": "~1.6.0",
+    "ng-dialog": "ngDialog#~0.5.6",
+    "ui-select": "angular-ui-select#~0.14.9",
+    "ng-ckeditor": "^0.2.1"
+  },
+  "devDependencies": {
+    "angular-mocks": ">=1.4.*",
+    "angular-scenario": ">=1.4.*"
+  },
+  "resolutions": {
+    "es5-shim": "~4.4.1",
+    "angular": "^1.4.x",
+    "humanize-duration": "~2.8.0",
+    "jquery": "~2.2.0"
+  }
+}

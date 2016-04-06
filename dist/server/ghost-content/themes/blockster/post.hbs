@@ -1,0 +1,113 @@
+{{! POST template}}
+
+{{!< default}}
+
+<div class="container-wrap">
+  <div class="container">
+      <div class="blog-header">
+          <a id="logoLink" href="{{@blog.url}}">
+            <img src="/blog/assets/images/blog-header.svg" alt="Blog Header" style="width: 100px">
+          </a>
+      </div>
+    <main class="content" role="main">
+
+      <article class="{{post_class}}">
+        <div class="post-wrap blog-post--not-page" id="containerWidthTarget">
+
+        {{#post}}
+          <div class="post-content">
+            {{#if image}}<img src="{{image}}" class="featured-img-for-global-bg" id="page-post-cover">{{/if}}
+            <div class="padding-wrap--target">
+
+              <section class="post">
+
+                <h1 class="post-title">{{{title}}}</h1>
+                <span class="post-meta post-meta--top">
+                  <time datetime="{{date format='YYYY-MM-DD'}}">
+                    {{date format="DD MMM YYYY"}} /
+                  </time>
+                  {{author.name}} <span class='disqus-comment-wrap'>/
+                   <a id="commentCount" href="{{url}}#disqus_thread">Comments</a></span>
+                </span>
+
+                {{content}}
+
+              </section>
+
+            <!-- AUTHOR -->
+            <div class="group">
+              <div class="share post-footer-social">
+                <span class="share-this-post">Share on:</span>
+
+                <a class="post-footer--share-link" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+                  onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                  Twitter
+                </a> <span class="post-footer-social--divider">/</span>
+
+                <a class="post-footer--share-link" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                  onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                  Facebook
+                </a> <span class="post-footer-social--divider">/</span>
+
+                <a class="post-footer--share-link" href="https://plus.google.com/share?url={{url absolute="true"}}"
+                onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                  Google+
+                </a>
+              </div>
+
+            </div> <!-- end group -->
+
+            <hr class="body_divider--bar--dashed">
+
+            <aside class="post-footer--author">
+              <img src="{{author.image}}"  alt="">
+
+              <h4><span class="author--label">Author:</span> {{author.name}}</h4>
+              {{#if author.website}}
+                <a class="post-footer--link-website" href="{{author.website}}">{{author.website}}</a>
+              {{/if}}
+
+              <p>
+                {{author.bio}} <br>
+              </p>
+
+              {{> toc }}
+            </aside>
+
+            <hr class="body_divider--bar--dashed with-Bg-Only post-footer--hr">
+
+          </div> <!-- END padding-wrap-BGonly -->
+        </section>
+
+        <section class="post-comments padding-wrap--target" id="disqus-wrap">
+
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            {{> config}}
+
+              if ( useDisqus === true ) {
+
+              var disqus_identifier = '{{post.id}}';
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+            };
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+          </div>
+
+        {{/post}}
+
+        </div>
+      </article>
+      <div>
+        <!-- Footer for each post -->
+    </main>
+  </div> {{! END CONTAINER}}
+</div> {{! END CONTAINER WRAP}}

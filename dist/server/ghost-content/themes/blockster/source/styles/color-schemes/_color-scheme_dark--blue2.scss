@@ -1,0 +1,13 @@
+// Core Color
+$light-color-blue: $color-blue2;
+
+$blue: $light-color-blue;
+$brand-primary: $blue;
+
+// --------------------
+// Typography
+// ---
+// links  
+$link-color:                $brand-primary;
+//$link-hover-color:          saturate(adjust-hue($link-color, 10), 55);
+$link-hover-color:          hsla(200, 78%, 80%, 1);

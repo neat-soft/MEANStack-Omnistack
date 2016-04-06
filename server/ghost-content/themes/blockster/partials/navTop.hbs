@@ -1,0 +1,41 @@
+{{!-- Mobile top nav --}}
+<div class="bar-top-wrap">
+  <div class="bar-top">
+    {{^is "home"}}<a class="bar-top-logo" href="{{@blog.url}}">{{/is}}
+    {{#if @blog.cover}}
+      <div class="bar-top-logo">
+        <img src="{{@blog.cover}}" alt="Blog Logo">
+      </div>
+      {{else}}
+      <h1 class="bar-top-logo-text">{{@blog.title}}</h1>
+    {{/if}}
+    {{^is "home"}}</a>{{/is}}
+    
+    <svg class="icon left-bar-toggle" id="toggleSb">
+      <use xlink:href="#icon-menu"></use>
+    </svg>
+    
+    <div class="bar-top-social">
+        <a href="#" class="link-twitter">
+          <svg class="icon">
+            <use xlink:href="#icon-twitter"></use>
+          </svg>
+        </a>
+        <a href="#" class="link-facebook">
+          <svg class="icon">
+            <use xlink:href="#icon-facebook"></use>
+          </svg></a>
+        <a href="#" class="link-googleplus">
+          <svg class="icon">
+            <use xlink:href="#icon-googlep"></use>
+          </svg>
+        </a>
+        <a href="#" class="link-rss">
+          <svg class="icon">
+            <use xlink:href="#icon-rss"></use>
+          </svg>
+        </a>
+    </div>
+
+  </div>
+</div> {{!-- End bar-top-wrap --}}

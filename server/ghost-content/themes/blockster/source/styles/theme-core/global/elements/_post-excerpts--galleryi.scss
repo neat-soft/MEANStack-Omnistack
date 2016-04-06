@@ -1,0 +1,263 @@
+// ------------------------------------------
+// POST EXCERPTS --- GALLERY 1 --------------
+
+
+// GALLERY wrapper id
+.post-excerpts--galleryi.home-template .container-wrap { 
+  padding-top: $grid--excerpt-gallery;
+  padding-left: $bar-left-width + $grid--excerpt-gallery;
+  &.closed {
+    padding-left: $grid--excerpt-gallery;
+  }
+  @include bp(baby) {
+    padding: $grid--excerpt-gallery;
+    padding-right: 0;
+  }
+}
+.post-excerpts#post-excerpts--galleryi {
+
+  .post-excerpt-box--wrap {
+    width: 25%;
+    float: left;
+    p { margin-bottom: 1.233em; }
+    @include bp(1500) {
+      width: 33.33%;
+    }
+    @include bp(1200) {
+      width: 50%;
+    }
+    @include bp($grid-to-full-bp) {
+      width: 100%;
+      display: block;
+    }
+  }
+  .post-excerpt-box--wrap { padding-right: $grid--excerpt-gallery; }
+  .post-excerpt-box {
+    position: relative;
+    margin-bottom: $grid--excerpt-gallery;
+    background-color: $excerpt-hover-bg;
+    text-align: center;
+    overflow: hidden;
+    height: 100%;
+    font-size: 0.6rem;
+    @include bp(1580) { font-size: 0.5rem; }
+    @include bp(1500) { font-size: 0.6rem; }
+    @include bp(1350) { font-size: 0.65rem; }
+    @include bp(1200) { font-size: 0.7rem; }
+    @include bp(950) { font-size: 0.55rem}
+    @include bp($grid-to-full-bp) { font-size: 0.825rem; }
+    @include bp(500) { font-size: 0.6rem; }
+  }
+
+  .post-title { 
+    font-size: 0.95rem;
+    a {
+      color: $contrast-from-core;
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+    @include bp(800) {
+      font-size: 0.85rem;
+    }
+    @include bp(750) {
+      font-size: 0.82rem;
+    }
+    @include bp(650) {
+      font-size: 0.8rem;
+    }
+    @include bp(500) {
+      font-size: 0.7rem;
+    }
+  }
+  // meta
+  .post-excerpt--meta { 
+    @include bp(1200) { 
+      font-size: 0.65rem; 
+      padding: 0 15px;
+    }
+    @include bp(800) { 
+      font-size: 0.5rem; 
+      padding: 0 25px;
+    }
+    @include bp(500) { display: none; }
+  }
+
+  .excerpt-div ul,
+  .excerpt-div ol {
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 1.5em;
+    li {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  .post-excerpt-box--inner {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    display: block;
+    background-color: $excerpt-hover-bg;
+    .post-excerpt--content-wrap {
+      padding: 5%;
+    }
+  }
+
+  .post-excerpt--wrap {
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: $post-excerpt-text-color;
+  }
+  .post-excerpt {
+    height: 100%;
+  }
+
+
+  // ------------------------
+  // Post with featured image
+
+  .excerpt-has-featured {
+    
+    .post-excerpt--wrap {
+      position: absolute;
+    }
+    .post-excerpt--content-wrap {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .post-excerpt--content-wrap {
+      padding: 0;
+    }
+    .post-excerpt-box--inner {
+      min-height: 100%;
+    }
+    overflow: hidden;
+    .post-excerpt--content {
+      position: absolute;  // change to absolute for no overflow
+      width: 100%;
+      z-index: 40;
+      height: 100%;
+      display: block;
+      bottom: 1000px;
+      padding: 2% 7%;
+      color: $excerpt-header-txt;
+      background-color: $excerpt-hover-bg;
+      //border-radius: $radius-default;
+      transition: bottom 0.25s ease-in-out;
+      // because its child element is vertically aligned, fix 1px off bug as described here: http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
+    .post-excerpt--content-inner {
+      position: absolute; // switched to absolute in efforts to fix mobile problem
+      left: 0;
+      right: 0;
+      top: 50%;
+      padding-left: 5%;
+      padding-right: 7%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    .post-excerpt-box:hover {
+      .post-excerpt--content {
+        bottom: 0px; // show on hover
+      }
+    }
+  }
+
+  .post-excerpt--featured-img img {
+    width: 100%;
+    display: block;
+    //border-radius: $radius-default;
+  }
+  .featured {
+    display: block;
+  }
+
+
+  // ------------------------------
+  // READ MORE link
+  .readMoreLink--btn {
+    border-radius: $radius-default;
+    padding: 2px 5px 0;
+    color: $same-as-core;
+    background-color: $excerpt-readmore-bg;
+    transition: all 0.25s ease;
+    @extend %uppercase;
+    font-weight: 700;
+    &:hover {
+      background-color: $link-color;
+      //color: $same-as-core;
+      color: $white;
+      border-color: $link-color;
+      }
+    }
+  .readMoreLink--inline { display: none; }
+  .excerpt-div {
+    margin-bottom: 1.4em;
+  }
+
+  
+  // ------------------------------
+  // POST EXCERPT META
+  .post-excerpt--meta {
+    font-size: 0.6rem;
+    font-weight: 700;
+    @include bp(1200) {
+      font-size: 0.55rem;
+    }
+  }
+
+  // -----------------------------
+  // EXCERPT HEADERS
+  .post-excerpt-box .post-excerpt--header {
+    display: none;  // for text only posts... never show header
+  }
+
+  // TOGGLE on featured
+  .excerpt-has-featured {  // only toggle header on posts with featured (img, vid, aud, etc)
+
+    .post-excerpt--featured-img img {
+      width: 100%;
+      height: auto; // added this for lazy loading to work
+      display: block;
+    }
+
+    .post-excerpt-box--inner .post-excerpt--header {
+      display: none;
+    }
+    .post-excerpt--header {
+      z-index: 50;
+      position: relative;
+      top: 0;
+      padding: 5px 10px;
+      width: 100%;
+      background: $excerpt-header-bg;
+      transition: all 0.35s ease;
+      .post-title a {
+        font-weight: 600;
+      }
+      h2 {
+        margin-bottom: 0px;
+      }
+    }
+    .post-excerpt-box:hover {
+      .post-excerpt--header .post-title {
+        display: none;
+      }
+      .post-excerpt--header {
+        top: -200px;
+      }
+    }
+  } // END .excerpt-has-featured
+
+  
+
+} // END post-excerpts--gallery wrapper

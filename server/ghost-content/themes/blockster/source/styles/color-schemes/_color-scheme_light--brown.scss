@@ -1,0 +1,16 @@
+// ---------------------------------------------------------
+// Color Scheme - tan LIGHT
+// ---------------------------------------------------------
+
+// Core Color
+$brown: $color-brown;
+
+$brand-primary: $brown;
+
+// --------------------
+// Typography
+// ---
+// links  
+$link-color:                $brand-primary;
+//$link-hover-color:          saturate(adjust-hue($link-color, 10), 55);
+$link-hover-color:          hsla(38, 95%, 43%, 1);

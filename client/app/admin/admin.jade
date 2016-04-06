@@ -1,0 +1,16 @@
+div(ng-include='"components/navbar/navbar.html"')
+div(ng-if='user.role')
+  .container(ng-if='user.role == "admin"')
+    .row(ng-repeat='component in adminComponentNames')
+      .col-sm-12
+        .well(ng-hide='show[component]')
+          button.btn.btn-primary(ng-click="show[component] = true")
+            | Load {{component}}
+        .well(ng-if="show[component]")
+          div(ng-include='adminComponents[component]')
+  .container(ng-if='user.role != "admin"')
+    .row
+      .col-sm-12
+        p
+          | Nice try!
+footer.footer(ng-include='"components/footer/footer.html"')

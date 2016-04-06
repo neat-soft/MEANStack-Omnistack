@@ -1,0 +1,71 @@
+.container(ng-controller='AccountCustomerCtrl')
+  .row.text-center
+    .col-sm-12
+      h1.avenir-light
+        | My AP Home Room
+  br
+  .row(ng-init='getMessageToUsers()', ng-show='message')
+    .col-sm-1
+    .col-sm-10
+      .row.message
+        .col-sm-10
+          p(ng-bind-html="message")
+        .col-sm-2
+          span.glyphicon.glyphicon-remove(ng-click='message=undefined')
+    .col-sm-1
+  br
+  .row
+    .col-md-6
+      div(ng-include='"components/leaderboard/leaderboard.html"')
+    .col-md-6
+      span(us-spinner, spinner-key="spinner-1", spinner-start-active="true")
+      .block-item.avenir-light.text-center
+        h4.avenir-db You can now send invitations
+        p Invite other AP teachers and students to rise up the ranks on the Community Leaders' leaderboard.
+    
+        div.top-border
+          p To invite other AP teachers and students, just send them your invitation link (<a href='/signup/key/{{currentUser.email}}'>https://omninox.org/signup/key/{{currentUser.email}}</a>) using any of the methods below:
+        .row
+          .col-xs-1
+          .col-xs-2
+            a(href='', omni-tap='edmodoShare()')
+              img.img-responsive.share-img.centered(src='https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/share-edmodo.png')
+          .col-xs-2
+            a(href='', omni-tap='googleShare()')
+              img.img-responsive.share-img.centered(src='https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/share-google.png')
+          .col-xs-2
+            a(href='', omni-tap='twitterShare()')
+              img.img-responsive.share-img.centered(src='https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/share-twitter.png')
+          .col-xs-2
+            a(href='', omni-tap='emailShare()')
+              img.img-responsive.share-img.centered(src='https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/share-mail.png')
+          .col-xs-2
+            a(href='', omni-tap='fbShare()')
+              img.img-responsive.share-img.centered(src='https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/share-facebook.png')
+          .col-xs-1
+          //- a(href='/signup/key/{{currentUser.email}}')
+          //-   | https://omninox.org/signup/key/{{currentUser.email}}
+  br
+  //Exam lists
+
+  .row(ng-repeat = 'subjects in [premiumSubjects, freeSubjects]')
+    span(us-spinner, spinner-key="spinner-2", spinner-start-active="true")
+    .col-sm-12(ng-show='subjects.length > 0')
+      .row.text-center
+        .col-sm-12
+          h2.avenir-light(ng-if='$index == 0')
+            | Purchased Subjects
+          h2.avenir-light(ng-if='$index == 1')
+            | Sample Questions
+      .row
+        omnicordion
+          expander.expander(data-ng-repeat="subject in subjects", data-expander-title="{{$parent.$parent.readableSubjects[subject.name]}}")
+            .row.exam-info(ng-repeat='exam in subject.exams | orderBy: "examNumber"')
+              .col-xs-6.col-md-8
+                a(ng-show='exam.examNumber === 0', href="account/{{subject.name}}/{{exam.examNumber}}/1") Sample Questions
+                a(ng-show='exam.examNumber > 0' href="account/{{subject.name}}/{{exam.examNumber}}/1") Premium Exam {{$index}}
+              .col-xs-3.col-md-2.text-center {{score(exam.stats.score)}}
+              .col-xs-3.col-md-2.text-center {{attempts(exam.stats.attempts)}}
+            .row(ng-hide='subject.exams')
+              .col-sm-12
+                | No exams

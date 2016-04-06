@@ -1,0 +1,54 @@
+$line-height-default: $divider-default-height;
+
+hr {
+  height: $body_divider--height;
+  background-color: $body_divider--bar-BG;
+  box-shadow: none;
+  border: 0;
+  margin: 1.4rem 0 2.8rem;
+}
+
+.divider {
+  border: 0;
+  height: $line-height-default;
+  background-color: $text-color-light;
+  margin: 0;
+}
+.divider--slideout {
+  @extend .divider;
+  width: 80%;
+  margin: 15px auto;
+}
+.divider--bar {
+  background-color: $sb_divider--color;
+  @extend .divider;
+}
+.body_divider--bar {
+  background-color: $body_divider--bar-BG;
+  height: $body_divider--height;
+  border: 0;
+  margin: 0;
+}
+hr.body_divider--bar--dashed {
+  border: inherit;
+  border-top: dashed 1px $body_divider--bar-BG !important;
+  height: 1px;
+  background-color: transparent;
+  margin: 0;
+}
+
+
+blockquote {
+  margin-left: 0;
+  border-left: solid 4px rgba($body_divider--bar-BG, .5);
+  border-radius: 0 $radius-default $radius-default 0;
+
+  background: $code-bg;
+  margin: 1.5rem 0 1.5rem 0;
+  padding: 1.3rem 1rem;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote p {
+  display: inline;
+}

@@ -1,0 +1,97 @@
+// ------------------------------------------
+// POST EXCERPTS --- Classic 1 --------------
+
+// Classic 1 (demo default) wrapper id
+.post-excerpts--classic1.home-template .container-wrap { 
+  padding-top: $grid--excerpt-default;
+  padding-left: $bar-left-width + $grid--excerpt-default;
+  &.closed {
+    padding-left: $grid--excerpt-default;
+  }
+  @include bp(baby) {
+    padding: $grid--excerpt-default;
+    padding-right: 0;
+  }
+}
+.post-excerpts#post-excerpts--classic1 {
+
+  .post-title a { 
+    color: $contrast-from-core;
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+
+  .post-excerpt-box--wrap {
+    width: 25%;
+    float: left;
+    @include bp(1500) {
+      width: 33.33%;
+    }
+    @include bp(1200) {
+      width: 50%;
+    }
+    @include bp($grid-to-full-bp) {
+      width: 100%;
+      display: block;
+    }
+    p {
+      margin-bottom: 1.233em;
+    }
+  }
+
+  .post-excerpt-box--wrap { padding-right: $grid--excerpt-default; }
+  .post-excerpt-box {
+    position: relative;
+    margin-bottom: $grid--excerpt-default;
+    background-color: $excerpt-hover-bg;
+    overflow: hidden;
+    height: 100%;
+    display: block;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: $excerpt-default-layout-hover-bg;
+    }
+    .post-excerpt--header {
+       display: none;
+    }
+  }
+
+  .post-excerpt--content { // All excerpt text inside this div
+    padding: 10px 15px 15px;
+    font-size: 0.825rem;
+  }
+  
+  p.excerpt-div-p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .post-excerpt--featured-img img {
+    max-width: 100%;
+    height: auto; // added this for lazy loading to work
+    display: block !important;
+  }
+  .featured {
+    display: block;
+  }
+  
+  .post-excerpt--featured-img {
+    margin-bottom: 7px;
+  }
+
+  // ------------------------------
+  // POST EXCERPT META
+  .post-excerpt--meta {
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  // ------------------------------
+  // READ MORE link
+  .readMoreLink--btn { display: none; }
+  .readMoreLink--inline { 
+    @extend %uppercase;
+    font-weight: 700;
+  }
+
+} // END post-excerpts--classic1 wrapper

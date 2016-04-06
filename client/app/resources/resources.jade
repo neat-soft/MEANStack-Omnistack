@@ -1,0 +1,48 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container-fluid.no-margin
+  .row.paper-background.hero-unit.avenir-mid
+    .col-sm-12
+      .row
+        .col-sm-12
+          h2.text-center
+            | AP<sup>&reg;</sup> Exam Resources
+      .row
+        .col-sm-3
+        .col-sm-6
+          p.lead.text-center
+            | Improve your success on the AP Exam by using our free resources. From interactive equation sheet to engaging widgets, our resources will ensure you are AP prepped.
+        .col-sm-3
+  .row.avenir-light.padded
+    .col-sm-3
+    .col-sm-2.resourcesImage
+      .row
+        .col-sm-12(omni-link="resources/APPhys")
+          img.img-responsive(src="assets/images/APPhysResources.svg", alt="AP Physics 1 Resources")
+      .row
+        .col-sm-12.text-center.subjectLabel
+          | AP Physics 1
+    .col-sm-2.disabled.resourcesImage
+      .disabler
+        p.comingSoon
+          | Coming Soon!
+      .row
+        .col-sm-12
+          img.img-responsive(src="assets/images/APCalcResources.svg" alt="AP Calculus Resources")
+      .row
+        .col-sm-12.text-center.subjectLabel
+          | AP Calculus AB
+    .col-sm-2.disabled.resourcesImage
+      .disabler
+        p.comingSoon
+          | Coming Soon!
+      .row
+        .col-sm-12
+          img.img-responsive(src="assets/images/APStatResources.svg", alt="AP Statistics Resources")
+      .row
+        .col-sm-12.text-center.subjectLabel
+          | AP Statistics
+    .col-sm-3
+    
+      
+footer.footer(ng-include='"components/footer/footer.html"')

@@ -1,0 +1,15 @@
+.container-fluid(ng-controller='AccountTrackerCtrl')
+  form(name='AccountTrackerForm')
+    .row
+      .col-sm-4
+        h4
+          | Account Tracker Date:
+      .col-sm-4
+        p.input-group
+          input.form-control(type='text', datepicker-popup='dd-MMMM-yyyy' ng-model="accountTrackerDate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" )
+          span.input-group-btn 
+            button.btn.btn-default(type="button" ng-click="open($event)")
+              i.glyphicon.glyphicon-calendar
+      .col-sm-4
+        button.btn.btn-primary(type='submit', ng-click='submitDate($event)')
+          | Save date!

@@ -1,0 +1,61 @@
+.page-template-contact .post-title {
+  @extend %text-center;
+  @extend %uppercase;
+  margin: 1rem 0 2rem;
+  color: $contrast-from-core;
+  font-size: 1.75rem;
+}
+
+.page-template-contact p {
+  font-size: .75rem;
+}
+
+.blurb-and-image-wrap--contact { padding-bottom: 1.5em; }
+#author-img--contact {
+  max-width: 130px;
+  float: right;
+  background: $body-bg;
+  z-index: 9000;
+  margin-left: 2rem;
+  @include bp(baby) {
+    float: none;
+    margin: 2rem auto;
+    display: block;
+    text-align: center;
+  }
+}
+
+ul.contact-list {
+  margin-bottom: 2rem;
+  border-top: $body_divider--height solid $body_divider--bar-BG;
+  li {
+    border-bottom: $body_divider--height solid $body_divider--bar-BG;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $contrast-from-core;
+    .colon {
+      margin-left: 3px;
+    }
+    .input {
+      margin-left: 15px;
+      text-transform: none;
+      font-weight: 500;
+      color: $contrast-from-core;
+      font-size: .85rem;
+      a {
+        //color: $text-color;
+        color: $contrast-from-core;
+      }
+    }
+  }
+}
+
+.map {
+  margin-bottom: 2rem;
+  border: solid $body_divider--height $body_divider--bar-BG;
+  border-radius: $radius-default;
+  overflow: hidden;
+  iframe {
+    display: block;
+  }
+}

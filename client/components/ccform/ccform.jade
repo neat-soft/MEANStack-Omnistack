@@ -1,0 +1,40 @@
+span(us-spinner, spinner-key="spinner-1", spinner-start-active="false")
+h3.avenir-light Credit Card Information
+img.img-card#visa(src='/assets/images/card_visa.png', ng-class='ccform.cardType.visa')
+img.img-card#mastercard(src='/assets/images/card_mastercard.png', ng-class='ccform.cardType.mastercard')
+img.img-card#discover(src='/assets/images/card_discover.png', ng-class='ccform.cardType.discover')
+img.img-card#jcb(src='/assets/images/card_jcb.png', ng-class='ccform.cardType.jcb')
+img.img-card#amex(src='/assets/images/card_amex.png', ng-class='ccform.cardType.amex')
+form.form-inline(name='cardInformationForm')
+  .form-group
+    .row.avenir-light
+      .col-xs-12
+        p(ng-repeat='(key, message) in ccform.validationMessages') {{message}}
+    .row.avenir-light
+      .col-xs-6
+        input#fullName.form-control(type='text', ng-model='ccform.fullName', placeholder='Name', name='fullName', ng-change='ccform.validationMessages.nameValidation=""')
+      .col-xs-6
+        input#email.form-control(type='email', ng-model='ccform.emailAddress', placeholder='Email Address', name='email', ng-change='ccform.validationMessages.emailValidation=""')
+    .row.avenir-light
+      .col-xs-9
+        input#cardNumber.form-control(type='text', ng-model='ccform.cardNumber', placeholder='Credit Card Number', name='cardNumber', ng-change='validateCard()', maxlength='20')
+      .col-xs-3
+        input#CVV.form-control(type='text', ng-model='ccform.cvv', placeholder='CVV', name='CVV', maxlength='4', ng-change='formatCVV()')
+    span.avenir-light Expiration Date
+    .row.avenir-light
+      .col-xs-3
+        ui-select#cardExpirationMonth(ng-model='ccform.expirationDate.expirationMonth', theme='bootstrap')
+          ui-select-match#month-match(placeholder="Month") {{$select.selected}}
+          ui-select-choices#month-choices(repeat='month in ccform.expirationDate.monthsInYear | filter: $select.search') {{month}}
+      .col-xs-3
+        ui-select#cardExpirationYear(ng-model='ccform.expirationDate.expirationYear', theme='bootstrap')
+          ui-select-match#year-match(placeholder="Year") {{$select.selected}}
+          ui-select-choices#year-choices(repeat='year in ccform.expirationDate.yearsOnCards | filter: $select.search') {{year}}
+      .col-xs-6
+        input#zipCode.form-control(type='text', ng-model='ccform.zipCode', placeholder='Zip Code', name='zipcode')
+    br
+    .row.avenir-light.vertical-align
+      .col-xs-6
+        span#total Total: ${{total}}
+      .col-xs-6
+        button#checkout.btn.btn-danger.btn-lg.avenir-db(type='submit', omni-tap='isValid()', ng-disabled="cardProcessing") Access Exams

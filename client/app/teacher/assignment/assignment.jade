@@ -1,0 +1,286 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container.avenir-db
+  .row
+    .col-sm-12
+      h2
+        | {{newAssignment.name}}&nbsp;
+      h3
+        | {{newAssignment.subject.fullName}}
+
+  //- Following two buttons toggle between assignment and community questions
+  button.question-toggle.btn.btn-lg.btn-info.visible-xs(omni-tap="showAssignmentQuestions=!showAssignmentQuestions", ng-show="showAssignmentQuestions") View Community Questions
+  button.question-toggle.btn.btn-lg.btn-info.visible-xs(omni-tap="showAssignmentQuestions=!showAssignmentQuestions", ng-show="!showAssignmentQuestions") View Assignment Questions
+  br
+  br
+  //- .row
+  //-   .col-sm-12.text-center
+  //-     .btn-group
+  //-       label.btn.btn-primary(ng-model="whichBig", btn-radio="sides[0]") View Assignment
+  //-       label.btn.btn-primary(ng-model="whichBig", btn-radio="sides[1]") View alternative questions
+  .row
+    //- div(ng-class="{'col-sm-8': (whichBig==sides[0]), 'col-sm-4': (whichBig==sides[1])}")
+
+
+    //- Right half of assignment creation
+
+
+
+    //- div(ng-class="{'col-sm-8': (whichBig==sides[1]), 'col-sm-4': (whichBig==sides[0])}")
+    .col-sm-5.col-sm-push-7.right-half(ng-class="{'hidden-xs': showAssignmentQuestions}")
+      h3 Community Questions for {{newAssignment.subject.fullName}}
+      br
+      ul.list-group.avenir-light
+        li(ng-hide="alternativeQuestions")
+          .row
+            .col-sm-12
+              span(us-spinner)
+          .row
+            .col-sm-12
+              | Please wait while your questions load...
+        li.list-group-item
+          .row
+            p.text-center.page-number Search
+          .row
+            input.omni-input.centered-input(ng-model='searchText' placeholder='Search' ng-change='updateFiltered()')
+        li.list-group-item
+          .row
+            .col-xs-4
+              button.btn.btn-warning.page-arrow-btn(omni-tap='page(-1)')
+                span.glyphicon.glyphicon-arrow-left.page-arrow
+            .col-xs-4
+              p.page-number page {{currentPage}} of {{maxPage}}
+            .col-xs-4
+              button.btn.btn-primary.page-arrow-btn(omni-tap='page(1)')
+                span.glyphicon.glyphicon-arrow-right.page-arrow
+
+        li.list-group-item.question(ng-repeat='question in filteredAlternativeQuestions | startAt:((currentPage-1)*lim) | limitTo: lim')
+          .row
+            .col-sm-12.text-center
+              span.tag(ng-repeat="tag in question.tags")
+                    | {{tag}}
+          .row.avenir-light
+            .col-xs-3.text-center
+              span.glyphicon.glyphicon-thumbs-up.upvote.question-score(omni-tap="vote(question, 'plus', $index)", ng-class="{'voted': (question.votes[me]=='plus')}")
+            .col-xs-6.text-center.question-score
+              span {{question.score}}
+            .col-xs-3.text-center
+              span.glyphicon.glyphicon-thumbs-down.downvote.question-score(omni-tap="vote(question, 'minus', $index)", ng-class="{'voted': (question.votes[me]=='minus')}")
+          .row
+            .col-sm-12
+              hr
+          .row
+            p.question-body(mathjax-bind='question.body')
+          .row(ng-repeat='answer in question.choices')
+            .col-sm-12.answer-box(ng-class="{correct: answer.correct}")
+              p(mathjax-bind='answer.body')
+
+          .row
+            .col-sm-12.text-center
+              button.btn.btn-success(omni-tap='addQuestion($index)')
+                span.glyphicon.glyphicon-plus
+                span &nbsp; Add to Assignment
+
+
+    //- Left half of assignment creation
+
+    .col-sm-7.col-sm-pull-5.left-half(ng-class="{'hidden-xs': !showAssignmentQuestions}")
+      .row
+        .col-sm-12
+          h3 Assignment Questions
+      //- .row.well
+      .row
+        .col-sm-12
+          ul.list-group
+            li(ng-hide="newAssignment.questions")
+              .row
+                .col-sm-12
+                  span(us-spinner)
+              .row
+                .col-sm-12
+                  | Please wait while your questions load...
+            li.list-group-item.question(ng-repeat='question in newAssignment.questions')
+              .row
+                .col-sm-6.question-heading
+                  | Question {{$index + 1}}
+                .col-sm-3.text-center(ng-show='!question.editing && question.author == me')
+                  button.btn.btn-primary(omni-tap='question.editing=true')
+                    span.glyphicon.glyphicon-edit
+                    span &nbsp;Edit
+                .col-sm-3.text-center(ng-show='question.editing')
+                  button.btn.btn-success(omni-tap='saveQuestion(question, $index, 1)')
+                    | Save
+                .text-right(ng-class="(question.author == me)?'col-sm-3':'col-sm-6'")
+                  button.btn.btn-danger(omni-tap='delQuestion($index)')
+                    span.glyphicon.glyphicon-remove
+                    span &nbsp;Remove
+              .row
+                .col-sm-12(ng-hide="question.editing" ng-if="question.tags")
+                  span.tag(ng-repeat="tag in question.tags track by $index")
+                    | {{tag}}
+                .col-sm-12(ng-show="question.editing", ng-init="question.tagString = question.tags.toString()")
+                  input(style='width:100%;', ng-required='true', ng-model='question.tagString', placeholder='Enter tags separated by commas.')
+              .row(ng-if="question.type=='long'")
+                .col-sm-12
+                  hr
+              .row(ng-show='question.type=="long"')
+                .col-sm-4
+                  span.avenir-light
+                    | Points worth:
+                  span.avenir-light(ng-hide='question.editing')
+                    |  {{question.value}}
+                  input(ng-if='question.editing', type='number', min='1', ng-model="question.value")
+              .row
+                .col-sm-12
+                  hr
+              .row.avenir-light
+                //- div(ng-class="{'col-sm-6': (whichBig==sides[0]), 'col-sm-12': (whichBig==sides[1])}")
+                .col-sm-12
+                  p.question-body(ng-bind-html='question.body' ng-show='!question.editing')
+                  //textarea(ng-model='question.body', ng-show='question.editing', rows='8', cols='71')
+                  omni-editor(name='questionText' ng-model='question.body', ng-show='question.editing', ng-height=200)
+              .row
+                .col-sm-12
+                  hr
+              .row.avenir-light(ng-show='question.type == "short"')
+                .col-sm-12
+                  h4.avenir-db Answer
+                  p(ng-bind-html="question.answer" ng-show="!question.editing")
+              .row(ng-show='question.type=="mult" || !question.type')
+                .col-sm-12
+                  h4.avenir-db Answers
+              .row.avenir-light(ng-repeat='answer in question.choices' ng-show='question.type=="mult" || !question.type')
+                .col-sm-12.answer-box(ng-show='!question.editing', ng-class="{correct: (answer.correct)}")
+                  p(ng-bind-html='answer.body')
+                .col-sm-6(ng-show='question.editing')
+                  //input(type='text', ng-model='answer.body')
+                  omni-editor(name='answerChoiceText' ng-model='answer.body', ng-show='question.editing', ng-height=50)
+                .col-sm-6(ng-show='question.editing')
+                  span(ng-show='!question.editing')
+                    | {{answer.correct}}
+                  span(ng-show='question.editing', ng-init='answer.tempCorrect = ((answer.correct) ? true : false)')
+                    label.radio-inline
+                      input(type='radio', ng-model='answer.tempCorrect', ng-value='true')
+                      | Correct
+                    label.radio-inline
+                      input(type='radio', ng-model='answer.tempCorrect', ng-value='false')
+                      | Incorrect
+              .row(ng-hide='question.type=="long"')
+                .col-sm-12
+                  hr
+              .row.avenir-light
+                .col-sm-12(ng-hide="whichBig==sides[1]")
+                  h4.avenir-db(ng-if="question.type != 'long'") Explanation
+                  h4.avenir-db(ng-if="question.type=='long'") Rubric
+                  p(ng-bind-html='question.explanation.body' ng-show='!question.editing')
+                  //textarea(ng-model='question.explanation.body', ng-show='question.editing', rows='8', cols='71')
+                  omni-editor(name='explanationText' ng-model='question.explanation.body', ng-show='question.editing', ng-height=200)
+              li.list-group-item.question(ng-show="newAssignment.questions && me" ng-hide="addingQuestion")
+                .row
+                  .col-sm-12.text-center
+                    button.btn.btn-lg.btn-info(omni-tap="addNew()")
+                      span.glyphicon.glyphicon-plus-sign
+                      span &nbsp;&nbsp;Create a new question
+
+              //- Question creation UI
+              li.list-group-item.question(ng-show="addingQuestion")
+                form.row(ng-model="newLocalQuestion")
+                  .col-sm-6.question-heading
+                    | Question {{newAssignment.questions.length + 1}}
+                  .col-sm-3.text-center
+                    button.btn.btn-primary(omni-tap='saveNewQuestion(newLocalQuestion)')
+                      span.glyphicon.glyphicon-save
+                      span &nbsp;Add to Assignment
+                  .col-sm-3.text-center
+                    button.btn.btn-danger(omni-tap='scrapNew()')
+                      span.glyphicon.glyphicon-trash
+                //- select question type
+                .row
+                  .col-sm-6
+                    select(ng-model="newLocalQuestion.type", ng-options="opt.value as opt.name for opt in questionTypes")
+                .row
+                  .col-sm-12
+                    input(style='width:100%;', ng-required='true', ng-model='newLocalQuestion.tagString', placeholder='Enter tags separated by commas.')
+                .row(ng-if="newLocalQuestion.type=='long'")
+                  .col-sm-12
+                    hr
+                  .col-sm-4
+                    span.avenir-light
+                      | Points worth:
+                    input(type='number', min='1', ng-model="newLocalQuestion.value")
+                .row
+                  .col-sm-12
+                    hr
+                .row
+                  .col-sm-12
+                    p Question body
+                    //textarea#question-body(ng-model='newLocalQuestion.body' rows='8', style="width: 100%;",placeholder="Add LaTeX equations by surrounding them with \\( \\), like \\( \\frac 1 2 \\)")
+                    omni-editor(name='questionText' ng-model='newLocalQuestion.body', ng-height=200)
+                .row(ng-if='newLocalQuestion.type=="short"')
+                  .col-sm-12
+                    //input(type='text', ng-model='newLocalQuestion.answer', placeholder="Answer" style="width: 100%;")
+                    omni-editor(name='shortAnswerText' ng-model='newLocalQuestion.answer', ng-height=200)
+                .row(ng-repeat='answer in newLocalQuestion.choices', ng-if='newLocalQuestion.type=="mult"')
+                  .col-sm-6
+                    //input(type='text', ng-model='answer.body', placeholder="Answer Option")
+                    omni-editor(name='answerChoiceText' ng-model='answer.body', ng-height=50)
+                  .col-sm-5
+                    label.radio-inline
+                      input(type='radio', ng-model='answer.correct', ng-value='true')
+                      | Correct
+                    label.radio-inline
+                      input(type='radio', ng-model='answer.correct', ng-value='false')
+                      | Incorrect
+                  .col-sm-1
+                    span.glyphicon.glyphicon-trash(omni-tap="newLocalQuestion.choices.splice($index, 1)")
+                .row(ng-if='newLocalQuestion.type=="mult"')
+                  .col-sm-12(omni-tap="newLocalQuestion.choices.push({body: ''})")
+                    button.btn.btn-default
+                      span.glyphicon.glyphicon-plus
+                      span add answer option
+                br
+                .row
+                  .col-sm-12(ng-hide='newLocalQuestion.type=="long"')
+                    p Answer Explanation
+                    //textarea#explanation-body(ng-model='newLocalQuestion.explanation.body' rows='8', style="width: 100%;", placeholder="Answer explanation")
+                    omni-editor(name='answerExplanationText' ng-model='newLocalQuestion.explanation.body', ng-height=200)
+                  .col-sm-12(ng-show='newLocalQuestion.type=="long"')
+                    textarea(ng-model='newLocalQuestion.explanation.body' rows='8', style="width: 100%;", placeholder="Grading Rubric")
+              li.list-group-item(ng-if="newAssignment.questions")
+                .row
+                  .col-sm-6.text-left
+                    button.btn.btn-primary(omni-tap="confirmAssignment(newAssignment)")
+                      | Confirm Assignment
+                  .col-sm-6.text-right
+                    button.btn.btn-danger(omni-tap="cancelAssignment()")
+                      | Cancel Assignment
+
+
+//- html.
+//-   <script type="text/javascript">
+//-     tinymce.init({
+//-       selector: '#explanation-body',
+//-       menubar: false,
+//-       toolbar: 'bold italic underline | undo redo | bullist numlist | subscript superscript',
+//-       statusbar: false,
+//-       browser_spellcheck: true,
+//-       setup: function (editor) {
+//-         editor.on('change', function () {
+//-           editor.save();
+//-           });
+//-       }
+//-     });
+//-     tinymce.init({
+//-       selector: '#question-body',
+//-       menubar: false,
+//-       toolbar: 'bold italic underline | undo redo | bullist numlist | subscript superscript',
+//-       statusbar: false,
+//-       browser_spellcheck: true,
+//-       setup: function (editor) {
+//-         editor.on('change', function () {
+//-           editor.save();
+//-           });
+//-       }
+//-     });
+//-   </script>
+
+footer(ng-include='"components/footer/footer.html"')

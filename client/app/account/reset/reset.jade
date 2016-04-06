@@ -1,0 +1,22 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row
+    .col-sm-2
+    .col-sm-8.avenir-db
+      h1 Change Password
+    .col-sm-2
+  .row
+    .col-sm-2
+    .col-sm-8.avenir-light
+      form.form(id='form', name='form', ng-submit='resetPassword(form)', novalidate='')
+        .form-group
+          label New Password
+          input.omni-input.form-control(type='password', name='newPassword', ng-model='user.newPassword', ng-minlength='3', required='')
+          p.help-block(ng-show='(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty)')
+            | Password must be at least 3 characters.
+            p.help-block  {{ message }}
+            button.btn.btn-lg.btn-danger(type='submit') Save changes
+      br
+      alert(type="{{alertType}}", ng-show='alertMsg.length > 0') {{alertMsg}}
+    .col-sm-2
+footer.footer(ng-include='"components/footer/footer.html"')

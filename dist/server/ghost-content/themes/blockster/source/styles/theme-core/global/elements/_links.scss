@@ -1,0 +1,63 @@
+a, [data-type*="pseudo-link"]  {
+  color: $link-color;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+// Underlines on text links
+article a {
+  border-bottom: 2px solid transparent;
+  &:hover {
+    border-bottom: 2px solid $link--underline-on-hover;
+  }
+}
+
+// class .imgLink added to article anchor tags containing links
+article a.imgLink {
+  &:hover {
+    border-bottom: none;
+  }
+}
+
+[data-type*="pseudo-link"] {
+  @extend %no-select;
+}
+
+.btn {
+  @include transition(background-color, 0.25s, ease);
+  &:hover {
+    @include transition(background-color, 0.25s, ease);
+  }
+}
+
+// Style Widget Styles
+// These here in the core for access to variable $link-hover-color
+.style-widget--toggle {
+  color: $link-color;
+}
+.style-widget.open .icon {
+  fill: $link-color;
+}
+.style-widget--toggle:hover {
+  color: $link-color;
+  .icon {
+    fill: $link-color;
+  }
+}
+.style-widget--style-radio-wrap .active,
+#toggleBannerLabel--on {
+  color: $link-color;
+}
+label.widget-form-control {
+  transition: all 0.15s ease;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  &:hover, &.active {
+    color: $link-color;
+  }
+}

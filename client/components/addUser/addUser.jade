@@ -1,0 +1,13 @@
+h1
+  | Add a Customer
+div
+  form
+    .well        
+      .form-group
+        label(for='Email')
+          | Email Address
+        input#Email.form-control(ng-model='customerEmail', type='email', placeholder='Enter new user\'s email')
+    .row
+      .col-sm-12
+        button.pull-right.btn.btn-primary(type='button', ng-click='addNewUser(customerEmail); closeThisDialog()')
+          | Submit

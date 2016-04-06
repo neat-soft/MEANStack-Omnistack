@@ -1,0 +1,15 @@
+// ---------------------------------------------------------
+// Color Scheme - light blue LIGHT
+// ---------------------------------------------------------
+
+// Core Color
+//$light-color-blue: #5bb0c5;
+$blue: $color-blue;
+$brand-primary: $blue;
+
+// --------------------
+// Typography
+// ---
+// links  
+$link-color:                $brand-primary;
+$link-hover-color: hsla(204, 88%, 77%, 1);

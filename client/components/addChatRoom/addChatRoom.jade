@@ -1,0 +1,17 @@
+h1
+  | Add a Chat Room
+div
+  form
+    .well
+      .form-group
+        label(for='roomName')
+          | Room Name
+        input#roomName.form-control(ng-model='roomName', type='text', placeholder='Enter new Room Name', maxlength="10")
+        label(for='roomType')
+          | Room Type
+        select(ng-model='roomType').form-control
+          option(ng-repeat='roomType in roomTypes', value="{{roomType.value}}") {{roomType.name}}
+    .row
+      .col-sm-12
+        button.pull-right.btn.btn-primary(type='button', omni-tap='addNewRoom(roomName,roomType); closeThisDialog()')
+          | Submit

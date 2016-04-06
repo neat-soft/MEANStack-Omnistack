@@ -1,0 +1,77 @@
+mixin votes(chat, currentUser)
+  span.fa.fa-long-arrow-up.vote.text-success(ng-show="showUpVote(chat)", omni-tap="upVote({{chat}})", ng-class="{'votePicked':!upVotePicked(chat)}")
+  span.fa.fa-long-arrow-down.vote(ng-show="showDownVote(chat)", omni-tap="downVote({{chat}})", ng-class="{'votePicked':!downVotePicked(chat)}")
+  span.fa.fa-ban.vote(ng-show="showBan(chat)", omni-tap="blockUser('{{chat.email}}')")
+
+mixin messages
+  .messages.container(room="{{tab==null?earlierRoom._id:tab._id}}", scrollable="awesomeChats", scrollable-tab="tab._id", user-scroll-treshhold="300", id="{{tab._id}}", ng-class="{'messages_1_room': tabs.length===1,'messages_2_room': tabs.length===2,'messages_3_room': moreTabs.length>=1}")
+    .row(ng-if='blocked')
+      .top-margin.col-xs-8.pull-left
+        .panel-body
+          strong.text-danger Admin&nbsp;:&nbsp;
+          p.text-danger {{blockedPerm==true ? blockedUserMsgPerm:blockedUserMsgTemp}}
+          p(ng-repeat-start="blkMsg in blockedMessages")
+          strong {{blkMsg.name}}:
+          p(ng-repeat-end) {{blkMsg.message}}
+    .row.message-row(ng-repeat='chat in awesomeChats', ng-if='showChats(chat)' ng-init='chat.isHover=false' omni-tap='showVotingMenu(chat)')
+      .top-margin-small.bottom-margin-small.col-xs-8(ng-class='(currentUser.email == chat.email) ? "pull-right" : "pull-left"', ng-if="!chat.notification")
+        .panel-body.chat-message(ng-class="{'cursor-pointer' : (currentUser['email'] != chat.email && chat.sentByUser)}")
+          strong(ng-class="{'text-danger': !chat.sentByUser}") {{chatUser(chat)}}&nbsp;:&nbsp;
+          span.callout
+          span(ng-if="roomType==='free'").text-default  {{chat.message}}
+          span(ng-if="roomType==='premium' && currentUser.role != 'user'").text-default  {{chatMessage(chat)}}
+
+      section(ng-if="chat.notification && chat.notification.for=='chat' && chat.user._id!=currentUser._id")
+        .col-xs-12
+          .top-margin-small.bottom-margin-small.panel-body.notification.bg-info
+            p.text-center.text-bold(ng-if="!chat.wished && !chat.notification.examOver") {{chat.user.name}} has just started {{subjectNames.getSubjectName(chat.exam.subject)}} exam, wish them a good luck!
+            p.text-center.text-bold(ng-if="chat.wished && !chat.notification.examOver") You wished Good Luck to {{chat.user.name}} for {{subjectNames.getSubjectName(chat.exam.subject)}} exam.
+            p.text-center.text-bold(ng-if="chat.notification.examOver") {{chat.user.name}} just finished {{subjectNames.getSubjectName(chat.exam.subject)}} exam
+              span(ng-if="chat.wellWishers==1")
+                | , with the aid of {{chat.wellWishers}} well-wisher
+              span(ng-if="chat.wellWishers>1")
+                | , with the aid of {{chat.wellWishers}} well-wishers
+              span
+                | !
+        .col-xs-12(ng-if="!chat.wished && !chat.notification.examOver")
+          .panel-body.text-center
+            a.avenir-light.btn.btn-danger.shadowed.btn-lg.text-default(omni-tap="chat.disableWish=true; wishGoodLuck(chat)", ng-disabled="chat.disableWish")
+              i.fa.fa-thumbs-up
+
+      .top-margin.vote-list.col-lg-4.col-sm-4.col-xs-4(ng-if="upVotes(chat) && !chat.notification", class="{{(currentUser['email'] == chat.email) ? 'pull-left' : 'pull-right'}}", ng-init="chat.upvoted=false; chat.downvoted=false")
+        +votes(chat, currentUser)
+      .col-xs-12(ng-if="chat.older")
+        hr
+    .row
+      .top-margin.col-lg-8.pull-left(ng-if="showAdminChat(chat)")
+        .panel.grey
+          .panel-body
+            strong.text-danger Admin&nbsp;:&nbsp;
+            p.text-danger {{freeUserMsg}}
+.container
+  .row(ng-controller="ChatCtrl", ng-hide="hideChatBox()")
+    .col-sm-6.col-lg-4.col-xs-12
+      form.chat-container.form-wrapper(ng-show='chatboxIsVisible()', ng-submit='addChat()')
+        .chat-header.avenir-light(omni-tap='setChatBoxInvisible()') Omninox Global Chat
+        span.minimize(omni-tap='setChatBoxInvisible()') -
+        section.panel.grey
+          .panel-body
+            tabset(justified="true").front
+              tab.avenir-light.tab-heading(ng-repeat="tab in tabs", heading="{{tab.name}}", active="tab.active", disabled="tab.disabled", select="selectRoom(tab)")
+                +messages
+              tab.avenir-light.tab-heading(ng-if="moreTabs.length==1",ng-repeat="tab in moreTabs", heading="{{tab.name}}", active="tab.active", disabled="tab.disabled", select="selectMoreRoom(tab)")
+                +messages
+              tab(ng-if="moreTabs.length>1", omni-tap="open=true", select="selectEarlierRoom()")
+                tab-heading.tab-heading
+                  div(dropdown="", is-open="open")
+                    .dropdown-toggle.fullwidth(dropdown-toggle="", aria-controls="myTabDrop1").text-center
+                      | {{roomNameMore}}
+                      span.caret(ng-show="moreTabs.length>1")
+                    ul#myTabDrop1.dropdown-menu( role="menu",ng-if="moreTabs.length>1").width-fix
+                      li(ng-repeat="tab in moreTabs",omni-tap="selectMoreRoom(tab)").avenir-light.tab-heading.text-left.padder-v
+                        a(href="#",role="tab",data-toggle="tab") {{tab.name}}
+                +messages(ng-if="moreTabs.length>1")
+        .input-wrapper
+          input(type='text', maxlength='300', ng-model='newChat', name='newChat' ng-hide="hideNewChats()").chatbox
+          button(type='submit', value='Send' ng-hide="hideNewChats()").btn-send Send
+      .default-chat-header.avenir-light.ellipsis(ng-hide='chatboxIsVisible()' omni-tap='setChatBoxVisible()') {{title}}

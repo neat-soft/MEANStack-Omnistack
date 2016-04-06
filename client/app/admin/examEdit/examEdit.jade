@@ -1,0 +1,100 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container-fluid
+  .row 
+    .col-sm-2
+      a(href='admin')
+        span.glyphicon.glyphicon-chevron-left
+        | Back
+    .col-sm-8
+    .col-sm-2
+      button.btn.btn-warning(omni-tap='saveExam()', ng-if="changed")
+        span.glyphicon.glyphicon-save
+        | Save
+  .row
+    .col-xs-12
+      h3
+        | Editing {{exam.subject}} exam {{exam.examNumber}}
+      hr
+      form
+        tabset(ng-if='exam')
+          tab(heading='Section 1 Part 1' ng-if='exam.section1.part1.fullQuestions.length > 0')
+            ul.list-group
+              li.list-group-item.question(ng-repeat='question in exam.section1.part1.fullQuestions')
+                .row
+                  .col-sm-2
+                    | Question {{$index + 1}}
+                  .col-sm-8
+                  .col-sm-1.text-center(ng-show='!question.editing')
+                    button.btn.btn-primary(omni-tap='question.editing=true')
+                      | Edit
+                  .col-sm-1.text-center(ng-show='question.editing')
+                    button.btn.btn-warning(omni-tap='saveQuestion(question, $index, 1)')
+                      | Save
+                  .col-sm-1.text-center 
+                    button.btn.btn-warning(omni-tap='delQuestion(question, 1)')
+                      span.glyphicon.glyphicon-trash
+                .row
+                  .col-sm-12
+                    hr
+                .row
+                  .col-sm-6
+                    p(mathjax-bind='question.body' ng-show='!question.editing')
+                    textarea(ng-model='question.body', ng-show='question.editing', rows='8', cols='75')
+                  .col-sm-6
+                    p(mathjax-bind='question.explanation.body' ng-show='!question.editing')
+                    textarea(ng-model='question.explanation.body', ng-show='question.editing', rows='8', cols='75')
+                .row(ng-repeat='answer in question.choices')
+                  .col-sm-9
+                    p(mathjax-bind='answer.body', ng-show='!question.editing')
+                    input(type='text', ng-model='answer.body', ng-show='question.editing')
+                  .col-sm-3
+                    span(ng-show='!question.editing')
+                      | {{answer.correct}}
+                    span(ng-show='question.editing', ng-init='answer.tempCorrect = ((answer.correct) ? "true" : "false")')
+                      label.radio-inline
+                        input(type='radio', ng-model='answer.tempCorrect', value='true')
+                        | Correct
+                      label.radio-inline
+                        input(type='radio', ng-model='answer.tempCorrect', value='false')
+                        | Incorrect
+          tab(heading='Section 1 Part 2' ng-if='exam.section1.part2.fullQuestions.length > 0')
+            ul.list-group
+              li.list-group-item.question(ng-repeat='question in exam.section1.part2.fullQuestions')
+                .row
+                  .col-sm-2
+                    | Question {{$index + 1}}
+                  .col-sm-8
+                  .col-sm-1.text-center(ng-show='!question.editing')
+                    button.btn.btn-primary(omni-tap='question.editing=true')
+                      | Edit
+                  .col-sm-1.text-center(ng-show='question.editing')
+                    button.btn.btn-warning(omni-tap='saveQuestion(question, $index, 1)')
+                      | Save
+                  .col-sm-1.text-center 
+                    button.btn.btn-warning(omni-tap='delQuestion(question, 2)')
+                      span.glyphicon.glyphicon-trash
+                .row
+                  .col-sm-12
+                    hr
+                .row
+                  .col-sm-6
+                    p(mathjax-bind='question.body' ng-show='!question.editing')
+                    textarea(ng-model='question.body', ng-show='question.editing', rows='8', cols='75')
+                  .col-sm-6
+                    p(mathjax-bind='question.explanation.body' ng-show='!question.editing')
+                    textarea(ng-model='question.explanation.body', ng-show='question.editing', rows='8', cols='75')
+                .row(ng-repeat='answer in question.choices')
+                  .col-sm-9
+                    p(mathjax-bind='answer.body', ng-show='!question.editing')
+                    input(type='text', ng-model='answer.body', ng-show='question.editing')
+                  .col-sm-3
+                    span(ng-show='!question.editing')
+                      | {{answer.correct}}
+                    span(ng-show='question.editing', ng-init='answer.tempCorrect = ((answer.correct) ? "true" : "false")')
+                      label.radio-inline
+                        input(type='radio', ng-model='answer.tempCorrect', value='true')
+                        | Correct
+                      label.radio-inline
+                        input(type='radio', ng-model='answer.tempCorrect', value='false')
+                        | Incorrect
+footer.footer(ng-include='"components/footer/footer.html"')

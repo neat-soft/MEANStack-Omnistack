@@ -1,0 +1,152 @@
+.ias-trigger {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.readMoreLink--inline {
+  white-space: nowrap;
+}
+
+
+
+// -----------------------------
+// FILTER/SORT
+
+.navbar-isotop-wrap {
+  border: solid 2px gray; 
+  border-radius: $radius-default;
+  padding: 5px 5px;
+  @extend %text-center;
+}
+.navbar-isotope {
+  color: $gray-light-custom !important;
+  @extend %uppercase;
+  font-size: 16px;
+  line-height: 1;
+}
+.navbar-isotop-meta {
+  font-size: 60%;
+}
+li.bar-sort.last {
+  margin-bottom: 10px !important;
+}
+
+// ------------------------------- 
+// nav slideout
+
+$tag-filter-width: 180px;
+.nav-slideout {
+  @extend %no-select;
+  @extend %fixed;
+  z-index: 200;
+  width: $tag-filter-width;
+  left: -#{$tag-filter-width};
+  @extend %top-0;
+  @extend %bottom-0;
+  padding: 65px 0px;
+  background-color: rgba($slideout-bg, 0.96);
+  font-size: 14px;
+  color: $white;
+  font-weight: 600;
+  overflow-y: auto;
+  ul li {
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 2px 15px;
+    &:hover {
+      //background: darken($bar-left-bg, 7);
+      background-color: $bar-left-bg;
+      color: $link-color;
+    }
+    &:first-of-type {
+      margin-top: 10px;
+    }
+    &:last-of-type {
+      margin-bottom: 10px;
+    }
+    label {
+      width: 100%;
+      display: inline-block;
+      cursor: pointer;
+    }
+    input {
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    &.active {
+      background-color: $bar-left-bg;
+    }
+  }
+  transition: left 0.15s ease-in-out;
+  &.open {
+    left: $bar-left-width;
+  }
+}
+.slideout-heading {
+  font-size: 18px;
+  @extend %text-center;
+  @extend %uppercase;
+  line-height: 1;
+  .nano {
+    font-size: 80%;
+  }
+}
+.sort-filter-reset-inner {
+ @include btnDefault;
+ @extend %margin-0-auto;
+ margin-top: 50px;
+}
+.tag-li-count {
+  float: right;
+  font-size: .8em;
+  margin-left: 2px;
+}
+
+
+
+// Search
+.sidebar-search {
+  @extend %relative;
+  margin-top: 2px; // to keep from ruining divider
+  margin-bottom: 3px;
+  input.home-page-input-text {
+    width: 100%;
+    background: none;
+    border: 0;
+    font-size: 15px;
+    padding: 0 25px 0 0;
+    margin-bottom: -3px;
+    &::-webkit-input-placeholder {
+      color: $white;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      color: $white;  
+    }
+    &::-moz-placeholder {  /* Firefox 19+ */
+      color: $white;  
+    }
+    &:-ms-input-placeholder {  
+      color: $white;  
+    }
+  }
+  .home-page-search-submit {
+    position: absolute;
+    cursor: pointer;
+    color: white;
+    background: transparent;
+    border: 0;
+    top: -1px;
+    right: -1px;
+    // width: 20px;
+    width: 17px;
+  }
+}
+g#searching {
+  stroke-width: 3px !important;
+}
+:focus {
+  outline: 0;
+}

@@ -1,0 +1,53 @@
+.container
+  .row
+    .col-sm-12
+      h2
+        | Students Progress Report
+  .row(ng-if="hasSubjectTaught()")
+    .col-sm-12
+      span(us-spinner, spinner-key="spinner-search", spinner-start-active="false")
+      ul.list-group
+        li.list-group-item
+          .row
+            .col-sm-8
+              .col-sm-5
+                label Student:
+                input(ng-model='filter.search', placeholder='Search', ng-change='updateFiltered()', maxlength="255")
+              .col-sm-7
+                label Subject:
+                select(ng-model='selectedSubject.subject', ng-options='subject.subjectName as subject.subjectName for subject in subjectsTaught', ng-change='updateStudentsList()')
+            .col-sm-4.pages(ng-if='students.length > 0')
+              span.prevPage(omni-tap='page(-1)')
+                | &lt;
+              span
+                | {{currentPage}}/{{maxPage}}
+              span.nextPage(omni-tap='page(1)')
+                |  &gt;
+        li.list-group-item(ng-if='students.length > 0')
+          .row
+            .col-sm-3
+              strong Name
+            .col-sm-3
+              strong Email
+            .col-sm-3
+              strong Attempts
+            .col-sm-3
+              strong Score
+        li.list-group-item(ng-if='students.length === 0')
+          .row
+            col-sm-12
+              p.text-center.text-bold No results found
+        li.list-group-item(ng-repeat='student in filtered')
+          .row
+            .col-sm-3.name
+              | {{student.name}}
+            .col-sm-3.email
+              | {{student.email}}
+            .col-sm-3.attempts
+              | {{getExamAttempts(student)}}
+            .col-sm-3.score
+              | {{getHighScore(student)}}
+  .row(ng-if="!hasSubjectTaught()")
+    .col-sm-12
+      h4
+        | No subjects found.

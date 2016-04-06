@@ -1,0 +1,213 @@
+// ---------------------------------------------------------
+// -----------      PIXEL & KRAFT (dot) COM      -----------
+// ---------------------------------------------------------
+// CORE VARIABLES
+// ---------------------------------------------------------
+// FILE: _variables-core.scss
+// 
+// NOTE: This is the core variable file. 
+//       There are two other big variable files:
+//       _settingsDARK.scss 
+//       _settingsLIGHT.scss
+//       Each of these are in the same directory as this file.
+//       Light/Dark theme-specific settings found respectively. 
+// 
+// ---
+// MASTER LEGEND:
+// 1. TOGGLES
+// 2. SPACING
+// 2. COLORS - general
+// 3. COLORS and bgs - global
+// 4. COMPONENTS
+// ---
+
+
+// ---------------------------------------------------------
+// 1. TOGGLES
+// ---------------------------------------------------------
+// if false by default, switch to 'true' to activate
+// --------------------
+// legend: 
+// 1. body/container spacing
+// 2. background noise
+// ---------------------------------------------------------
+
+
+// --------------------
+// 1. Body/Container Space
+$body-space-toggle--top: false !default;
+$body-space-toggle--bottom: false !default;
+$body-space-toggle: false !default; // BOTH top & bottom - be sure above is 'false' if this is 'true'
+$top-bar-height: 44px;
+
+// --------------------
+// 2. Background Noise
+$body-bg-noise:     false !default;
+$top-nav-noise:     false !default;
+$top-header-noise:  false !default; // PAGE TITLE AND BREADCRUMB BG 
+$full-span-noise:   false !default;
+$footer-bg-noise:   false !default;
+$icon-bg-noise:     false !default;
+$icon-burned-noise: false !default; // icons ingrained into bg
+
+
+
+// ---------------------------------------------------------
+// 2. SPACING / SIZING
+// ---------------------------------------------------------
+// custom Adapto
+// --------------------
+
+// --------------------
+// Sidebar/Header Size
+$bar-left-width: 125px;
+$bar-top-height:  60px;
+$footer-height: 40px;
+
+// --------------------
+// Body/Container Space
+$container-max-width: 100%;
+$block-spacing: 15px;
+
+$body-space-top: 20px;
+$body-space-bottom: 40px;
+
+$grid-block-spacing: 15px;
+$grid--excerpt-default: 15px;
+$grid--excerpt-gallery: 8px;
+$grid--excerpt-hybrid: $grid--excerpt-gallery; 
+
+$radius-default: 3px;
+$radius-img:     3px;
+
+// -------------------
+// Post Excerpt bp
+$grid-to-full-bp: 650;
+
+
+// ---------------------------------------------------------
+// 2. COLORS
+// ---------------------------------------------------------
+// general
+// --------------------
+// legend:
+// 1. white/black
+// 2. grays
+// 3. primary
+// 4. secondary
+// ---------------------------------------------------------
+
+
+// --------------------
+// 1. White/Black
+$black-pure: black !default;
+$white-pure: white !default;
+$black: #313330 !default;
+$white: #FAFAF6 !default;
+$black-bg: #2D2D2D !default;
+
+// --------------------
+// 2. Grays
+$gray-darker:   lighten(#373534, 3) !default;
+$gray-dark:     lighten(#373534, 13) !default;
+$gray:          lighten(#373534, 22) !default;
+$gray-light:    lighten(#373534, 38) !default;
+$gray-lighter:  lighten(#373534, 50) !default;
+
+// --------------------
+// 3. Primary
+$yellow: #FFF388 !default;
+$red: #E05F52 !default;
+$blue: #2e4d5f !default;
+
+// --------------------
+// 4. Secondary
+$green: #4F973F !default;
+$purple: purple !default;
+$orange: #DD8C44 !default;
+
+
+// ---------------------------------------------------------
+// 3. COLORS & BGs
+// ---------------------------------------------------------
+// global
+// --------------------
+// legend:
+// 1. global generals
+//    .1 - body background
+//    .2 - disabled input & button background, input addon background, nav & tabs & pagination link hover background, jumbotron background
+//    .3 - disabled link color, input placeholder color, dropdown header color, navbar inverse & link color
+//    .4 - nav tab link hover color
+//    .5 - link color, primary button background, pagination active background, progress bar background, label background, panel heading color
+//    .6 - text color, legend color, dropdown link color, panel text color, code color
+//    .7 - navbar inverse background
+// ---
+// 2. brand
+// 3. alerts and form states
+// --- 
+// 4. backgrounds
+// 5. typography
+//     - links
+//     - headings
+//     - active items (navs/dropdowns)
+// 6. social
+// 7. images
+// ---------------------------------------------------------
+
+
+// --------------------
+// 1. Global Generals
+$color1: $black-bg !default; // .1
+$color2: lighten($black-bg, 8) !default; // .2
+$color3: $gray-darker !default; // .3
+$color4: $black !default; // .4
+$color5: #878179 !default; // .5
+$color6: #5c595a !default; // .6
+$color7: #2e2e32 !default; // .7
+
+// // --------------------
+// // 2. Brand
+$brand-primary:   $color5 !default;
+$brand-info:      #5bc0de !default;
+$brand-success:   $green !default;
+$brand-warning:   #f0ad4e !default;
+$brand-danger:    #d9534f !default;
+
+// // --------------------
+// // 3. Alerts and Form States
+
+
+//--------------------
+// 5. Typography
+$text-color:                #dadada !default;  // GLOBAL BODY TEXT
+$text-muted:                $gray !default;
+$body-copy-color:           $text-color !default;
+// links  
+$link-color:                #6C97A3 !default;
+$link-hover-color:          saturate(adjust-hue($link-color, 10), 55) !default;
+// headings   
+$heading-color:             inherit !default;
+$heading-small-color:       $gray !default;
+$blockquote-small-color:    $gray-light !default;
+$heading-underline-color:   darken($text-color, 48) !default;
+// active items
+$component-active-color:    #fff !default;
+$component-active-bg:       $brand-primary !default;
+// selected text
+$selected-text-color:       $white !default;
+$selected-text-bg:          $brand-primary !default;
+
+// --------------------
+// 6. Social Colors
+// $facebook: #3B5998 !default;
+// $flickr: #FE0883 !default;
+// $foursquare: #8FD400 !default;
+// $googleplus: #C63D2D !default;
+// $instagram: #4E433C !default;
+// $linkedin: #4875B4 !default;
+// $tumblr: #2B4964 !default;
+// $twitter: #33CCFF !default;
+// $vimeo: #86B32D !default;
+// $youtube: #FF3333 !default;
+// $picasa: #B163C8 !default;
+// $soundcloud: #f50 !default;

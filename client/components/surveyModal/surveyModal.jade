@@ -1,0 +1,53 @@
+.container-fluid
+  form.form-horizontal(name='surveyForm')
+    .row
+      .col-sm-12
+        h1
+          | {{survey.name}}
+    .row
+      .col-sm-12
+        p
+          | {{survey.info}}
+    //
+      .row(ng-repeat='question in survey.questions')
+        .col-sm-12.well
+          .row
+            .col-sm-12
+              p
+                | {{question.questionContent}}
+          .row(ng-repeat='choice in question.choices')
+            .col-sm-12
+              p
+                | {{choice.choiceContent}}
+              
+    .row.padding-bottom(ng-repeat="question in survey.questions")
+      .col-md-1
+      .col-md-10
+        .form-group.row
+          .col-xs-11
+            div.question-body(mathjax-bind="question.questionContent")
+        .form-group.row
+          .col-xs-1
+          ul.col-xs-11.surveyChoices
+            li.row(ng-repeat="choice in question.choices")
+              .col-xs-1
+                input(type="radio", ng-value="choice", ng-model="question.selection", id="{{question._id}}{{$index}}", name="{{question._id}}", ng-required='true')
+              .col-xs-11
+                label.col-xs-11(mathjax-bind="choice.choiceContent", for="{{question._id}}{{$index}}")
+            li.row
+              .col-xs-12
+                .row
+                  hr(style='border-color:black;opacity:0.75')
+                .row
+                  .col-xs-12
+                    p
+                      | Please elaborate on your answer. (Optional)
+                .row
+                  .col-xs-12
+                    textarea(ng-model='question.explanation', name="{{question._id}} + 'explanation'", ng-required='false')
+              
+      .col-md-1
+      .row
+        .col-sm-12.text-center
+          button.btn.btn-primary(omni-tap='submitSurvey(surveyForm)')
+            | Submit

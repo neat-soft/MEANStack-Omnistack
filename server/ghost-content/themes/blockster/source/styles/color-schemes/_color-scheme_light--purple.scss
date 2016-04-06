@@ -1,0 +1,17 @@
+// ---------------------------------------------------------
+// Color Scheme - LIGHT
+// ---------------------------------------------------------
+
+// Core Color
+$purple: $color-purple;
+
+$purple: $purple;
+$brand-primary: $purple;
+
+// --------------------
+// Typography
+// ---
+// links  
+$link-color:                $brand-primary;
+//$link-hover-color:          saturate(adjust-hue($link-color, 10), 55);
+$link-hover-color:          hsla(278, 25%, 74%, 1);

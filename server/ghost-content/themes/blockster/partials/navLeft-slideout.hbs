@@ -1,0 +1,79 @@
+{{!-- Filter --}}
+
+<div class="nav-slideout" id="tag-wrap" data-filter-group="tags">
+
+  <div class="slideout-heading">
+    {{!-- <span class="icon icon-pricetags"></span> --}}
+    Filter<br>
+    <span class="nano">by</span>
+  </div>
+
+  <hr class="divider--slideout">
+
+
+  <ul class="unstyled" id="filterList"></ul>
+
+  <hr class="divider--slideout">
+  
+  <div class="sort-filter-reset-btn" id="filterReset">
+    <div class="sort-filter-reset-inner">Reset</div>
+  </div>
+
+</div>
+
+{{!-- ----------------------------------------------- --}}
+{{!-- Sort --}}
+
+<div class="nav-slideout" id="sort-wrap">
+
+  <div class="slideout-heading">
+    {{!-- <span class="icon icon-filter"></span> --}}
+    Sort<br>
+    <span class="nano">by</span>
+  </div>
+
+  <hr class="divider--slideout">
+
+  <ul class="unstyled btn-group" id="sort-primary">
+    <li class="active">
+      <label>
+        <input type="Radio" name="sort-radio"  data-sort-by="date" id="sort-criteria-default" checked>
+          Date
+        </input>
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="Radio" name="sort-radio" data-sort-by="title">
+          Title
+        </input>
+      </label>
+    </li>
+  </ul>
+
+  <hr class="divider--slideout">
+
+    <ul class="unstyled btn-group" id="sort-ascDesc">
+      <li>
+        <label>
+          <input type="Radio" name="sort-ascDesc-radio" data-sort-asc="true" data-display="&#x25B2;">
+            Ascending
+          </input>
+        </label>
+      </li>
+      <li class="active">
+        <label>
+          <input type="Radio" name="sort-ascDesc-radio" data-sort-asc="false" data-display="&#x25BC;" id="sort-order-default" checked>
+            Descending
+          </input>
+        </label>
+      </li>
+    </ul>
+
+  <hr class="divider--slideout">
+
+  <div class="sort-filter-reset-btn" id="sortReset">
+    <div class="sort-filter-reset-inner">Reset</div>
+  </div>
+
+</div>

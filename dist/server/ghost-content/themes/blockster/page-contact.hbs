@@ -1,0 +1,71 @@
+{{!-- Contact Page Template --}}
+
+{{!< default}}
+
+<div class="container-wrap">
+  <div class="container">
+    <main class="content" role="main">
+
+      <article class="{{post_class}}">
+        <div class="post-wrap">
+
+          {{#post}}
+            
+            <section class="post-content">
+              <div class="padding-wrap--target">  
+              
+                <h1 class="post-title">{{{title}}}</h1>
+
+                <ul class="unstyled contact-list">
+                  <li>Phone<span class="colon">:</span> 
+                    <span class="input" id="contact-list--phone">    
+                    </span>
+                  </li>
+                  <li>Skype<span class="colon">:</span> 
+                    <span class="input" id="contact-list--skype">
+                    </span>
+                  </li>
+                  <li>Fax<span class="colon">:</span> 
+                    <span class="input" id="contact-list--fax">
+                    </span>
+                  </li>
+                  <li>Email<span class="colon">:</span> 
+                    <span class="input" id="contact-list--email">
+                    </span>
+                  </li>
+                  <li>Website<span class="colon">:</span> 
+                    <span class="input" id="contact-list--website">
+                    </span>
+                  </li>
+                  <li>Address<span class="colon">:</span> 
+                    <span class="input" id="contact-list--address">
+                    </span>
+                  </li>
+                </ul>
+
+
+                <div id="map"></div>
+
+                <div class="blurb-and-image-wrap--contact">
+                  <img src="{{author.image}}" alt="" id="author-img--contact">
+                  {{content}}
+                  
+                  <p id="contactBlurb"></p>
+                </div>
+
+              </div> {{! END padding-wrap--target }}
+            </section>
+
+          {{/post}}
+
+        </div>
+      </article>
+
+    </main>
+  </div> {{! END CONTAINER}}
+</div> {{! END CONTAINER WRAP}}
+
+{{#contentFor "pageScripts"}}
+{{! not sure whether to create specific page script files or not... hmm? }}
+<script type="text/javascript" src="{{asset "js/contact.js"}}"></script>
+{{/contentFor}}

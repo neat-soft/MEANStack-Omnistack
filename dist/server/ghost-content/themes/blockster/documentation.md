@@ -1,0 +1,1 @@
+For documentation, [click here](http://pixelandkraft.com/blockster/demo/docs) to visit the always updated online version of the Blockster docs.

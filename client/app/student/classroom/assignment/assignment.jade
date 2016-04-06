@@ -1,0 +1,74 @@
+.row.navbar.navbar-default.navbar-fixed-top#exam-nav
+  .col-xs-7#return-column
+    a(ng-href='{{classURL}}')
+      span.fa.fa-arrow-left(ng-class="{'text-muted':!preExam && !examSubmit}")
+  .col-xs-5
+    #score(ng-if="examSubmit && percentages")
+      | ({{numCorrect}}/{{numGraded}}) {{percentages | number: 1}}%
+      span(ng-if='numUngraded > 0')
+        |  with {{numUngraded}} still left to grade.
+.container#exam-container(ng-class="examSubmit ? 'border-right border-left' : ''")
+  .hero-unit.avenir-light.paper-background(ng-if="preExam")
+    h2(ng-if="instructions") Instructions
+    br
+    p#instructions
+      | You are about to take {{assignment.name}}
+    br
+    form(ng-if='!currentUser._id', ng-model='newUser')
+      .form-group.row
+        .col-sm-4
+          label(for='userName')
+            | Name:
+        .col-sm-4
+          input#userName(type='text', placeholder='Please enter your name.', ng-model='newUser.name')
+        .col-sm-4
+      .form-group.row
+        .col-sm-4
+          label(for='period')
+            | Period/Class Number:
+        .col-sm-4
+          input#period(type='text', maxlength='2', ng-model='newUser.period')
+    button.avenir-light.btn.btn-danger.shadowed.btn-lg(omni-tap="startExam()", smooth-scroll, target="#top", speed="500") Start
+  .row.padding-bottom(ng-repeat="question in questions")
+    .col-sm-12
+      .row
+        .col-lg-2.col-md-1(ng-if="!examSubmit")
+        div(ng-if="!preExam", ng-class="examSubmit?'col-md-8 border-right':'col-lg-8 col-md-10'")
+          .form-group.row
+            .col-xs-1
+              h4 Q{{$index+1}}&nbsp;
+            .col-xs-11
+              div.question-body(ng-bind-html="question.body")
+          .form-group.row(ng-show='question.type!=="mult"')
+            .col-xs-1
+            .col-xs-10
+              textarea(ng-show='question.type=="long"', rows='5', style='width:100%;', ng-model='question.response', placeholder='Your response here.', ng-disabled='examSubmit')
+              input(type='text', ng-show='question.type=="short"', style='width:100%;', ng-model='question.response', placeholder='Your response here.', ng-disabled='examSubmit')
+          .form-group.row(ng-show='question.type=="mult" || !question.type')
+            .col-xs-1
+            ul.col-xs-11.choices-container
+              li.row(ng-repeat="choice in question.choices", ng-class='{green: (choice.correct && examSubmit), highlighted: question.studentResponse.body === choice.body}')
+                .col-xs-1
+                  input(type="radio", ng-disabled='examSubmit', ng-value="choice", ng-model="question.response", id="{{question._id}}{{$index}}", name="{{question._id}}", ng-if="hasOneCorrect(question.choices)", ng-change="storeQuestionContext(question,this)")
+                  input(type="checkbox", ng-disabled='examSubmit', ng-true-value="{{choice}}", ng-model="question.response[$index]", id="{{question._id}}{{$index}}", name="{{question._id}}[]", ng-if="!hasOneCorrect(question.choices)", ng-change="storeQuestionContext(question,this)")
+                .col-xs-11
+                  label.col-xs-11(mathjax-bind="choice.body", for="{{question._id}}{{$index}}")
+        .col-lg-2.col-md-1(ng-if="!examSubmit")
+        .col-md-4.border-left(ng-if="!preExam && examSubmit")
+          .row.explanation-container
+            .col-xs-1.visible-xs.visible-sm
+            .col-xs-11.col-md-12
+              p.text-bold(ng-if='question.type=="mult"', ng-class="{'text-success':question.correct, 'text-danger':!question.correct}") {{question.correct? 'Correct': (question.correct===false ? 'Incorrect':'Not Answered')}}
+              p.text-bold.text-warning(ng-if='question.type!=="mult"') Not graded
+              p(ng-if='currentUser._id', mathjax-bind="question.explanation.body")
+              p(ng-hide='currentUser._id')
+                a(ng-click='triggerSignup()')
+                  | Sign up
+                |  to view explanations!
+      hr(ng-if="examSubmit")
+
+  .row.button-container(ng-hide='preExam || examSubmit')
+    .col-xs-1.col-sm-2.col-md-3.col-lg-4
+    .col-xs-10.col-sm-8.col-md-6.col-lg-4
+      button(smooth-scroll, target="#top", speed="3000", type="button",omni-tap="submitExam()").avenir-light.btn.btn-danger.shadowed.btn-lg Submit Test
+    .col-xs-1.col-sm-2.col-md-3.col-lg-4

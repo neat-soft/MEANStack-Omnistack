@@ -1,0 +1,16 @@
+h3
+  | Add/Remove Subjects Taught
+div
+  form
+    .well
+      .form-group
+        label(for='roomName')
+          | Subjects:
+        isteven-multi-select(input-model="subjects",output-model="subjectsTaught", button-label="name", item-label="name", tick-property="ticked", max-height="300px", max-labels="5")
+    .row
+      .col-sm-6
+        button.pull-right.btn.btn-primary(type='button', omni-tap='closeThisDialog()')
+          | Cancel
+      .col-sm-6
+        button.text-center.btn.btn-primary(type='button', omni-tap='saveSubjectsTaught()')
+          | Submit

@@ -1,0 +1,31 @@
+.container-fluid
+  .row
+    .col-sm-12
+      h1
+        | Add a new classroom
+  .row
+    form.form.col-sm-12(ng-model="newClass", ng-submit="addClass(newClass)")
+      .form-group.row
+        .col-sm-1
+        label.col-sm-3(for="className") Classroom name
+        input.col-sm-7#className(ng-model="newClass.name" type="text" placeholder="Class name", ng-required="true")
+        .col-sm-1
+      .form-group.row
+        .col-sm-1
+        label.col-sm-3(for="classSubject") Subject
+        //select.col-sm-7#classSubject(ng-model="newClass.subject", ng-options="subject as subject.fullName for subject in subjects", ng-required="true")
+        div.col-sm-7
+          ui-select(ng-model='newClass.subject', theme='bootstrap', style='min-width:100%')
+            ui-select-match(placeholder='Enter subject') {{$select.selected.fullName}}
+            ui-select-choices(repeat='subject in subjects | filter:$select.search')
+              div(ng-bind-html='subject.fullName | highlight: $select.search')
+        .col-sm-1
+      .form-group.row
+        .col-sm-1
+        label.col-sm-3(for="classStudents") Students
+        textarea.col-sm-7#classStudents(ng-model="newClass.studentString", placeholder="Add students by their e-mail, separated by commas.")
+        .col-sm-1
+      .row.text-center
+        .col-sm-12
+          button.btn.btn-primary(type='submit')
+            | Add new classroom

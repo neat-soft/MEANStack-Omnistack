@@ -1,0 +1,226 @@
+[
+  {
+    "subtopic": "Geometry and Trigonometry",
+    "equations": [
+      {
+        "eq": "\\(A=bh\\)",
+        "desc": "This is the equation for the area of a rectangle, where \\(b=\\)base and \\(h=\\)height."
+      },
+      {
+        "eq": "\\(A=\\frac{1}{2}bh\\)",
+        "desc": "This is the equation for the area of a triangle, where \\(b=\\)base and \\(h=\\)height."
+      },
+      {
+        "eq": "\\(A=\\pi r^2\\)",
+        "desc": "This is the equation for the area of a circle, where \\(r=\\)radius."
+      },
+      {
+        "eq": "\\(C=2 \\pi r\\)",
+        "desc": "This is the equation for the circumference of a circle, where \\(r=\\)radius and \\(C=\\)circumference."
+      },
+      {
+        "eq": "\\(V=Lwh\\)",
+        "desc": "This is the equation for the volume of a rectangular solid, where \\(V=\\)volume, \\(L=\\)length, \\(w=\\)width, and \\(h=\\)height."
+      },
+      {
+        "eq": "\\(V=\\pi r^2 L\\)",
+        "desc": "This is the equation for the volume of a cylinder, where \\(V=\\)volume, \\(L=\\)length, and \\(r=\\)radius."
+      },
+      {
+        "eq": "\\(S=2\\pi r L+2\\pi r^2\\)",
+        "desc": "This is the equation for the surface area of a cylinder, where \\(S=\\)surface area, \\(L=\\)length, and \\(r=\\)radius."
+      },
+      {
+        "eq": "\\(V=\\frac{4}{3}\\pi r^3\\)",
+        "desc": "This is the equation for the volume of a sphere, where \\(V=\\)volume and \\(r=\\)radius."
+      },
+      {
+        "eq": "\\(S=4\\pi r^2\\)",
+        "desc": "This is the equation for the surface area of a sphere, where \\(S=\\)surface area and \\(r=\\)radius."
+      },
+      {
+        "eq": "\\(c^2=a^2+b^2\\)",
+        "desc": "This is the Pythagorean Theorem for a right triangle, where \\(S=\\)surface area and \\(r=\\)radius."
+      }
+    ]
+  },
+  {
+    "subtopic": "Kinematic Equations",
+    "equations": [
+      {
+        "eq": "\\(v_x=v_{x0}+a_xt\\)",
+        "desc": "This equation describes the final velocity of an object in the x-direction using variables such as \\(a=\\)acceleration and \\(t=\\)time."
+      },
+      {
+        "eq": "\\(x=x_0+v_{x0}t+\\frac{1}{2}a_xt^2\\)",
+        "desc": "This equation describes the final position of an object from it's initial position in the x-direction using variables such as \\(a=\\)acceleration, \\(v=\\)velocity, and \\(t=\\)time."
+      },
+      {
+        "eq": "\\(v_{x}^2=v_{x0}^2+2a_x\\left(x-x_0\\right)\\)",
+        "desc": "This equation describes the final velocity of an object in the x-direction as a function of acceleration and position."
+      }
+    ]
+  },
+  {
+    "subtopic": "Forces & Momentum",
+    "equations": [
+      {
+        "eq": "\\(\\vec a=\\frac{\\Sigma \\vec F}{m}=\\frac{\\vec F_{net}}{m}\\)",
+        "desc": "This is a variation of Newton's Second Law where \\(\\vec F=m \\vec a\\). This equations basically states that the acceleration of an object is a function of both it's mass and the net force acting on the object. Keep in mind that this acceleration is direction dependent (either x or y-direction)."
+      },
+      {
+        "eq": "\\(\\left|\\vec F_f\\right|<=\\mu \\left|\\vec F_n\\right|\\)",
+        "desc": "This describes how the force of friction is dependent on the coefficient of friction (either static or kinetic) and the normal force, \\(\\vec F_n\\)."
+      },
+      {
+        "eq": "\\(\\vec p=m \\vec v\\)",
+        "desc": "This is the momentum equation, which is a function of the mass of the object and it's corresponding velocity."
+      },
+      {
+        "eq": "\\(\\Delta \\vec p=\\vec F \\Delta t\\)",
+        "desc": "This is the equation for Impulse, which is the change in momentum."
+      },
+      {
+        "eq": "\\(\\left|\\vec F_S\\right|=k\\left|\\vec x\\right|\\)",
+        "desc": "This force equation describes the force related to a spring. When either compressed or stretched, the spring will exert a force in the opposite direction of the spring's displacement."
+      }
+    ]
+  },
+  {
+    "subtopic": "Work and Energy",
+    "equations": [
+      {
+        "eq": "\\(KE=\\frac{1}{2}mv^2\\)",
+        "desc": "This is the Kinetic Energy equation that describes the energy embodied by an object in motion."
+      },
+      {
+        "eq": "\\(\\Delta U_g=mg \\Delta y\\)",
+        "desc": "This is the gravitational Potential Energy equation that describes the energy emodied by gravity on an object at a given height, \\(y\\)"
+      },
+      {
+        "eq": "\\(\\Delta E= W=F_{||}d=Fd\\cos \\theta\\)",
+        "desc": "The change in energy in an object is described as the work done on the object. Forces applied parallel to the displacement of the object produce direct changes in kinetic energy in the object, which is known as work."
+      },
+      {
+        "eq": "\\(P=\\frac{\\Delta E}{\\Delta t}\\)",
+        "desc": "This is the equation for Power, which describes how much energy changes over a change in time."
+      },
+      {
+        "eq": "\\(U_s=\\frac{1}{2}kx^2\\)",
+        "desc": "This equation describes the potential energy produced by a spring with a spring constant, \\(k\\). A spring thats either compressed or stretched a distance \\(x\\) builds up potential energy."
+      }
+    ]
+  },
+  {
+    "subtopic": "Rotational Motion",
+    "equations": [
+      {
+        "eq": "\\(\\vec a_c=\\frac{v^2}{r}\\)",
+        "desc": "This equation describes the acceleration of an object feels experiences while moving in a circular motion."
+      },
+      {
+        "eq": "\\(\\theta=\\theta_0+\\omega_0 t+\\frac{1}{2}\\alpha t^2\\)",
+        "desc": "This is very similar to the kinematic equations for linear motion,\\(x=x_0+v_{x0}t+\\frac{1}{2}a_xt^2\\), except this one applies to objects in angular motion. Difference is the \\(\\theta\\) which represents the displaced angle instead of linear distance, \\(\\omega\\), which is angular velocity instead of linear velocity and \\(\\alpha\\), which is angular acceleration.,"
+      },
+      {
+        "eq": "\\(\\omega=\\omega_0+\\alpha t\\)",
+        "desc": "Another equation similar to the kinematic equation \\(v_x=v_{x0}+a_xt\\), with a rotational twist. The variables remain the same as the ones described in the previous equation. "
+      },
+      {
+        "eq": "\\(\\tau=rF=rF\\sin \\theta\\)",
+        "desc": "This is the equation for torque, which describes the rotational movement of an object as a function of the force applied at a distance, \\(r\\) away from the pivot point. The caviat to this equation is to remember that the force must always act perpendicular to where the pivot point lies."
+      },
+      {
+        "eq": "\\(\\vec \\alpha=\\frac{\\Sigma \\vec \\tau}{I}=\\frac{\\vec \\tau_{net}}{I}\\)",
+        "desc": "Another equation that has a translational equivalent \\(\\vec a=\\frac{\\Sigma \\vec F}{m}=\\frac{\\vec F_{net}}{m}\\), where torque replaces the force and the mass is replaced by a new variable, I, which is known as rotational inertia."
+      },
+      {
+        "eq": "\\(L=I\\omega\\)",
+        "desc": "The rotational equivalent to linear momentum, this equation is for angular momentum that uses \\(I\\) to replace mass and \\(\\omega=\\) angular velocity to replace linear velocity."
+      },
+      {
+        "eq": "\\(\\Delta L=\\tau \\Delta t\\)",
+        "desc": "This is impulse, for a rotating object."
+      },
+      {
+        "eq": "\\(K=\\frac{1}{2}I \\omega ^2\\)",
+        "desc": "Rotational kinetic energy follows the same structure as linear kinetic energy, \\(K=\\frac{1}{2}mv^2\\). When you deal with objects that are spinning and displacing a certain distance at the same time, you have to use both forms of kinetic energy."
+      }
+    ]
+  },
+  {
+    "subtopic": "Gravity",
+    "equations": [
+      {
+        "eq": "\\(\\left|\\vec F_g \\right|=G\\frac{m_1m_2}{r^2}\\)",
+        "desc": "This is the force of attraction between two bodies with mass \\(m_1\\) and \\(m_2\\), that is known as the Gravitational Force. \\(G\\) is the universal gravitational constant which has a value of \\(G=6.67 \\times 10^{-11}\\ m^3/kg\\cdot s^2\\). "
+      },
+      {
+        "eq": "\\(\\vec g=\\frac{\\vec F_g}{m}\\)",
+        "desc": "A rearrangement of the force of gravity equation you may be used to seeing, \\(F=mg\\), but don't worry, it's the same thing, just generalized to represent a general gravity besides the one on Earth."
+      },
+      {
+        "eq": "\\(U_G=-\\frac{Gm_2m_2}{r}\\)",
+        "desc": "This is the known as the gravitational potential energy. Like the gravitational force, it uses the universal gravity constant, \\(G=6.67 \\times 10^{-11}\\ m^3/kg\\cdot s^2\\)."
+      }
+    ]
+  },
+  {
+    "subtopic": "Waves",
+    "equations": [
+      {
+        "eq": "\\(x=A \\cos\\left(2 \\pi ft\\right)\\)",
+        "desc": "This equation describes the displacement of a wave."
+      },
+      {
+        "eq": "\\(\\lambda = \\frac{v}{f}\\)",
+        "desc": "A better way to rearrange this equation that you will probably use more often is \\(v=f \\lambda\\), where \\(v\\) is the wave speed."
+      },
+      {
+        "eq": "\\(T=\\frac{2 \\pi}{\\omega}\\)",
+        "desc": "This is the period, which usually is denoted as the time it takes for a single cycle to occur."
+      },
+      {
+        "eq": "\\(T_S=2\\pi \\sqrt{\\frac{m}{k}}\\)",
+        "desc": "This is the period of a spring that has a spring constant, \\(k\\), and has a mass \\(m\\) attached to the spring."
+      },
+      {
+        "eq": "\\(T_P=2\\pi \\sqrt{\\frac{l}{g}}\\)",
+        "desc": "This is the period of a pendulum that has a length, \\(l\\), and is exposed to a gravity, \\(g\\)."
+      }
+    ]
+  },
+  {
+    "subtopic": "Electricity",
+    "equations": [
+      {
+        "eq": "\\(\\left|\\vec F_E \\right|=k\\left|\\frac{q_1q_2}{r^2}\\right|\\)",
+        "desc": "This is the force of attraction between two charged particles (either positive or negative) with charges \\(q_1\\) and \\(q_2\\), that is known as the Coulomb Force. \\(k\\) is the Coulomb's law constant which has a value of \\(k=9.0 \\times 10^{9}\\ N\\cdot m^2/C^2\\). "
+      },
+      {
+        "eq": "\\(I=\\frac{\\Delta q}{\\Delta t}\\)",
+        "desc": "Don't confuse this with impulse, or rotational inertia. This is known as current and is described as the change in charge over a time period."
+      },
+      {
+        "eq": "\\(R=\\frac{\\rho l}{A}\\)",
+        "desc": "Known as the resistance, this parameter measures an objects ability to resist movement of charge, where \\(\\rho\\) is an object's resistivity, \\(l\\) is the length of the object and A is the area."
+      },
+      {
+        "eq": "\\(I=\\frac{\\Delta V}{R}\\)",
+        "desc": "Yet another way to solve for current. This equation states that a current can be estimated as a function of the change in Voltage and it's Resistance."
+      },
+      {
+        "eq": "\\(P=I \\Delta V\\)",
+        "desc": "Power can be solved by multiplying the current by the change in voltage."
+      },
+      {
+        "eq": "\\(R_S=\\Sigma R_i\\)",
+        "desc": "An equation typically used in circuit analysis. All the expression states is that you can sum the resistances of resistors in a circuit that are in series."
+      },
+      {
+        "eq": "\\(\\frac{1}{R_p}=\\Sigma \\frac{1}{R_i}\\)",
+        "desc": "Another equation used in circuit analysis that describes how to sum resistors that are in parallel instead of series. In such an event, you must take the reciprocal of the resistances before summing them."
+      }
+    ]
+  }
+]

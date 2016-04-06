@@ -1,0 +1,58 @@
+.row
+  .col-sm-12
+    h2
+      | Users
+.row
+  .col-sm-12
+    ul.list-group(ng-controller='UserManageCtrl')
+      li.list-group-item
+        .row
+          .col-sm-4
+            input(ng-model='userSearch' placeholder='Search' ng-change='updateFilteredUsers()')
+            |  in
+            select(ng-model='userSearchType' ng-options='opt.value as opt.name for opt in userSearchTypes')
+          .col-sm-4
+            | Order by: 
+            select(ng-model='orderField', ng-options='opt.value as opt.name for opt in orderTypes', ng-change='userCurrentPage=1')
+          .col-sm-4.pages
+            span.prevPage(omni-tap='userPage(-1)')
+              | &lt; 
+            span
+              | {{userCurrentPage}}/{{userMaxPage}}
+            span.nextPage(omni-tap='userPage(1)')
+              |  &gt;
+            
+
+      li.list-group-item(ng-repeat='user in filteredUsers | orderBy:orderField | startAt:((userCurrentPage-1)*userLim) | limitTo: userLim')
+        strong {{user.name}}
+        span &nbsp;-&nbsp;
+        span.text-muted {{user.email}}
+        a.trash(omni-tap='delete(user)')
+          span.glyphicon.glyphicon-trash.pull-right
+        br
+        span
+          | Subjects:&nbsp;
+        span
+          | {{subjectString(user.subjects)}}
+        div(ng-if="user.academicRole==='Teacher'")
+            span Subjects Taught:&nbsp;
+            span
+            | {{subjectString(user.subjectsTaught)}}
+            a.trash(omni-tap='addSubjectsTaughtModal(user)')
+                span.glyphicon.glyphicon-plus.pull-right
+        div(ng-hide='user.roleChanging')
+          span Role:
+          span.text-muted.editable(omni-tap='user.roleChanging = true; user.newRole = {name: user.role}') {{user.role}}
+          span.glyphicon.glyphicon-pencil.edit
+        div(ng-show='user.roleChanging')
+          span Role:
+          select(ng-model='user.newRole', ng-options='role for role in roles', ng-change='modifyRole(user)', ng-init='user.newRole = roles[0]')
+        div
+          span Last logged in:
+          span
+            | {{parseDate(user.lastLogin)}}
+      li.list-group-item
+        | Add User&nbsp;
+        span
+          a(omni-tap='addUserModal()')
+            span.glyphicon.glyphicon-plus.pull-left

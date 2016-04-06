@@ -1,0 +1,174 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+#intro-message-container.container-fluid
+  .visible-xs
+    //- mobile
+    h1.h1.user-message I am 
+      span a...
+      br(ng-show="role.name")
+      br
+      span(ng-show="role.name") <u> {{role.name}}</u>
+      br(ng-show="role.name")
+      br
+      span(ng-show="role.name") wanting to {{role.verb}}
+      span(ng-show="role.subject=='AP Calculus AB'") AP Calculus AB&nbsp;
+      span(ng-show="role.subject=='AP Calculus BC'") AP Calculus BC&nbsp;
+      span(ng-show="role.subject=='AP Psychology'") AP Psychology&nbsp;
+      span(ng-show="role.subject=='AP Biology'") AP Biology&nbsp;
+      span(ng-show="role.subject=='AP European History'") AP European History&nbsp;
+      span(ng-show="role.subject=='AP Physics 1'") AP Physics 1&nbsp;
+      span(ng-show="role.subject=='AP Physics 2'") AP Physics 2&nbsp;
+      span(ng-show="role.subject=='AP Chemistry'") AP Chemistry&nbsp;
+      span(ng-show="role.subject=='AP Statistics'") AP Statistics&nbsp;
+      span(ng-show="role.subject=='AP Human Geography'") AP Human Geography&nbsp;
+      span(ng-show="role.subject=='AP US Government'") AP US Government&nbsp;
+      span(ng-show="role.subject=='AP World History'") AP World History&nbsp;
+      span(ng-show="role.subject=='AP Environmental Science'") AP Environmental Science&nbsp;
+    br
+    .bottom-float-buffer(ng-hide="role.name")
+      uib-accordion
+        uib-accordion-group(is-open="accordionStatus.teacherPanelOpen" panel-class="panel-primary")
+          uib-accordion-heading
+            | Teacher
+            i.pull-right.glyphicon(ng-class="{'glyphicon-chevron-down': accordionStatus.teacherPanelOpen, 'glyphicon-chevron-right': !accordionStatus.teacherPanelOpen}")
+          //- Information for teachers
+          .row
+            .col-xs-12
+              img.img-responsive.img-xs-benefits.pull-left(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/teacherIconA.svg")
+              p.lead.padding-top-10
+                | <strong>Generate and assign homework</strong> in just a few clicks with quality content
+          //- br
+          .row
+            .col-xs-12
+              img.img-responsive.img-xs-benefits.pull-left(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/teacherIconB.svg")
+              p.lead.padding-top-10
+                | <strong>Save time</strong> grading with automatically graded assignments
+          br
+          .row
+            .col-xs-12
+              button.btn.btn-lg.btn-primary(omni-tap="role.name = 'teacher'; role.verb = 'teach'")
+                | Start Demo
+        uib-accordion-group(is-open="accordionStatus.studentPanelOpen" panel-class="panel-danger")
+          uib-accordion-heading
+            | Student
+            i.pull-right.glyphicon(ng-class="{'glyphicon-chevron-down': accordionStatus.studentPanelOpen, 'glyphicon-chevron-right': !accordionStatus.studentPanelOpen}")
+          //- Information for students
+          .row
+            .col-xs-12
+              img.img-responsive.img-xs-benefits.pull-left(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/studentIconA.svg")
+              p.lead.padding-top-10
+                | <strong>Engage</strong> with your classmates and other students anywhere.
+          br
+          .row
+            .col-xs-12
+              img.img-responsive.img-xs-benefits.pull-left(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/studentIconB.svg")
+              p.lead.padding-top-10
+                | <strong>Get higher scores</strong> when you easily understand your strengths and weaknesses
+          br
+          .row
+            .col-xs-12
+              button.btn.btn-lg.btn-danger(omni-tap="role.name = 'student'; role.verb = 'prepare for'")
+                | Start Demo
+    form.form.bottom-float-buffer(ng-model="newAssignment", ng-submit="addAssignment(newAssignment)", autocomplete="off")
+      //- Teacher subject input
+      .form-group(ng-show="role.name=='teacher'")
+        input.form-control.omni-input.text-center(ng-change='updateTags(newAssignment.teacherSubject)', typeahead-on-select='updateTags(newAssignment.teacherSubject)', ng-model="newAssignment.teacherSubject", placeholder="subject name", uib-typeahead="subject.fullName for subject in subjects | limitTo:8 | filter:$viewValue")
+
+      //- Student subject select
+      .form-group(ng-show="role.name=='student'")
+        select.form-control.omni-input.text-center(ng-change='updateTags(newAssignment.studentSubject)', ng-model="newAssignment.studentSubject", ng-options="subject.fullName as subject.fullName for subject in subjects")
+
+      h4.text-center(ng-show="role.name") specifically...
+      //- optional tag
+      .row.form-group(ng-show="role.name")
+        input.form-control.omni-input.text-center(ng-model='newAssignment.topic', placeholder='topic (optional)', uib-typeahead='topic as topic for topic in topics | limitTo: 8 | filter:$viewValue')
+      .row(ng-show="role.name")
+        .col-sm-4
+        button.col-sm-4.btn.btn-primary(type='submit')
+          | Go!
+        .col-sm-4
+
+
+
+
+
+  //- desktop
+  .hidden-xs
+    h1.h1.user-message I am 
+      span a...
+      br
+      br(ng-show="role.name")
+      span(ng-show="role.name") <u> {{role.name}}</u>
+      br
+      br(ng-show="role.name")
+      span(ng-show="role.name") wanting to {{role.verb}}&nbsp;
+      span(ng-show="role.subject=='AP Calculus AB'") AP Calculus AB&nbsp;
+      span(ng-show="role.subject=='AP Calculus BC'") AP Calculus BC&nbsp;
+      span(ng-show="role.subject=='AP Psychology'") AP Psychology&nbsp;
+      span(ng-show="role.subject=='AP Biology'") AP Biology&nbsp;
+      span(ng-show="role.subject=='AP European History'") AP European History&nbsp;
+      span(ng-show="role.subject=='AP Physics 1'") AP Physics 1&nbsp;
+      span(ng-show="role.subject=='AP Physics 2'") AP Physics 2&nbsp;
+      span(ng-show="role.subject=='AP Chemistry'") AP Chemistry&nbsp;
+      span(ng-show="role.subject=='AP Statistics'") AP Statistics&nbsp;
+      span(ng-show="role.subject=='AP Human Geography'") AP Human Geography&nbsp;
+      span(ng-show="role.subject=='AP US Government'") AP US Government&nbsp;
+      span(ng-show="role.subject=='AP World History'") AP World History&nbsp;
+      span(ng-show="role.subject=='AP Environmental Science'") AP Environmental Science&nbsp;
+    #student-teacher(ng-hide="role.name")
+      img.img-responsive.demo-start-cta(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/demo-call-to-action.svg")
+      .row
+        .col-sm-6#teacher-side
+          button.btn.btn-lg.btn-primary(omni-tap="role.name='teacher'; role.verb='teach'") Teacher
+        .col-sm-6#student-side
+          button.btn.btn-lg.btn-danger(omni-tap="role.name='student'; role.verb='prepare for'") Student
+      br
+      br
+      //- First benefit
+      .row.vertical-align
+        //- teacher
+        .col-sm-2
+          img.img-responsive(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/teacherIconA.svg")
+        .col-sm-4
+          p.lead
+            | <strong>Generate and assign homework</strong> in just a few clicks with quality content
+        //- student
+        .col-sm-2
+          img.img-responsive(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/studentIconA.svg")
+        .col-sm-4
+          p.lead
+            | <strong>Engage</strong> with your classmates and other students anywhere.
+
+      //- Second benefit
+      .row.vertical-align
+        //- teacher
+        .col-sm-2
+          img.img-responsive(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/teacherIconB.svg")
+        .col-sm-4
+          p.lead
+            | <strong>Save time</strong> grading with automatically graded assignments
+        //- student
+        .col-sm-2
+          img.img-responsive(src="https://232acaefd6d17abcc196-ec7beb64f86df3a9fee9a80603d31859.ssl.cf5.rackcdn.com/studentIconB.svg")
+        .col-sm-4
+          p.lead
+            | <strong>Get higher scores</strong> when you easily understand your strengths and weaknesses.
+
+    form.form(ng-model="newAssignment", ng-submit="addAssignment(newAssignment)", autocomplete="off")
+      //- Teacher subject input
+      .form-group(ng-show="role.name=='teacher'")
+        input.form-control.omni-input.desktop-input(ng-change='updateTags(newAssignment.teacherSubject)', typeahead-on-select='updateTags(newAssignment.teacherSubject)', ng-model="newAssignment.teacherSubject", placeholder="begin typing subject name", uib-typeahead="subject.fullName for subject in subjects | limitTo:8 | filter:$viewValue")
+
+      //- Student subject select
+      .form-group(ng-show="role.name=='student'")
+        select.omni-input.desktop-input(ng-change='updateTags(newAssignment.studentSubject)', ng-model="newAssignment.studentSubject", ng-options="subject.fullName as subject.fullName for subject in subjects")
+
+      h4.text-center(ng-show="role.name") specifically...
+      //- optional tag
+      .row.form-group(ng-show="role.name")
+        input.form-control.omni-input.desktop-input(ng-model='newAssignment.topic', placeholder='topic (optional)', uib-typeahead='topic as topic for topic in topics | limitTo: 8 | filter:$viewValue')
+      .row(ng-show="role.name")
+        .col-sm-4
+        button.col-sm-4.btn.btn-primary(type='submit')
+          | Go!
+        .col-sm-4

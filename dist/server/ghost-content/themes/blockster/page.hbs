@@ -1,0 +1,39 @@
+{{!-- Default Page Template --}}
+
+{{!< default}}
+
+<div class="container-wrap">
+  <div class="container">
+    <main class="content" role="main">
+
+      <article>
+        <div class="post-wrap page--not-post">
+
+          {{#post}}
+
+            <div class="post-content">
+              {{#if image}}
+                <img src="{{image}}" class="featured-img-for-global-bg">
+              {{/if}}
+              <div class="padding-wrap--target">
+                <section class="post">
+
+                  {{#if image}}
+                    <h1 class="post-title">{{{title}}}</h1>
+                  {{/if}}
+
+                  {{content}}
+                  {{> toc }}
+
+                </section>
+              </div> {{! END padding-wrap}}
+            </div> {{! END post-content}}
+
+          {{/post}}
+
+        </div>
+      </article>
+
+    </main>
+  </div> {{! END CONTAINER}}
+</div> {{! END CONTAINER WRAP}}

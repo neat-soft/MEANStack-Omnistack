@@ -1,0 +1,18 @@
+strong Exams
+div(ng-controller='AdminExamCtrl')
+  accordion(close-others='true')
+    accordion-group(ng-repeat='(subject, exams) in examObj', heading='{{subject}}')
+      ul
+        li.list-group-item(ng-repeat='exam in exams | orderBy: "examNumber"')
+          .row
+            .col-sm-6(ng-if='exam.examNumber == 0')
+              | Sample Questions
+            .col-sm-6(ng-if='exam.examNumber > 0')
+              | Exam {{exam.examNumber}}
+            .col-sm-4
+            .col-sm-1
+              a(href='admin/examEdit/{{exam._id}}')
+                span.glyphicon.glyphicon-pencil
+            .col-sm-1
+              a(omni-tap='deleteExamModal(exam)')
+                span.glyphicon.glyphicon-trash

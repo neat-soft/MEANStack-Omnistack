@@ -1,0 +1,43 @@
+{{> navTop}}
+
+
+<div class="bar-left-wrap">
+  <div class="bar-left" id="barLeft">
+
+
+    {{> navLeft-default}}
+
+
+    <section class="sidebar-meta">
+
+      <div class="sidebar-social">
+        <a href="#" class="link-twitter">
+          <svg class="icon">
+            <use xlink:href="#icon-twitter"></use>
+          </svg>
+        </a>
+        <a href="#" class="link-facebook">
+          <svg class="icon">
+            <use xlink:href="#icon-facebook"></use>
+          </svg></a><br>
+        <a href="#" class="link-googleplus">
+          <svg class="icon">
+            <use xlink:href="#icon-googlep"></use>
+          </svg>
+        </a>
+        <a href="#" class="link-rss">
+          <svg class="icon">
+            <use xlink:href="#icon-rss"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="sidebar-copyright">
+
+        <a href="{{@blog.url}}/">{{@blog.title}}</a>
+
+      </div>
+
+    </section>
+
+  </div>
+</div> {{!-- end bar-left-wrap --}}

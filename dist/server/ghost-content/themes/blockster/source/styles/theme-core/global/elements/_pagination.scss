@@ -1,0 +1,46 @@
+.pagination {
+  position: relative;
+  width: 100%;
+}
+.pagination-inner {
+  text-align: center;
+  display: block;
+  background-color: $bar-left-bg;
+  width: 175px;
+  margin: $footer-height auto;
+}
+
+.newer-posts, .older-posts, .page-number {
+  float: left;
+  margin-bottom: 75px;
+  background-color: $bar-left-bg;
+  height: 100%;
+  vertical-align: middle;
+  font-size: 30px;
+}
+.newer-posts, .older-posts {
+  display: block;
+  width: 20%;
+}
+a.newer-posts, a.older-posts {
+  &:hover {
+  background-color: darken($bar-left-bg, 7);
+  }
+}
+.page-number {
+  border-left: 1px solid darken($bar-left-bg, 7);
+  border-right: 1px solid darken($bar-left-bg, 7);
+  display: block;
+  width: 60%;
+  color: desaturate(darken($bar-left-bg, 9), 5);
+}
+
+
+// for styling the infinite scroll loading image
+.infinite-loader {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  left: 0;
+  right: 0;
+}

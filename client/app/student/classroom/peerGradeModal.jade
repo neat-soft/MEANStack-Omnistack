@@ -1,0 +1,69 @@
+.container
+  .row
+    .col-sm-6
+      .row
+        .col-sm-12 
+          p(mathjax-bind='question.body')
+      .row
+        hr
+      .row
+        .col-sm-12
+          p(mathjax-bind='response')
+    .col-sm-6
+      .row
+        .col-sm-12
+          p(mathjax-bind='question.answer')
+          hr
+          p(mathjax-bind='question.explanation')
+  .row
+    hr
+  .row  
+    form.col-sm-12(ng-submit='submitPeerGrade()')
+      .row(ng-repeat-start='question in questions')
+        .col-sm-12
+          h4 Question:
+          p(mathjax-bind='question.body')
+
+        .row
+          .col-sm-6
+            h4 Classmate's Response:
+            p(mathjax-bind='responses[question._id]')
+          .col-sm-6(ng-if='question.type==="long"')
+            h4
+              | Question Explanation:
+            p(mathjax-bind='question.explanation.body')
+          .col-sm-6(ng-if='question.type==="short"')
+            .row 
+              .col-sm-12
+                h4
+                  | Question Answer:
+                p(mathjax-bind='question.answer')
+              .col-sm-12  
+                h4
+                  | Question Explanation:
+                p(mathjax-bind='question.explanation.body')
+      br
+      br
+      .row(ng-if='question.type=="long"')
+        .col-sm-6
+          p
+            strong How many points did this answer earn? (Out of {{question.value}})
+        .col-sm-6
+          input.enter-score-input(type='number', ng-model='grades[question._id]', min='0', max='{{question.value}}', placeholder='Score')
+      .row(ng-if='question.type=="short"')
+        .col-sm-6
+          p
+            strong Was this response correct?
+        .col-sm-3
+          input(type='radio', ng-value='false', ng-model='grades[question._id]')
+          | No
+        .col-sm-3
+          input(type='radio', ng-value='true', ng-model='grades[question._id]')
+          | Yes
+      .row(ng-repeat-end)
+        .col-sm-12
+          hr
+      .row
+        .col-sm-12.text-center
+          button.btn.btn-primary(type='submit')
+            | Submit!

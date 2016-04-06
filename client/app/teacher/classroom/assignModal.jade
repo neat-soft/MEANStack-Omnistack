@@ -1,0 +1,39 @@
+.row
+  .col-sm-12
+    h2
+      | Assign to {{classroom.name}}
+.row
+  .col-sm-12
+    h5
+      | Pick an assignment to assign to {{classroom.name}}
+.row(ng-if="!assignments")
+  .col-sm-12
+    | Oops! It looks like you don't have any assignments yet. 
+.row(ng-if="!assginments")
+  .col-sm-12
+    button.btn.btn-primary(omni-link="teacher/create/assignment") Make one now!
+form.row(ng-submit="assignIt(newAssignment)", ng-model="newAssignment", ng-if="assignments")
+  .col-sm-12
+    .row
+      .col-sm-12
+        label(for="ID") Assignment to assign:
+        select#ID.form-control(ng-model="newAssignment.assignmentId", ng-options="assignment._id as assignment.name for assignment in assignments")
+    .row
+      .col-sm-12
+        label(for="type") Assign as:
+        select#type(ng-model="newAssignment.type", ng-options="type as type for type in types")
+    .row(ng-if="newAssignment.type==='Other'")
+      .col-sm-12
+        input(type="text", ng-model="newAssignment.newType", placeholder="Choose assignment type")
+        button.btn.btn-default(ng-click="addType(newAssignment.newType)") 
+          | Add!
+    .row
+      .col-sm-12
+        label(for="DueDate") Due date:
+        p#DueDate
+          input(type='text', datepicker-popup='dd-MMMM-yyyy' ng-model="newAssignment.dueDate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" )
+          span.input-group-btn.input-group
+            button.btn.btn-default(type="button" ng-click="open($event)")
+              i.glyphicon.glyphicon-calendar
+        
+        

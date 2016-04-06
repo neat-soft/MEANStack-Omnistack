@@ -1,0 +1,208 @@
+@mixin btnDefault () {
+ text-align: center;
+  width: 45%;
+  margin: 0 auto;
+  padding: 4px 0px;
+  background: $white;
+  color: $black;
+  border-radius: $radius-default;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: $link-color;
+    color: $white;
+  }
+}
+
+@mixin transition ($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+
+$px-to-minus-no-sb: 40;
+@mixin excerpts-square() {
+  // width 25%
+                      height: 375px; width: 25%;
+  @include bp(1700) { height: (1700 - $bar-left-width - ($grid--excerpt-gallery * 7)) / 4 !important; }
+  @include bp(1600) { height: (1600 - $bar-left-width - ($grid--excerpt-gallery * 7)) / 4 !important; }
+  // width 33.33%
+  @include bp(1500) { height: (1500 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; width: 33.33%; }
+  @include bp(1400) { height: (1400 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(1350) { height: (1350 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(1300) { height: (1300 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(1250) { height: (1250 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(1200) { height: (1200 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  // width 50%
+  @include bp(1100) { height: (1100 - $bar-left-width - ($grid--excerpt-gallery * 5)) / 2 !important; width: 50%; }
+  @include bp(1050) { height: (1050 - $bar-left-width - ($grid--excerpt-gallery * 5)) / 2 !important; }
+  @include bp(1000) { height: (1000 - $bar-left-width - ($grid--excerpt-gallery * 5)) / 2 !important; }
+  @include bp(950)  { height: (950 - $bar-left-width - ($grid--excerpt-gallery * 5)) / 2 !important; }
+  @include bp(900)  { height: (900 - $bar-left-width - ($grid--excerpt-gallery * 5)) / 2 !important; }
+  @include bp(850)  { height: (850 - $px-to-minus-no-sb) / 2+px !important; } // sidebar collapses as 850
+  @include bp(800)  { height: (800 - $px-to-minus-no-sb) / 2+px !important; }
+  @include bp(750)  { height: (750 - $px-to-minus-no-sb) / 2+px !important; }
+  // width 100%;
+  @include bp($grid-to-full-bp) {
+    width: 100%;
+    height: 500px !important;
+    display: block;
+  }
+}
+
+@mixin excerpts-square-and-rectangles() {
+  // width 16.66%  --  6 columns
+       width: 16.66%; height: (1800 - $bar-left-width - ($grid--excerpt-gallery * 9)) / 6 !important;
+  @include bp(1700) { height: (1700 - $bar-left-width - ($grid--excerpt-gallery * 9)) / 6 !important; }
+  @include bp(1600) { height: (1600 - $bar-left-width - ($grid--excerpt-gallery * 9)) / 6 !important; }
+  // width 20%  --  5 columns
+  @include bp(1500) { height: (1500 - $bar-left-width - ($grid--excerpt-gallery * 8)) / 5 !important; width: 20%; }
+  @include bp(1400) { height: (1400 - $bar-left-width - ($grid--excerpt-gallery * 8)) / 5 !important; }
+  // width 25%  -- 4 columns
+  @include bp(1350) { height: (1350 - $bar-left-width - ($grid--excerpt-gallery * 7)) / 4 !important; width: 25%; }
+  @include bp(1300) { height: (1300 - $bar-left-width - ($grid--excerpt-gallery * 7)) / 4 !important; }
+  @include bp(1250) { height: (1250 - $bar-left-width - ($grid--excerpt-gallery * 7)) / 4 !important; }
+  @include bp(1200) { height: (1200 - $bar-left-width - ($grid--excerpt-gallery * 7)) / 4 !important; }
+  @include bp(1150) { height: (1150 - $bar-left-width - ($grid--excerpt-gallery * 7)) / 4 !important; }
+  // width 33.33%  -- 3 columns
+  @include bp(1100) { height: (1100 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; width: 33.33%; }
+  @include bp(1050) { height: (1050 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(1000) { height: (1000 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(950) { height: (950 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(900) { height: (900 - $bar-left-width - ($grid--excerpt-gallery * 6)) / 3 !important; }
+  @include bp(850) { height: (850 - $px-to-minus-no-sb) / 3+px !important; }
+  @include bp(800) { height: (800 - $px-to-minus-no-sb) / 3+px !important; }
+  @include bp(750) { height: (750 - $px-to-minus-no-sb) / 3+px !important; }
+  @include bp(700) { height: (700 - $px-to-minus-no-sb) / 3+px !important; }
+
+  // width 50%  --  2 columns
+  @include bp($grid-to-full-bp) { height: (650 - $px-to-minus-no-sb) / 3+px !important;  width: 50%; display: block; }
+
+  // width 100% 
+  @include bp(375) { height: 375px !important; width: 100%; }
+  @include bp(330) { height: 330px !important;}
+}
+
+$height-1800: ( (1800 - 125 - (8*9)) / 6 );
+$height-1700: ( (1700 - 125 - (8*9)) / 6 );
+$height-1600: ( (1600 - 125 - (8*9)) / 6 );
+$height-1500: ( (1500 - 125 - (8*8)) / 5 );
+$height-1400: ( (1400 - 125 - (8*8)) / 5 );
+$height-1350: ( (1350 - 125 - (8*7)) / 4 );
+$height-1300: ( (1300 - 125 - (8*7)) / 4 );
+$height-1250: ( (1250 - 125 - (8*7)) / 4 );
+$height-1200: ( (1200 - 125 - (8*7)) / 4 );
+$height-1150: ( (1150 - 125 - (8*7)) / 4 );
+$height-1100: ( (1100 - 125 - (8*6)) / 3 );
+$height-1050: ( (1050 - 125 - (8*6)) / 3 );
+$height-1000: ( (1000 - 125 - (8*6)) / 3 );
+$height-950: ( (950 - 125 - (8*6)) / 3 );
+$height-900: ( (900 - 125 - (8*6)) / 3 );
+$height-850: ( (850 - 40) / 3 );
+$height-800: ( (800 - 40) / 3 );
+$height-750: ( (750 - 40) / 3 );
+$height-700: ( (700 - 40) / 3 );
+$height-650: ( (650 - 40) / 3 );
+
+
+// libsass is still limited for this to be pretty... 
+@mixin excerpts-height-2x() {
+  // width 16.66%  --  6 columns
+       width: 16.66%; height: $height-1800*2+px !important;
+  @include bp(1700) { height: $height-1700*2+px !important; }
+  @include bp(1600) { height: $height-1600*2+px !important; }
+  // width 21%  --  5 columns
+  @include bp(1500) { height: $height-1500*2+px !important; width: 20%; }
+  @include bp(1400) { height: $height-1400*2+px !important; }
+  // width 25%  -- 4 columns
+  @include bp(1350) { height: $height-1350*2+px !important; width: 25%; }
+  @include bp(1300) { height: $height-1300*2+px !important; }
+  @include bp(1250) { height: $height-1250*2+px !important; }
+  @include bp(1200) { height: $height-1200*2+px !important; }
+  @include bp(1150) { height: $height-1150*2+px !important; }
+  // width 33.33%  -- 3 columns
+  @include bp(1100) { height: $height-1100*2+px !important; width: 33.33%; }
+  @include bp(1050) { height: $height-1050*2+px !important; }
+  @include bp(1000) { height: $height-1000*2+px !important; }
+  @include bp(950) { height: $height-950*2+px !important; }
+  @include bp(900) { height: $height-900*2+px !important; }
+  @include bp(850) { height: $height-850*2+px !important; }
+  @include bp(800) { height: $height-800*2+px !important; }
+  @include bp(750) { height: $height-750*2+px !important; }
+  @include bp(700) { height: $height-700*2+px !important; }
+
+  // width 50%  --  2 columns
+  @include bp($grid-to-full-bp) { height: $height-650*2+px !important;  width: 50%; display: block; }
+
+  // width 100% 
+  @include bp(375) { height: 375px !important; width: 100%; }
+  @include bp(330) { height: 330px !important;}
+}
+
+@mixin excerpts-square-2x() {
+  // width 16.66%  --  6 columns
+       width: 16.66*2%; height: $height-1800*2+px !important;
+  @include bp(1700) { height: $height-1700*2+px !important; }
+  @include bp(1600) { height: $height-1600*2+px !important; }
+  // width 21%  --  5 columns
+  @include bp(1500) { height: $height-1500*2+px !important; width: 20*2%; }
+  @include bp(1400) { height: $height-1400*2+px !important; }
+  // width 25%  -- 4 columns
+  @include bp(1350) { height: $height-1350*2+px !important; width: 25*2%; }
+  @include bp(1300) { height: $height-1300*2+px !important; }
+  @include bp(1250) { height: $height-1250*2+px !important; }
+  @include bp(1200) { height: $height-1200*2+px !important; }
+  @include bp(1150) { height: $height-1150*2+px !important; }
+  // width 33.33%  -- 3 columns
+  @include bp(1100) { height: $height-1100*2+px !important; width: 33.33*2%; }
+  @include bp(1050) { height: $height-1050*2+px !important; }
+  @include bp(1000) { height: $height-1000*2+px !important; }
+  @include bp(950) { height: $height-950*2+px !important; }
+  @include bp(900) { height: $height-900*2+px !important; }
+  @include bp(850) { height: $height-850*2+px !important; }
+  @include bp(800) { height: $height-800*2+px !important; }
+  @include bp(750) { height: $height-750*2+px !important; }
+  @include bp(700) { height: $height-700*2+px !important; }
+
+  // width 50%  --  2 columns
+  @include bp($grid-to-full-bp) { height: $height-650*2+px !important;  width: 50*2%; display: block; }
+
+
+  // width 100% 
+  @include bp(375) { height: 375px !important; width: 100%; }
+  @include bp(330) { height: 330px !important;}
+}
+
+
+
+
+
+// Maintain ratio mixin. Great for responsive grids, or videos.
+// https://gist.github.com/brianmcallister/2932463
+// 
+// $ratio - Ratio the element needs to maintain.
+// 
+// Examples
+// 
+//   // A 16:9 ratio would look like this:
+//   .element {
+//     @include maintain-ratio(16 9);
+//   }
+@mixin maintain-ratio($ratio: 1 1) {
+  @if length($ratio) < 2 or length($ratio) > 2 {
+    @warn "$ratio must be a list with two values.";
+  }
+ 
+  $width: 100%;
+  $height: percentage(nth($ratio, 2) / nth($ratio, 1));
+  
+  width: $width;
+  height: 0;
+  padding-bottom: $height;
+}

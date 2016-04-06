@@ -1,0 +1,76 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row
+    .col-sm-12
+      h1 
+        span(omni-link='/student').btn-link My Classrooms
+        span &nbsp;&gt;&nbsp;
+        span().btn-link {{classroom.name}}
+  .row.avenir-db
+    .col-sm-6
+      .row.studentTitle
+        .col-sm-12
+          h2 Recent Messages
+      .row
+        .col-sm-12.teacher-chat-log(scroll-top-on='messages_updated')
+          table.activityTable.table.table-hover.avenir-light
+            tr
+              th Date
+              th Message
+            tr(ng-repeat="message in classroom.messages | orderBy: '-date' track by $index", ng-init="message.isToday = checkIfToday(message.date)")
+              td(ng-if="!message.isToday") {{message.date | date : 'mediumDate'  }}
+              td(ng-if="message.isToday") {{message.date | date : 'shortTime'  }}
+              td {{message.authorName}}: {{message.message}}
+      .row
+        .col-sm-12.teacher-chat-container
+          form.teacher-chat
+            .teacher-chat-input
+              input.chatbox(type='text', ng-model='newMessage', placeholder="Send a message to your class!")
+              button.btn-send(ng-click="addMessage()") Send
+          
+    .col-sm-6
+      .row.studentTitle
+        .col-sm-12
+          h2
+            | Grades
+      .row.studentContent
+        .col-sm-12
+          table.table.table-hover
+            tr
+              th Name
+              th Grade
+            //- show taken assignments
+            tr(ng-repeat='assignment in old track by $index')
+              //- click assignment to review
+              td(omni-tap="goToAssignment(assignment)") Review {{assignment.name}}
+              td(ng-if='assignment.submission.fullyGraded && assignment.canView') {{(100 * assignment.submission.score) | number:1}}%
+              td(ng-hide='assignment.canView')
+                button.btn.btn-default(ng-click='peerGrade(assignment.code)') Grade {{5 - myPeerGrades[assignment.code].length}} more to see your grade!
+              td(ng-if='!assignment.submission.fullyGraded && assignment.canView') 
+                | Waiting on classmates to grade your submission.
+            //- message shows if no assignments taken
+            tr(ng-if="!old || old.length == 0")
+              td(colspan='3') No grades yet!
+  .row.avenir-db    
+    .col-sm-12
+      .row.studentTitle
+        .col-sm-12
+          h2
+            | Assignments
+      .row.studentContent
+        .col-sm-12
+          table.table.table-hover
+            tr
+              th Name
+              th Due Date
+              td 
+            tr(ng-repeat='assignment in new track by $index', ng-init='assignment.passed = hasPassed(assignment)')
+              td {{assignment.name}}
+              td {{assignment.dueDate | date: 'short'}}
+              td 
+                //- Redirects to assignment page
+                btn.btn.btn-primary(ng-hide='assignment.passed', omni-tap='goToAssignment(assignment)') Take now!
+            tr(ng-if="!new || new.length == 0")
+              td(colspan='2') You're all caught up!
+
+footer.footer(ng-include='"components/footer/footer.html"')

@@ -1,0 +1,80 @@
+// --------------------------------------------------
+// IMAGE BACKGROUNDS --------------------------------
+@mixin siteBg($bgName) {
+  background: url(../images/backgrounds/#{$bgName}.jpg) center center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#bgImg1  { @include siteBg(bgImg1) }
+#bgImg2  { @include siteBg(bgImg2) }
+#bgImg3  { @include siteBg(bgImg3) }
+#bgImg4  { @include siteBg(bgImg4) }
+#bgImg5  { @include siteBg(bgImg5) }
+#bgImg6  { @include siteBg(bgImg6) }
+#bgImg7  { @include siteBg(bgImg7) }
+#bgImg8  { @include siteBg(bgImg8) }
+#bgImg9  { @include siteBg(bgImg9) }
+#bgImg10 { @include siteBg(bgImg10) }
+#bgImg11 { @include siteBg(bgImg11) }
+#bgImg12 { @include siteBg(bgImg12) }
+
+#bgImgCustom { 
+  background: url(../images/backgrounds/bgImgCustom.jpg) center center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#bgImgCustomJPG { 
+  background: url(../images/backgrounds/bgImgCustomJPG.jpg) center center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#bgImgCustomPNG { 
+  background: url(../images/backgrounds/bgImgCustomPNG.png) center center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+// --------------------------------------------------
+// HIGH RES SCREENS ---------------------------------
+@mixin siteBg2x($bgName) {
+  background: url(../images/backgrounds/#{$bgName}@2x.jpg) no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+  #bgImg1  { @include siteBg2x(bgImg1) }
+  #bgImg2  { @include siteBg2x(bgImg2) }
+  #bgImg3  { @include siteBg2x(bgImg3) }
+  #bgImg4  { @include siteBg2x(bgImg4) }
+  #bgImg5  { @include siteBg2x(bgImg5) }
+  #bgImg6  { @include siteBg2x(bgImg6) }
+  #bgImg7  { @include siteBg2x(bgImg7) }
+  #bgImg8  { @include siteBg2x(bgImg8) }
+  #bgImg9  { @include siteBg2x(bgImg9) }
+  #bgImg10 { @include siteBg2x(bgImg10) }
+  #bgImg11 { @include siteBg2x(bgImg11) }
+  #bgImg12 { @include siteBg2x(bgImg12) }
+
+  #bgImgCustom { 
+    background: url(../images/backgrounds/bgImgCustom@2x.jpg) center center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  #bgImgCustomJPG { 
+      background: url(../images/backgrounds/bgImgCustomJPG@2x.jpg) center center no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+  }
+  #bgImgCustomPNG { 
+      background: url(../images/backgrounds/bgImgCustomPNG@2x.png) center center no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+  }
+}

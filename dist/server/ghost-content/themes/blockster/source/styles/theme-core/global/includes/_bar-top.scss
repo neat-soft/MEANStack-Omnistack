@@ -1,0 +1,40 @@
+.bar-top-wrap {
+  position: relative;
+  display: none;
+  @extend %no-select;
+  @include bp(baby){
+    display: block;
+  }
+}
+.bar-top {
+  @extend %top-0;
+  @extend %fixed;
+  @extend %width-100;
+  background: $bar-left-bg;
+  height: $top-bar-height;
+  padding-top: 2px;
+  z-index: 999999;
+}
+.bar-top-logo img {
+  width: $bar-left-width - 4px;
+  margin: 5px 0 0 5px;
+  @extend %height-auto;
+}
+.left-bar-toggle {
+  @extend %absolute;
+  top: 5px;
+  left: 135px;
+  @extend %pointer;
+}
+g#menu {
+  stroke-width: 3px;
+}
+.bar-top-social {
+  @extend %absolute;
+  @extend %float-right;
+  right: 6px;
+  top: 5px;
+  svg.icon {
+    width: 30px;
+  }
+}

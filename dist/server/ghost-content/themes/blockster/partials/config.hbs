@@ -1,0 +1,112 @@
+{{!-- BLOCKSTER MASTER CONFIG --}}
+
+
+
+{{! MULTI AUTHOR }}
+var use_multi_author         = false; {{! change to true (NO quotation marks) if this is a multi-author blog}}
+
+
+{{! CUSTOM PAGE NAV }}
+var use_nav_link_ABOUT       = true; {{! change to false (NO quotation marks) if you don't want an about page }}
+var use_nav_link_CONTACT     = true; {{! change to false (NO quotation marks) if you don't want a contact page }}
+
+
+{{! GLOBAL STYLE }}
+{{! - 'light' or 'dark' }}
+{{! - 'light' or 'dark' }}
+var themeLight_or_dark       = 'light';
+{{!-- Color options:
+'blue', 'blue2', 'green',
+'geen2', 'orange', 'red',
+'purple', 'brown' --}}
+var
+
+{{! INTEGRATIONS -- SOCIAL }}
+var fb_account_link          = 'http://facebook.com/pixelandkraft';  {{! Facebook Link }}
+var twitter_account_link     = 'http://twitter.com/pixelandkraft';   {{! Twitter Link }}
+var googleplus_account_link  = 'http://googleplus.com';              {{! Google Plus }}
+var rss_account_link         = ''; {{! RSS Feed, optional - for use of non-default rss service }}
+
+{{! INTEGRATION -- OTHER}}
+var google_analytics_accout  = 'UA-41214663-4';
+
+
+{{! HOME SPECIFICS }}
+var show_filter_tag_count    = false;
+var use_elipse               = false;                   {{! NO quotation marks}}
+var read_full_post_text      = '[ Read Full Post ]';    {{! For default excerpt layout style}}
+var read_more_btn_text       = 'Read Full Post';        {{! For gallery and hybrid excerpt layout styles}}
+var border_on_excerpt_images = false;                   {{! change to 'yes' for borders on excerpt images}}
+var gallery_excerpt_titles   = false;                   {{! only for gallery excerpt styles. NO quotation marks}}
+{{!-- POST EXCERPT STYLE
+Options:
+'classic1', 'classic2', 'gallery1', 'gallery2',
+'gallery3', 'gallery4', 'galleryi', 'text' --}}
+var home_page_excerpt_style  = 'classic2';
+
+
+{{! COMMENTS }}
+var useDisqus                = true; {{! Disqus for comments. Note, NO quotation marks }}
+var disqus_shortname         = 'omninox'; {{! Disqus shortname }}
+
+
+{{!-- BACKGROUND IMAGE (GLOBAL)
+---
+Options, included:
+'bgImg1', 'bgImg2', 'bgImg3', 'bgImg4',
+'bgImg5', 'bgImg6', 'bgImg7', 'bgImg8',
+'bgImg9', 'bgImg10', 'bgImg11', 'bgImg12',
+---
+Options, custom:
+'bgImgCustom', 'bgImgCustomJPG', 'bgImgCustomPNG'
+NOTE: Follow these steps to use a custom background image:
+  1) Upload your image to Blockster's image background directory,
+     located at /assets/images/backgrounds/
+  2) Name your image according to one of the above options, with its
+     appropriate extension (bgImgCustom.jpg, bgImgCustomJPG.jpg, or bgImgCustomPNG.png)
+  3) Set the below variable (background_image) to your option.
+     When finished, the below should look like one of these three options:
+       - var background_image = 'bgImgCustom';
+       - var background_image = 'bgImgCustomJPG';
+       - var background_image = 'bgImgCustomPNG';
+     NOTE: 'bgImgCustom' is only for .jpeg images. We added 'bgImgCustomJPG' for clarity. --}}
+
+var background_image = '';
+
+{{!-- SIDEBAR/SLIDEOUT TRANPARENCY
+Options:
+any value from 0 to 1, two digits after the decimal
+NOTES:
+- to have no transparency use the value '1'
+- to have no background use the value '0'
+--}}
+
+var transparency_sb       = '0.97';
+var transparency_slideout = '0.93';
+
+{{! simpler ux design for filter and sort list items}}
+var slideout_list_simple  = false;
+
+
+{{!-- ADVANCED & COMPLETELY OPTIONAL SETTINGS --}}
+
+
+{{!-- CONTAINER WIDTH (for posts/pages)
+Notes:
+- Initial values here are Blockster's defaults.
+- Breakpoint values are MAX widths, meaning anything BELOW the px amount will be targeted. --}}
+
+var use_custom_container_width  = false; {{! must be true to activate any width customizations below }}
+
+{{! BREAKPOINTS }}
+var breakpoint_1 = '1250px';
+var breakpoint_2 = '850px';
+var breakpoint_3 = '600px';
+
+{{! WIDTHS }}
+var wider_than_breakpoint_1     = '50%';
+var breakpoint_1_width          = '63%';
+var breakpoint_2_width          = '75%';
+var breakpoint_3_width          = '100%';
+= '75%';
+var breakpoint_3_width          = '100%';

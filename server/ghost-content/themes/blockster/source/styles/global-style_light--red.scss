@@ -1,0 +1,17 @@
+// Theme Core Colors
+@import "custom-stylesheet-vars";
+
+// Color scheme file
+@import "color-schemes/color-scheme_light--red";
+
+// Light/Dark Theme Scheme File
+@import "settingsLIGHT";
+
+
+// ---------------------------------------------------------
+// THEME CORE -- IMPORT
+// ------------------
+
+  @import "theme-core/master-import";
+// @if $global-style_light--red == true {
+// }

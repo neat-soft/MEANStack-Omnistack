@@ -1,0 +1,96 @@
+<a id="logoLink" href="{{@blog.url}}">
+  {{#if @blog.logo}}
+    <img src="{{@blog.logo}}" alt="Blog Logo" class="blog-logo">
+      {{else}}
+      <h1 class="blog-title">{{@blog.title}}</h1>
+  {{/if}}
+</a>
+
+
+{{! Search box, home only }}
+{{#is "home"}}
+
+  <hr class="divider--bar">
+
+  <div class="sidebar-search">
+    <form>
+      <svg class="icon home-page-search-submit">
+        <use xlink:href="#icon-search"></use>
+      </svg>
+      <input type="text" class="home-page-input-text" id="quicksearch" placeholder="SEARCH">
+    </form>
+  </div>
+
+{{/is}}
+
+
+{{! Global navigation }}
+<nav>
+  <ul class="unstyled" id="left-sb-content">
+
+    <hr class="divider--bar">
+
+    <li id="home">
+      {{^is "home"}}<a href="{{@blog.url}}">{{/is}}
+        <svg class="icon">
+          <use xlink:href="#icon-angleR"></use>
+        </svg>
+        Blog
+      {{^is "home"}}</a>{{/is}}
+    </li>
+
+    {{#is "home"}}
+      <li class="bar-iso bar-tags">
+        <div class="toggleOpen navbar-isotope" data-target="#tag-wrap" data-type="pseudo-link">
+          <div class="navbar-isotop-wrap">
+            Filter <br>
+            <span class="navbar-isotop-meta" id="filterDisplay"></span>
+          </div>
+        </div>
+      </li>
+
+      <li class="bar-iso bar-sort last">
+        <div class="toggleOpen navbar-isotope" data-target="#sort-wrap" data-type="pseudo-link">
+          <div class="navbar-isotop-wrap">
+            Sort <br>
+            <span class="navbar-isotop-meta" id="iso-meta--sortDisplay">
+              <span id="current-sort-criteria"></span>
+              /
+              <span id="current-sort-order"></span>
+            </span>
+          </div>
+        </div>
+      </li>
+    {{/is}}
+
+    <hr class="divider--bar">
+
+    <span id="custom-page-nav--about">
+      <li id="about">
+        <a href="{{@blog.url}}/about" title="">
+          <svg class="icon">
+            <use xlink:href="#icon-angleR"></use>
+          </svg>
+          About
+        </a>
+      </li>
+      <hr class="divider--bar">
+    </span>
+
+    <span id="custom-page-nav--contact">
+      <li id="contact">
+        <a href="{{@blog.url}}/contact" title="">
+          <svg class="icon">
+            <use xlink:href="#icon-angleR"></use>
+          </svg>
+          Contact
+        </a>
+      </li>
+      <hr class="divider--bar">
+    </span>
+
+
+  </ul>
+</nav>
+
+

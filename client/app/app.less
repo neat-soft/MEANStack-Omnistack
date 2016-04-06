@@ -1,0 +1,351 @@
+@import 'bootstrap/less/bootstrap.less';
+@import 'font-awesome/less/font-awesome.less';
+
+@icon-font-path: '/bower_components/bootstrap/fonts/';
+@fa-font-path: '/bower_components/font-awesome/fonts';
+
+/*
+  App-wide Styles
+ */
+@font-face {
+  font-family: 'AvenirNext';
+  src: url('/assets/fonts/avenirnext.woff') format('woff'),
+  url('/assets/fonts/avenirnext.otf') format('opentype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'AvenirNext';
+  src: url('/assets/fonts/avenirnextlight.woff') format('woff'),
+  url('/assets/fonts/avenirnextlight.otf') format('opentype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Digi';
+  src: url('/assets/fonts/DS-DIGI.TTF');
+  font-weight: normal;
+}
+
+@-moz-document url-prefix() {
+  fieldset {
+    display: table-cell;
+  }
+}
+
+/*
+Modified classes
+*/
+
+.padder-v {
+  padding-top: 7px;
+  padding-bottom:7px;
+}
+.width-fix{
+  min-width: 100% !important;
+  width: 100% !important;
+}
+
+a.navbar-brand.active {
+  background-color: #D90000;
+  color: white;
+}
+
+a.navbar-brand.active:hover {
+  background-color: #D90000;
+  color: white;
+}
+
+a.navbar-brand:hover {
+  color: #D90000;
+}
+
+.nav.navbar-nav li.active > a {
+  background-color: #D90000;
+  color: white;
+}
+
+.nav.navbar-nav li.active a:hover {
+  background-color: #D90000;
+  color: white;
+}
+
+.navbar-default .navbar-nav li a:hover {
+  color: #D90000;
+}
+
+a {
+  color: #D90000;
+}
+
+a:hover {
+  color: #BB0000;
+  font-style: underline;
+}
+
+.btn {
+  box-shadow: 3px 3px 3px 1px #AAAAAA;
+}
+
+.btn-danger {
+  background-color: #d83c3c;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.panel-danger > .panel-heading {
+  color: white;
+  background-color: #d83c3c;
+}
+
+/*
+New Classes
+*/
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.avenir-db {
+  font-family: 'AvenirNext', sans-serif;
+  font-weight: bold;
+}
+
+.avenir-light {
+  font-family: 'AvenirNext', sans-serif;
+  font-weight: normal;
+}
+
+.avenir-mid {
+  font-family: 'AvenirNext', sans-serif;
+  font-weight: 500;
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-stack {
+  margin-bottom: 10px;
+}
+
+.text-default {
+  font-weight: normal;
+  color: #000000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.strech-font{
+  font-size: 2em;
+  font-weight: normal;
+  width: 1em;
+}
+
+.minimize {
+  font-size: 3em;
+  float: right;
+  margin: -1.15em 0.1em 0 0;
+  color: white;
+  z-index: +3
+}
+
+.minimize:hover {
+  cursor: pointer;
+}
+
+.grey{
+  background: #f8f8f8 !important;
+  border-color: #f8f8f8;
+}
+.grey-text {
+  color: gray;
+}
+.nav-justified{
+  z-index: 2;
+  position: relative;
+}
+.nav-justified li a{
+  border: 1px solid #dddddd;
+  border-radius: 12px 12px 0 0 !important;
+}
+.dropdown-menu li a{
+  border: 1px solid #ffffff !important;
+  border-radius: 0px 0px 0 0 !important;
+}
+
+.top-margin {
+  margin-top: 0.7em;
+}
+
+.top-margin-msg {
+  margin-top: 0.7em;
+}
+
+.bottom-margin {
+  margin-bottom: 1.8em;
+}
+
+@media (max-width: @screen-xs-min) {
+  .messages {
+    height: 17.4em;
+  }
+}
+
+@media (min-width: @screen-xs-min) {
+  .messages {
+    height: 17.4em;
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .messages {
+    height: 23.4em;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .messages {
+    height: 23.4em;
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .messages {
+    height: 23.4em;
+  }
+}
+
+.bg-gray {
+  background: #F3F5F5;
+}
+
+.border-left{
+  border-left: 1px solid #eee;
+  padding-left:-10px;
+}
+.border-right{
+  border-right: 1px solid #eee;
+}
+
+.text-bold{
+  font-weight: bold;
+}
+
+.omni-input {
+  font-family: 'AvenirNext', sans-serif;
+  background-color:#eeeeee;
+  border-radius: 0;
+}
+.omni-input:focus {
+  outline: none !important;
+  border: 1px solid red;
+  box-shadow: 0 0 10px gray;
+}
+
+.form-control:focus {
+  border-color: #d83c3c;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(150, 0, 0, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(150, 0, 0, .6);
+}
+
+[omni-link] {
+  cursor: pointer;
+}
+
+[omni-tap] {
+  cursor: pointer;
+}
+
+.navbar-emphasis {
+  color: black;
+  background-color: white;
+  text-align: center;
+  border-right: 1px solid gray;
+  -webkit-box-shadow: inset 30px 0px 20px -40px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 30px 0px 20px -40px rgba(0,0,0,0.75);
+  box-shadow: inset 30px 0px 20px -40px rgba(0,0,0,0.75);
+}
+
+// injector
+@import 'about/about.less';
+@import 'account/account/account.less';
+@import 'account/exam/exam.less';
+@import 'account/login/login.less';
+@import 'account/signup/beta/beta.less';
+@import 'account/signup/signup.less';
+@import 'admin/admin.less';
+@import 'admin/components/betaKey/addBetaKey.less';
+@import 'admin/components/betaKey/betaKeyManagement.less';
+@import 'admin/components/couponManagement/addCoupon.less';
+@import 'admin/components/couponManagement/couponManagement.less';
+@import 'admin/components/exams/examManagment.less';
+@import 'admin/components/notificationToggle/notificationToggle.less';
+@import 'admin/components/questions/questionManagement.less';
+@import 'admin/components/subjectsTaught/subjectsTaught.less';
+@import 'admin/components/survey/addSurvey.less';
+@import 'admin/components/survey/surveyManagement.less';
+@import 'admin/examEdit/examEdit.less';
+@import 'contact/contact.less';
+@import 'exam/exam.less';
+@import 'main/main.less';
+@import 'pricing/pricing.less';
+@import 'privacy/privacy.less';
+@import 'resources/resources.less';
+@import 'student/classroom/assignment/assignment.less';
+@import 'student/classroom/peerGradeModal.less';
+@import 'student/student.less';
+@import 'teacher/assignment/assignment.less';
+@import 'teacher/gradebook/gradebook.less';
+@import 'teacher/teacher.less';
+@import 'terms/terms.less';
+@import 'accountPage/endUser/account.less';
+@import 'ccform/ccform.less';
+@import 'chat/chat.less';
+@import 'confirmModal/confirmModal.less';
+@import 'examPage/examPage.less';
+@import 'footer/footer.less';
+@import 'leaderboard/leaderboard.less';
+@import 'modal/modal.less';
+@import 'omniEditor/omniEditor.less';
+@import 'omnicordion/omnicordion.less';
+@import 'studentsProgress/studentsProgress.less';
+@import 'surveyModal/surveyModal.less';
+// endinjector
+
+.ui-select-bootstrap {
+  width: 100%;
+}
+.ui-select-bootstrap .ui-select-match {
+  width: 100%;
+}
+.ui-select-choices-row {
+  max-width: 100%;
+}
+.ui-select-choices-group {
+  max-width: 100%;
+}
+.ui-select-choices.ui-select-choices-content.dropdown-menu {
+  min-width: 0px;
+  max-width: 100%;
+}
+input.ui-select-search {
+  max-width: 100%;
+}
+
+.ui-select-match span.ui-select-toggle {
+  width: 100%;
+}

@@ -1,0 +1,7 @@
+div.avenir-light
+  .title.cursor-pointer.omni-accordion.row(data-ng-click="toggle()")
+    .col-xs-6.col-md-8.subject-name.avenir-db
+      {{title}}
+    .col-xs-3.col-md-2.text-center.grey-text highest score
+    .col-xs-3.col-md-2.text-center.grey-text # of attempts
+  .body(data-ng-show="showMe", data-ng-transclude="")

@@ -1,0 +1,31 @@
+strong Chat Archive
+div.panel(ng-controller='ChatarchiveCtrl')
+  div.panel-body
+    tabset(justified="true")
+      tab.avenir-light.tab-heading(ng-repeat="tab in tabs", heading="{{tab.name}}", active="tab.active", disabled="tab.disabled" select="selectRoom(tab)")
+        | {{tab.content}}
+        .messages(scrollable='true').bg-gray
+          article.top-margin.bottom-margin.col-lg-12.col-sm-12.col-xs-12(ng-show="page[roomID].msgcount<=0 &&  page[roomID].totalMsgcount<=0")
+            section.panel
+              .panel-body
+                h5.text-center.text-warning No Messages
+          article.top-margin.bottom-margin.col-lg-12.col-sm-12.col-xs-12(ng-hide="page[roomID].msgcount<=0  || page[roomID].totalMsgcount<=limit  ")
+            .row
+              button.btn.btn-default.col-md-4.col-md-offset-4(omni-tap="loadEarlierMessages()") Load Earlier Messages
+          article.top-margin-msg.col-lg-8.col-sm-8.col-xs-8(ng-repeat='chat in archiveChats', ng-if="roomID === chat.roomID", class="{{(currentUser['email'] == chat.email) ? 'pull-right' : 'pull-left'}}", ng-mouseenter="isHover=true", ng-mouseleave="isHover=false")
+            section.panel
+              .panel-body(class="{{(isBlocked(chat.email))?' bg-danger':''}}")
+                a(href="#", ng-show="isHover==true && (currentUser['email'] != chat.email && chat.sentByUser) && (!isBlocked(chat.email))", omni-tap="blockUser('{{chat.email}}',1,'{{chat._id}}','{{chat.name}}')")
+                  i.fa.fa-ban.pull-right
+                    span.text-muted &nbsp;Temp. Block
+                a(href="#", ng-show="isHover==true && (currentUser['email'] != chat.email && chat.sentByUser) && (!isBlocked(chat.email))", omni-tap="blockUser('{{chat.email}}',2,'{{chat._id}}','{{chat.name}}')")
+                  i.fa.fa-ban.pull-right
+                    span.text-muted &nbsp;Perm. Block
+                a(ng-show="isHover==true && (currentUser['email'] != chat.email && chat.sentByUser) && (isBlocked(chat.email))")
+                  i.fa.fa-ban.pull-right
+                    span.text-muted &nbsp;User Blocked
+                strong(class="{{chat.sentByUser?'':'text-danger'}}") {{(currentUser['email'] === chat.email) ? 'Me' : (chat.sentByUser ? chat.name : 'Admin')}}:
+                p {{chat.message}}
+    .top-margin.bottom-margin.col-lg-12
+      .row
+        button.btn.btn-primary(omni-tap="exportToJson()") Export to JSON

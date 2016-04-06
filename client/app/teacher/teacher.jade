@@ -1,0 +1,90 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row.avenir-db
+    //- Assignments
+    .col-sm-8
+      h2.studentTitle Assignments
+        //- new assignment button
+      .row
+        .col-xs-6
+          button.btn.btn-primary.btn-lg(omni-tap='addAssignmentModal()') + New Assignment
+        .col-xs-6
+      br
+      br
+      //- List of assignments here
+      .limit-overflow
+        table.table.table-hover
+          tr
+            th Name
+            th Subject
+            //- th Date Created
+            th Tools
+          tr(ng-repeat='assignment in assignments track by $index')
+            td {{assignment.name}}
+            td {{assignment.subject.fullName}}
+            td.tools 
+              button.btn.btn-success(omni-tap='assignAssignment(assignment)', style="margin-right:0.4em;") Assign
+                span.glyphicon.glyphicon-inbox
+              button.btn.btn-info(omni-tap='editAssignment(assignment)', style="margin-right:0.4em;") Edit
+                span.glyphicon.glyphicon-edit
+              button.btn.btn-danger(omni-tap='deleteAssignment(assignment)', style="margin-right:0.4em;") Delete
+                span.glyphicon.glyphicon-trash
+
+
+    //- Messages
+    .col-sm-4
+      .row.studentTitle
+        .col-sm-12
+          h2 Recent Messages
+      .row
+        .col-sm-12.teacher-chat-log(scroll-top-on='messages_updated')
+          table.activityTable.table.table-hover.avenir-light
+            tr
+              th Date
+              th Message
+            tr(ng-repeat="message in messages | orderBy: '-date' track by $index", ng-init="message.isToday = checkIfToday(message.date)")
+              td(ng-if="!message.isToday") {{ message.date | date : 'mediumDate'  }}
+              td(ng-if="message.isToday") {{ message.date | date : 'shortTime'  }}
+              td {{message.authorName}}: {{ message.message}}
+          
+      .row
+        .col-sm-12.teacher-chat-container
+          form.teacher-chat
+            .teacher-chat-input
+              input.chatbox(type='text', ng-model='newMessage', placeholder="Send a message to all your classes!")
+              button.btn-send(ng-click="addMessage()") Send
+
+  .row.avenir-db
+    .col-sm-12
+      h2 Classrooms
+  .row.avenir-db
+    .col-sm-12
+      table.table.table-hover
+        tr
+          th Name
+          th Number of Students
+          th Subject
+          th Class Average
+          th 
+            span 
+              | Class Code&nbsp;
+            span.glyphicon.glyphicon-question-sign(uib-tooltip-direction='top' uib-tooltip='Share this with your students to help them sign up!')
+        tr(ng-repeat='class in classrooms track by $index', omni-tap='goToClass(class)')
+          td.btn-link 
+            | {{class.name}}
+          td
+            | {{class.students.length}}
+          td
+            | {{class.subject.fullName}}
+          td(ng-hide='class.average == "N/A"')
+            | {{(100* class.average) | number:1}}%
+          td(ng-show='class.average == "N/A"')
+            | {{class.average}}
+          td
+            | {{class.code}}
+        tr
+          td(colspan='5', omni-tap='addClassModal()')
+            span.glyphicon.glyphicon-plus
+            | Add a new classroom
+
+footer.footer(ng-include='"components/footer/footer.html"')

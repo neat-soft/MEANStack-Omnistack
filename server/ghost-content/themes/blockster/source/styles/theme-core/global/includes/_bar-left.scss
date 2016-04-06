@@ -1,0 +1,129 @@
+.bar-left-wrap {
+  position: relative;
+  display: block;
+  height: auto;
+  @include bp(baby){
+    padding-top: $top-bar-height;
+  }
+}
+
+.sb-alpha-0 { background-color: rgba($bar-left-bg, 0.0) }
+.sb-alpha-1 { background-color: rgba($bar-left-bg, 0.1) }
+.sb-alpha-2 { background-color: rgba($bar-left-bg, 0.2) }
+.sb-alpha-3 { background-color: rgba($bar-left-bg, 0.3) }
+.sb-alpha-4 { background-color: rgba($bar-left-bg, 0.4) }
+.sb-alpha-5 { background-color: rgba($bar-left-bg, 0.5) }
+.sb-alpha-6 { background-color: rgba($bar-left-bg, 0.6) }
+.sb-alpha-7 { background-color: rgba($bar-left-bg, 0.6) }
+.sb-alpha-8 { background-color: rgba($bar-left-bg, 0.8) }
+.sb-alpha-9 { background-color: rgba($bar-left-bg, 0.9) }
+.sb-alpha-off { background-color: rgba($bar-left-bg, 1.0) }
+.bar-left {
+  overflow: auto;
+  z-index: 999900;
+  @extend %fixed;
+  @extend %block;
+  width: $bar-left-width;
+  @extend %top-0;
+  @extend %bottom-0;
+  padding: 0 15px;
+  @extend %height-100;
+  color: $white;
+  //background-color: rgba($bar-left-bg, 0.8); // this is now set with js by toggling one of the above 'sb-alpha-#{number}' classes
+  @extend %text-left;
+  @extend %uppercase;
+  font-weight: 600;
+  transition: left 0.2s ease;
+  @include bp(baby){
+    padding: 0 10px;
+    padding-bottom: 30px;
+    padding-top: $top-bar-height + 15px;
+    width: $bar-left-width + 5px;
+    left: -#{$bar-left-width + 5px};
+  }
+  &.open {
+    left: 0;
+  }
+}
+ul#left-sb-content {
+  li {
+    margin: 5px 0;
+    font-size: 15px;
+    a {
+      color: $white;
+      display: block;
+      border-bottom: none;
+      transition: color .2s ease;
+    }
+    a:hover, a.active {
+      color: $link-color;
+      border-bottom: none;
+      svg.icon {
+        opacity: 1;
+        margin-right: -2px;
+        fill: $link-color;
+        stroke: $link-color;
+      }
+    }
+    svg.icon {
+      opacity: 0;
+      width: 14px;
+      height: 14px;
+      margin-right: -15px;
+      //margin-left: 7px;
+      margin-bottom: -2px;
+      stroke-width: 1px;
+      stroke: $white;
+      transition: all .15s ease;
+    }
+  }
+}
+
+li.bar-iso {
+  @extend %relative;
+  z-index: 600;
+  transition: background 0.2s ease;
+  &:hover, &.active {
+    background-color: $slideout-bg;
+  }
+}
+
+// Social and Meta for > mobile view
+.sidebar-meta {
+  @extend %absolute;
+  @extend %left-0;
+  @extend %right-0;
+  @extend %text-center;
+  bottom: $block-spacing;
+  z-index: 999999;
+  @include bp(baby){
+    display: none;
+  }
+}
+.sidebar-social {
+  width: 48%;
+  //margin: 0 auto 44px;
+  margin: 0 auto 10px;
+  @include bp(baby){
+    display: none;
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+    margin: 0px 1px;
+  }
+  .icon-facebook,
+  .icon-rss {
+    float: right;
+  }
+  .icon-googlep,
+  .icon-twitter {
+    float:left;
+  }
+}
+.sidebar-copyright {
+  font-size: 10px;
+  @include bp(baby){
+    display: none;
+  }
+}

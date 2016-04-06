@@ -1,0 +1,49 @@
+.container-fluid
+  .row
+    .col-sm-12
+      h1
+        | Add a Survey
+  form(name='surveyForm', ng-model='survey')
+    .row
+      .col-sm-12
+        .row
+          .col-sm-12
+            .well
+              .form-group
+                label(for='name')
+                  | Survey Name
+                input.form-control(name='name', type='text', ng-model='survey.name', placeholder='Name the survey')
+              .form-group
+                label(for='information')
+                  | Survey Name
+                input.form-control(name='name', type='text', ng-model='survey.info', placeholder='Describe the survey')
+        .row.form-horizontal.well(ng-repeat='question in survey.questions')
+          .col-sm-10
+            .form-group
+              label
+                | Question {{$index+1}}
+              input.form-control(ng-model='question.questionContent', placeholder='Ask a question.')
+            .form-group
+              label
+                | Choices
+              .row(ng-repeat='choice in question.choices')
+                .col-sm-10
+                  input.form-control(ng-model='choice.choiceContent', placeholder='Sample answer.')
+                .col-sm-2
+                  button.btn(omni-tap='removeChoice(question, $index)')
+                    span.glyphicon.glyphicon-trash
+              .row
+                .col-sm-12.pull-left
+                  button.btn.btn-primary.btn-sm(omni-tap='addChoice(question)')
+                    | Add choice
+          .col-sm-2
+            button.btn(omni-tap='removeQuestion($index)')
+              span.glyphicon.glyphicon-trash
+        .row
+          .col-sm-12.pull-left
+            button.btn.btn-primary(omni-tap='addQuestion()')
+              | Add question      
+    .row
+      .col-sm-12
+        button.pull-right.btn.btn-primary(type='button', ng-click='addNewSurvey(surveyForm)')
+          | Submit

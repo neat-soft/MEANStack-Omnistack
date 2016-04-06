@@ -1,0 +1,72 @@
+.block-item {
+  padding: 1em;
+  background-image: url('/assets/images/paper_fibers_@2X.png');
+  border-radius: 15px;
+}
+
+.vpadded .row {
+  padding-top: 0.5em;
+}
+
+.omni-accordion {
+  border-radius: 0px !important;
+  border-bottom: 1px solid red;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background-color: #fafafa;
+  height: 3em;
+  padding-top: 0.8em;
+}
+
+.exam-info {
+  font-size: 1.1em;
+  padding-top: 0.8em;
+  height: 3em;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #dcdcdc 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dcdcdc)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#dcdcdc 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#dcdcdc 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#dcdcdc 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#dcdcdc 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dcdcdc',GradientType=0 ); /* IE6-9 */
+}
+
+.subject-name {
+  font-size: 1.17em;
+}
+
+.omni-accordion div .panel-body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.block-item {
+  border-radius: 0;
+  padding: 1em 0px 1em 0px;
+}
+
+.top-border {
+  border-top: 1px solid red;
+  padding-top: 0.5em;
+}
+
+.setOpacity(@color, @opacity:1) {
+  background: rgba(red(@color), green(@color), blue(@color), @opacity);
+}
+
+.message {
+  padding-top: 0.75em;
+  text-align: center;
+  font-family: "AnevirNext";
+  font-weight: normal;
+  .setOpacity(@brand-danger, 0.25);
+  border-radius: 5em;
+  border: 1px solid @brand-danger
+}
+
+.share-img {
+  width: 100%;
+  height: auto;
+}

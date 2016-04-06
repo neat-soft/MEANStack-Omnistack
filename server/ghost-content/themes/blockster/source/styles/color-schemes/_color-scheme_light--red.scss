@@ -1,0 +1,16 @@
+// ---------------------------------------------------------
+// Color Scheme - LIGHT
+// ---------------------------------------------------------
+
+// Core Color
+$red: $color-red;
+
+//$red: $red;
+$brand-primary: $red;
+
+// --------------------
+// Typography
+// ---
+// links  
+$link-color:                $brand-primary;
+$link-hover-color:          saturate(adjust-hue($link-color, 10), 55);

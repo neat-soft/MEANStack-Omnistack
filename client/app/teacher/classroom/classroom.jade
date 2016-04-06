@@ -1,0 +1,59 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row
+    .col-sm-12
+      h1 
+        span(omni-tap="goToTeacher()").btn-link My Classrooms
+        span &nbsp;&gt;&nbsp;
+        span(omni-tap="").btn-link {{classroom.name}}
+        span &nbsp;
+        span(ng-if='currentAssignment') &gt;&nbsp;{{currentAssignment.name}}
+  .row.avenir-db
+    div(ng-class="currentAssignment?'col-sm-12':'col-sm-6'")
+      .row.studentTitle(ng-hide='currentAssignment')
+        .col-sm-12
+          h2
+            | Assignments
+        .col-sm-12
+          table.table.table-hover(ng-hide='currentAssignment')
+            tr
+              th Assignment Name
+              th Due Date
+              th Tools
+            tr(ng-repeat='assignment in classroom.assignments' omni-tap="openGradebook(assignment)")
+              td {{assignment.name}}
+              td {{assignment.dueDate | date: 'short'}}
+              td
+                .toolset
+                  .tool
+                    span.glyphicons.glyphicons-family
+          table.table.table-hover(ng-if='currentAssignment')
+            tr
+              th Student name
+              th Score
+            tr(ng-repeat="student in classroom.students")
+              td {{student.name}}
+              td(ng-hide='student.score == "N/A"') {{(100 * student.score) | number:1}}%
+              td(ng-show='student.score == "N/A"') {{student.score}}
+    .col-sm-5.col-sm-offset-1(ng-hide='currentAssignment')
+      .row.studentTitle
+        .col-sm-12
+          h2 Recent Messages
+      .row
+        .col-sm-12.teacher-chat-log(scroll-top-on='messages_updated')
+          table.activityTable.table.table-hover.avenir-light
+            tr
+              th Date
+              th Message
+            tr(ng-repeat="message in messages | orderBy: '-date' track by $index", ng-init="message.isToday = checkIfToday(message.date)")
+              td(ng-if="!message.isToday") {{message.date | date : 'mediumDate'  }}
+              td(ng-if="message.isToday") {{message.date | date : 'shortTime'  }}
+              td {{message.authorName}}: {{message.message}}
+          
+      .row
+        .col-sm-12.teacher-chat-container
+          form.teacher-chat
+            .teacher-chat-input
+              input.chatbox(type='text', ng-model='newMessage', placeholder="Send a message to all your classes!")
+              button.btn-send(ng-click="addMessage()") Send
+footer.footer(ng-include='"components/footer/footer.html"')

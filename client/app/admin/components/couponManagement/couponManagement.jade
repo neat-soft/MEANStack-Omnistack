@@ -1,0 +1,44 @@
+strong
+    | Coupons
+ul.list-group(ng-controller='CouponCtrl')
+  li.list-group-item(ng-if='coupons.length > 0')
+    .row
+      .col-sm-2(ng-click='sortFactor = "email"')
+        strong Code
+      .col-sm-2(ng-click='sortFactor = "email"')
+        strong Subject
+      .col-sm-2(ng-click='sortFactor = "key"')
+        strong Usages Allowed
+      .col-sm-2
+        strong Expires
+      .col-sm-2
+        strong No. Of Usages
+  li.list-group-item(ng-repeat='coupon in coupons')
+    .row.coupon
+      .col-sm-2.email
+        | {{coupon.code}}
+      .col-sm-2.email
+        | {{coupon.subjectName}}
+      .col-sm-2.key
+        | {{coupon.totalNumber}}
+      .col-sm-2.approved
+        | {{coupon.expires | date:'MMM dd yyyy'}}
+      .col-sm-2.approved
+        | {{coupon.numClaimed}}
+      span.delete(ng-click='removeCoupon(coupon._id)')
+        span.glyphicon.glyphicon-trash
+  li.list-group-item
+    .row
+      .col-sm-12
+        | Add Coupon&nbsp;
+        span
+            a(omni-tap='addCouponModal()')
+                span.glyphicon.glyphicon-plus.pull-left
+  li.list-group-item
+    .row
+      .col-sm-2
+        | Clean up:
+      .col-sm-4.btn.btn-primary(ng-click='removeReachedLimit()')
+        | Remove all reached limit
+      .col-sm-4.btn.btn-warning(ng-click='removeExpired()')
+        | Remove all expired

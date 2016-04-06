@@ -1,0 +1,51 @@
+.row
+  .col-sm-12
+    h2
+      | Surveys
+.row
+  .col-sm-12
+    ul.list-group(ng-controller='SurveyCtrl')
+      li.list-group-item
+        .row
+          .col-sm-8
+            input(ng-model='search' placeholder='Search' ng-change='updateFiltered()')
+            |  in
+            select(ng-model='searchType' ng-options='opt.value as opt.name for opt in searchTypes')
+          .col-sm-4.pages
+            span.prevPage(omni-tap='page(-1)')
+              | &lt;
+            span
+              | {{currentPage}}/{{maxPage}}
+            span.nextPage(omni-tap='page(1)')
+              |  &gt;
+      li.list-group-item(ng-if='surveys.length > 0')
+        .row
+          .col-sm-3(ng-click='sortFactor = "name"')
+            strong Survey Name
+          .col-sm-3(ng-click='sortFactor = "key"')
+            strong Number Questions
+          .col-sm-3
+            strong Active? 
+          .col-sm-3
+            span.pull-right
+              | Enable/Disable
+      li.list-group-item(ng-repeat='survey in filtered | startAt:((currentPage-1)*lim) | limitTo: lim')
+        .row.survey(ng-class='{expired: !survey.active}')
+          .col-sm-3.email
+            | {{survey.name}} 
+          .col-sm-3.key
+            | {{survey.questions.length}}
+          .col-sm-3.approved
+            | {{survey.active}}
+          .col-sm-3.claimed
+            span.delete(ng-click='disableSurvey(survey._id)', ng-if='survey.active')
+              span.glyphicon.glyphicon-ok-circle.greenText(title='Disable')
+            span.delete(ng-click='enableSurvey(survey._id)', ng-if='!survey.active')
+              span.glyphicon.glyphicon-remove-circle(title='Enable')
+      li.list-group-item
+        .row
+          .col-sm-12
+            | Add Survey&nbsp;
+            span
+                a(omni-tap='addSurveyModal()')
+                    span.glyphicon.glyphicon-plus.pull-left

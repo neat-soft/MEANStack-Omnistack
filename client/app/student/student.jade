@@ -1,0 +1,66 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row.avenir-db
+    .col-sm-6
+      .row.studentTitle
+        .col-sm-12
+          h2 Recent Messages
+      .row
+        .col-sm-12.teacher-chat-log(scroll-top-on='messages_updated')
+          table.activityTable.table.table-hover.avenir-light
+            tr
+              th Date
+              th Message
+            tr(ng-repeat="message in messages | orderBy: '-date' track by $index", ng-init="message.isToday = checkIfToday(message.date)")
+              td(ng-if="!message.isToday") {{message.date | date : 'mediumDate'  }}
+              td(ng-if="message.isToday") {{message.date | date : 'shortTime'  }}
+              td {{message.authorName}}: {{message.message}}
+          
+    .col-sm-6
+      .row.studentTitle
+        .col-sm-12
+          h2
+            | Assignments
+      .row.studentContent
+        .col-sm-12
+          table.table.table-hover
+            tr
+              th Name
+              th Subject
+              th Due Date
+            tr(ng-repeat='assignment in assignments track by $index')
+              td {{assignment.name}}
+              td {{assignment.subject.fullName}}
+              td {{assignment.dueDate | date: 'short'}}
+            tr(ng-if="!assignments || assignments.length == 0")
+              td(colspan='3') You're all caught up!
+
+  .row.avenir-db
+    .col-sm-1
+    .col-sm-10
+      h2
+        | Classrooms
+    .col-sm-1
+  .row.avenir-db
+    .col-sm-12
+      table.table.table-hover
+        tr
+          th Name
+          th Subject
+        tr(ng-repeat='class in classrooms track by $index', omni-tap='goToClass(class)')
+          td.btn-link 
+            | {{class.name}}
+          td
+            | {{class.subject.fullName}}
+
+        tr
+          td(colspan='3', omni-tap='signUpForClass()')
+            form.form.form-inline(ng-model="signUpClass", ng-submit="signUp(signUpClass)")
+              .form-group
+                label(for="classCode") Enter a class code to add a new class:
+                input#classCode(ng-model="signUpClass.code" type="text" placeholder="Class Code", ng-required="true")
+              .form-group
+                  button.btn.btn-primary(type='submit')
+                    | Sign up!
+
+footer.footer(ng-include='"components/footer/footer.html"')

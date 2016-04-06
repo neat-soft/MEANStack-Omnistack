@@ -1,0 +1,22 @@
+<script>
+  {{> 'config'}}
+
+
+  !function() {
+    styleTag = document.getElementById('defaultStyle')
+
+    // isolate version string into variable (version string added by Ghost)
+    // to preserve proper cache busting
+    var styleHref = styleTag.getAttribute('href')
+    var getVersion = /\?(.*)$/
+    assetVersionOb = styleHref.match(getVersion)
+    assetVersion = assetVersionOb[0]
+
+    // get path, initiate activeStyle
+    assetPath = styleHref.substr(0, styleHref.lastIndexOf('/'))
+    var activeStyle = assetPath + '/global-style_light--red.min.css' + assetVersion
+
+    styleTag.setAttribute('href', activeStyle)
+
+  }()
+</script>
